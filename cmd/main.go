@@ -6,11 +6,11 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-	"github.com/unmango/go/devops/cmd"
+	"github.com/unmango/devctl/pkg/cmd"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "devops",
+	Use:   "devctl",
 	Short: "Helper utilities for developing code",
 }
 

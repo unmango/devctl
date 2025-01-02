@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/unmango/devctl/pkg/version"
+	"github.com/unmango/devctl/pkg/work"
 	util "github.com/unmango/go/cmd"
-	"github.com/unmango/go/devops/version"
-	"github.com/unmango/go/devops/work"
 )
 
 type VersionOptions struct {

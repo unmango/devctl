@@ -13,7 +13,7 @@ import (
 	"github.com/unmango/go/testing"
 )
 
-var _ = Describe("devops", func() {
+var _ = Describe("devctl", func() {
 	Describe("version", func() {
 		var root string
 

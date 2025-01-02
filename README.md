@@ -18,7 +18,7 @@ Useful for `make` targets
 
 ```shell
 $ devctl list --go
-# cmd/devops_suite_test.go
+# cmd/devctl_suite_test.go
 # cmd/init_test.go
 # cmd/main.go
 # cmd/version_test.go
