@@ -6,7 +6,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/unmango/go/devops/work"
+	"github.com/unmango/devctl/pkg/work"
 	"github.com/unmango/go/vcs/git"
 )
 

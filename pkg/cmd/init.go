@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	gen "github.com/unmango/go/devops/cmd/init"
+	gen "github.com/unmango/devctl/pkg/cmd/init"
 )
 
 type InitOptions struct{}

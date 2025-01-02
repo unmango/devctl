@@ -11,7 +11,7 @@ import (
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
 	"github.com/spf13/afero"
-	"github.com/unmango/go/devops/version"
+	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/go/testing"
 	"github.com/unmango/go/testing/gfs"
 )

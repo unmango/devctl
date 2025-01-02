@@ -5,7 +5,7 @@ import (
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/unmango/go/devops/version"
+	"github.com/unmango/devctl/pkg/version"
 )
 
 var _ = Describe("Source", func() {

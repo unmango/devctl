@@ -15,9 +15,9 @@ var testdata embed.FS
 
 var cmdPath string
 
-func TestDevops(t *testing.T) {
+func TestDevctl(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Devops Suite")
+	RunSpecs(t, "Devctl Suite")
 }
 
 var _ = BeforeSuite(func() {
