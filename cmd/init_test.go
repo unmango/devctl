@@ -39,6 +39,21 @@ var _ = Describe("init", func() {
 			))
 		})
 
+		It("should initialize an inline version with the name option", func() {
+			cmd := exec.Command(cmdPath, "init", "version", "0.0.69", "--name", "blah")
+			cmd.Dir = root
+
+			ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+			Expect(err).NotTo(HaveOccurred())
+			Eventually(ses).Should(gexec.Exit(0))
+			Expect(filepath.Join(root, version.DirName)).To(BeADirectory())
+			Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+				filepath.Join(root, version.DirName, "blah"),
+				[]byte("0.0.69"),
+			))
+		})
+
 		It("should strip inline version prefixes", func() {
 			cmd := exec.Command(cmdPath, "init", "version", "blah", "v0.0.69")
 			cmd.Dir = root
@@ -90,39 +105,39 @@ var _ = Describe("init", func() {
 			Eventually(ses).Should(gexec.Exit(1))
 			Expect(ses.Err).To(gbytes.Say(`name is required\n`))
 		})
-	})
 
-	It("should error when input is gibberish", func() {
-		cmd := exec.Command(cmdPath, "init", "version", "blah-de-do-dah")
-		cmd.Dir = root
-
-		ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
-
-		Expect(err).NotTo(HaveOccurred())
-		Eventually(ses).Should(gexec.Exit(1))
-		Expect(ses.Err).To(gbytes.Say(`unrecognized source: blah-de-do-dah\n`))
-	})
-
-	Context("Git repo", func() {
-		BeforeEach(func(ctx context.Context) {
-			By("Initializing a git repo in the working directory")
-			testing.GitInit(ctx, root)
-			Expect(os.Mkdir(filepath.Join(root, "subdir"), os.ModePerm)).To(Succeed())
-		})
-
-		It("should initialize an inline semver", func() {
-			cmd := exec.Command(cmdPath, "init", "version", "blah", "v0.0.69")
-			cmd.Dir = filepath.Join(root, "subdir")
+		It("should error when input is gibberish", func() {
+			cmd := exec.Command(cmdPath, "init", "version", "blah-de-do-dah")
+			cmd.Dir = root
 
 			ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
 
 			Expect(err).NotTo(HaveOccurred())
-			Eventually(ses).Should(gexec.Exit(0))
-			Expect(filepath.Join(root, version.DirName)).To(BeADirectory())
-			Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
-				filepath.Join(root, version.DirName, "blah"),
-				[]byte("0.0.69"),
-			))
+			Eventually(ses).Should(gexec.Exit(1))
+			Expect(ses.Err).To(gbytes.Say(`unrecognized source: blah-de-do-dah\n`))
+		})
+
+		Context("Git repo", func() {
+			BeforeEach(func(ctx context.Context) {
+				By("Initializing a git repo in the working directory")
+				testing.GitInit(ctx, root)
+				Expect(os.Mkdir(filepath.Join(root, "subdir"), os.ModePerm)).To(Succeed())
+			})
+
+			It("should initialize an inline semver", func() {
+				cmd := exec.Command(cmdPath, "init", "version", "blah", "v0.0.69")
+				cmd.Dir = filepath.Join(root, "subdir")
+
+				ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+				Expect(err).NotTo(HaveOccurred())
+				Eventually(ses).Should(gexec.Exit(0))
+				Expect(filepath.Join(root, version.DirName)).To(BeADirectory())
+				Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+					filepath.Join(root, version.DirName, "blah"),
+					[]byte("0.0.69"),
+				))
+			})
 		})
 	})
 })
