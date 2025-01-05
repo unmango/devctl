@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/charmbracelet/log"
@@ -14,16 +13,6 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "devctl [path]",
 	Short: "Helper utilities for developing code",
-	Args:  cobra.RangeArgs(0, 1),
-	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 1 && version.IsPath(args[0]) {
-			if _, err := version.Cat(args[0]); err != nil {
-				cli.Fail(err)
-			}
-		} else {
-			_ = cmd.Help()
-		}
-	},
 }
 
 func main() {
@@ -35,8 +24,17 @@ func main() {
 		cmd.NewVersion(),
 	)
 
+	if len(os.Args) == 2 {
+		n, err := version.PrintIfPath(os.Args[1])
+		if err != nil {
+			cli.Fail(err)
+		}
+		if n > 0 {
+			return
+		}
+	}
+
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		cli.Fail(err)
 	}
 }
