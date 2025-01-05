@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/afero"
 
 	"github.com/unmango/devctl/pkg/version"
+	"github.com/unmango/devctl/pkg/version/opts"
 	"github.com/unmango/go/testing/gfs"
 )
 
@@ -22,7 +23,7 @@ var _ = Describe("Make", func() {
 		fs := afero.NewMemMapFs()
 
 		err := version.WriteMakefile("test",
-			version.WithFs(fs),
+			opts.WithWriteFs(fs),
 		)
 
 		Expect(err).ToNot(HaveOccurred())

@@ -2,6 +2,22 @@ package opts
 
 import "github.com/spf13/afero"
 
+type Init struct {
+	Fs afero.Fs
+}
+
+var DefaultInit = Init{
+	Fs: afero.NewOsFs(),
+}
+
+type InitOp func(*Init)
+
+func WithInitFs(fs afero.Fs) InitOp {
+	return func(o *Init) {
+		o.Fs = fs
+	}
+}
+
 type Print struct {
 	Clean    bool
 	NewLine  bool
@@ -42,18 +58,34 @@ func PrintNewLine(newLine bool) PrintOp {
 	}
 }
 
-type Init struct {
+type Read struct {
 	Fs afero.Fs
 }
 
-var DefaultInit = Init{
+var DefaultRead = Read{
 	Fs: afero.NewOsFs(),
 }
 
-type InitOp func(*Init)
+type ReadOp func(*Read)
 
-func WithFs(fs afero.Fs) InitOp {
-	return func(o *Init) {
+func WithReadFs(fs afero.Fs) ReadOp {
+	return func(o *Read) {
+		o.Fs = fs
+	}
+}
+
+type Write struct {
+	Fs afero.Fs
+}
+
+var DefaultWrite = Write{
+	Fs: afero.NewOsFs(),
+}
+
+type WriteOp func(*Write)
+
+func WithWriteFs(fs afero.Fs) WriteOp {
+	return func(o *Write) {
 		o.Fs = fs
 	}
 }

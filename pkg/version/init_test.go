@@ -39,7 +39,7 @@ var _ = Describe("Init", func() {
 		src := source{}
 
 		err := version.Init(ctx, "test", src,
-			opts.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())
@@ -55,7 +55,7 @@ var _ = Describe("Init", func() {
 		}
 
 		err := version.Init(ctx, "test", src,
-			opts.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())
@@ -73,7 +73,7 @@ var _ = Describe("Init", func() {
 		}
 
 		err := version.Init(ctx, "", src,
-			opts.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())

@@ -6,7 +6,8 @@ import (
 	"strings"
 
 	"github.com/spf13/afero"
-	"github.com/unmango/go/option"
+	"github.com/unmango/devctl/pkg/version/internal"
+	"github.com/unmango/devctl/pkg/version/opts"
 )
 
 func MakefileVar(name string) string {
@@ -15,11 +16,10 @@ func MakefileVar(name string) string {
 	)
 }
 
-func WriteMakefile(name string, options ...Option) error {
-	opts := &Options{fs: afero.NewOsFs()}
-	option.ApplyAll(opts, options)
+func WriteMakefile(name string, options ...opts.WriteOp) error {
+	opts := internal.WriteOptions(options)
 
-	return afero.WriteFile(opts.fs,
+	return afero.WriteFile(opts.Fs,
 		fmt.Sprintf("%s/%s.mk", DirName, name),
 		[]byte(MakefileVar(name)),
 		os.ModePerm,
