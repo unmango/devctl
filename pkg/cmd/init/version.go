@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/devctl/pkg/work"
-	util "github.com/unmango/go/cmd"
+	"github.com/unmango/go/cli"
 )
 
 var (
@@ -30,13 +30,14 @@ func NewVersion() *cobra.Command {
 	opts := VersionOptions{}
 
 	cmd := &cobra.Command{
-		Use:   "version [dependency]",
-		Short: "Generates files for versioning the specified dependency",
-		Args:  cobra.RangeArgs(1, 2),
+		Use:     "version [dependency]",
+		Short:   "Generates files for versioning the specified dependency",
+		Aliases: []string{"v"},
+		Args:    cobra.RangeArgs(1, 2),
 		Run: func(cmd *cobra.Command, args []string) {
 			ctx := cmd.Context()
 			if err := opts.Chdir(ctx); err != nil {
-				util.Fail(err)
+				cli.Fail(err)
 			}
 
 			var (
@@ -61,11 +62,11 @@ func NewVersion() *cobra.Command {
 				err = fmt.Errorf("unsupported source: %s", opts.Source)
 			}
 			if err != nil {
-				util.Fail(err)
+				cli.Fail(err)
 			}
 
 			if err = version.Init(ctx, name, src); err != nil {
-				util.Fail(err)
+				cli.Fail(err)
 			}
 		},
 	}

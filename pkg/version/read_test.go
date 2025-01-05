@@ -9,14 +9,14 @@ import (
 )
 
 var _ = Describe("Read", func() {
-	Describe("ReadFile", func() {
+	Describe("Read", func() {
 		It("should read happypath", func() {
 			cwd, err := os.Getwd()
 			Expect(err).NotTo(HaveOccurred())
 			Expect(os.Chdir("testdata/happypath")).To(Succeed())
 			DeferCleanup(os.Chdir, cwd)
 
-			v, err := version.ReadFile("test")
+			v, err := version.Read("test")
 
 			Expect(err).NotTo(HaveOccurred())
 			Expect(v).To(Equal("0.0.69"))
@@ -28,9 +28,9 @@ var _ = Describe("Read", func() {
 			Expect(os.Chdir("testdata/happypath")).To(Succeed())
 			DeferCleanup(os.Chdir, cwd)
 
-			_, err = version.ReadFile("wat")
+			_, err = version.Read("wat")
 
-			Expect(err).To(MatchError("dependency not found: wat"))
+			Expect(err).To(MatchError("dependency not found: .versions/wat"))
 		})
 	})
 })
