@@ -1,15 +1,58 @@
 package version
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
 
-func Cat(path string) (int, error) {
+	"github.com/unmango/devctl/pkg/version/internal"
+	"github.com/unmango/devctl/pkg/version/opts"
+)
+
+func Cat(path string, w io.Writer, options ...opts.PrintOp) (int, error) {
 	if v, err := ReadFile(path); err != nil {
 		return 0, err
 	} else {
-		return fmt.Print(Prefixed(v))
+		return Fprint(w, v, options...)
 	}
 }
 
-func Print(name string) (int, error) {
-	return Cat(RelPath(name))
+func PrintIfPath(path string) (int, error) {
+	if !IsPath(path) {
+		return 0, nil
+	}
+
+	return Cat(path, os.Stdout,
+		opts.IncludePrefix,
+		opts.PrintNewLine(false),
+	)
+}
+
+func Print(version string, options ...opts.PrintOp) (int, error) {
+	return Fprint(os.Stdout, version, options...)
+}
+
+func Println(version string, options ...opts.PrintOp) (int, error) {
+	return Fprintln(os.Stdout, version, options...)
+}
+
+func Fprint(w io.Writer, version string, options ...opts.PrintOp) (int, error) {
+	opts := internal.PrintOptions(options)
+
+	if opts.Clean {
+		version = Clean(version)
+	}
+	if opts.Prefixed {
+		version = Prefixed(version)
+	}
+
+	if opts.NewLine {
+		return fmt.Fprintln(w, version)
+	} else {
+		return fmt.Fprint(w, version)
+	}
+}
+
+func Fprintln(w io.Writer, version string, options ...opts.PrintOp) (int, error) {
+	return Fprint(w, version, append(options, opts.IncludeNewLine)...)
 }
