@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/afero"
 
 	"github.com/unmango/devctl/pkg/version"
+	"github.com/unmango/devctl/pkg/version/opts"
 	"github.com/unmango/go/testing/gfs"
 )
 
@@ -38,7 +39,7 @@ var _ = Describe("Init", func() {
 		src := source{}
 
 		err := version.Init(ctx, "test", src,
-			version.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())
@@ -54,7 +55,7 @@ var _ = Describe("Init", func() {
 		}
 
 		err := version.Init(ctx, "test", src,
-			version.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())
@@ -72,7 +73,7 @@ var _ = Describe("Init", func() {
 		}
 
 		err := version.Init(ctx, "", src,
-			version.WithFs(fs),
+			opts.WithInitFs(fs),
 		)
 
 		Expect(err).NotTo(HaveOccurred())

@@ -139,5 +139,73 @@ var _ = Describe("init", func() {
 				))
 			})
 		})
+
+		When("the version file already exists", func() {
+			BeforeEach(func() {
+				By("initializing a version file")
+				cmd := exec.Command(cmdPath, "init", "version", "test", "0.0.69")
+				cmd.Dir = root
+				ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+				Expect(err).NotTo(HaveOccurred())
+				Eventually(ses).Should(gexec.Exit(0))
+			})
+
+			DescribeTable("should succeed with the original version",
+				Entry(nil, "0.0.69"),
+				Entry(nil, "v0.0.69"),
+				func(v string) {
+					cmd := exec.Command(cmdPath, "init", "version", "test", v)
+					cmd.Dir = root
+
+					ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+					Expect(err).NotTo(HaveOccurred())
+					Eventually(ses).Should(gexec.Exit(0))
+					Expect(ses.Out).To(gbytes.Say(`^$`))
+					Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+						filepath.Join(root, version.DirName, "test"),
+						[]byte("0.0.69"),
+					))
+				},
+			)
+
+			DescribeTable("should generate the makefile",
+				Entry(nil, "0.0.69"),
+				Entry(nil, "v0.0.69"),
+				func(v string) {
+					cmd := exec.Command(cmdPath, "init", "version", "test", v, "--makefile")
+					cmd.Dir = root
+
+					ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+					Expect(err).NotTo(HaveOccurred())
+					Eventually(ses).Should(gexec.Exit(0))
+					Expect(ses.Out).To(gbytes.Say(`^$`))
+					Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+						filepath.Join(root, version.DirName, "test.mk"),
+						[]byte("TEST_VERSION := $(shell devctl version test)\n"),
+					))
+				},
+			)
+
+			DescribeTable("should overwrite the original version",
+				Entry(nil, "0.42.0"),
+				Entry(nil, "v0.42.0"),
+				func(v string) {
+					cmd := exec.Command(cmdPath, "init", "version", "test", v)
+					cmd.Dir = root
+
+					ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+					Expect(err).NotTo(HaveOccurred())
+					Eventually(ses).Should(gexec.Exit(0))
+					Expect(ses.Out).To(gbytes.Say(`^$`))
+					Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+						filepath.Join(root, version.DirName, "test"),
+						[]byte("0.42.0"),
+					))
+				},
+			)
+		})
 	})
 })
