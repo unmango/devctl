@@ -62,7 +62,7 @@ var _ = Describe("version", func() {
 		},
 	)
 
-	It("should clean a prefixed version", Pending, func() {
+	It("should clean a prefixed version", func() {
 		cmd := exec.Command(cmdPath, "version", "test")
 		cmd.Dir = filepath.Join(root, "testdata", "prefixed")
 
@@ -73,7 +73,7 @@ var _ = Describe("version", func() {
 		Expect(ses.Out).To(gbytes.Say("^0.0.69\n"))
 	})
 
-	It("should print the prefixed version", Pending, func() {
+	It("should print the prefixed version", func() {
 		cmd := exec.Command(cmdPath, "version", "test", "--prefixed")
 		cmd.Dir = filepath.Join(root, "testdata", "happypath")
 
