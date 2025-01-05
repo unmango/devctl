@@ -6,7 +6,7 @@ func Cat(path string) (int, error) {
 	if v, err := ReadFile(path); err != nil {
 		return 0, err
 	} else {
-		return fmt.Print(v)
+		return fmt.Print(Prefixed(v))
 	}
 }
 

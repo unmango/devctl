@@ -32,7 +32,7 @@ var _ = Describe("version", func() {
 
 		Expect(err).NotTo(HaveOccurred())
 		Eventually(ses).Should(gexec.Exit(0))
-		Expect(ses.Out).To(gbytes.Say("^0.0.69"))
+		Expect(ses.Out).To(gbytes.Say("v0.0.69"))
 	})
 
 	It("should print the version", func() {
