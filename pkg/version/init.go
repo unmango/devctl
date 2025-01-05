@@ -8,12 +8,12 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/afero"
-	"github.com/unmango/go/option"
+	"github.com/unmango/devctl/pkg/version/internal"
+	"github.com/unmango/devctl/pkg/version/opts"
 )
 
-func Init(ctx context.Context, name string, src Source, options ...Option) (err error) {
-	opts := Options{fs: afero.NewOsFs()}
-	option.ApplyAll(&opts, options)
+func Init(ctx context.Context, name string, src Source, options ...opts.InitOp) (err error) {
+	opts := internal.InitOptions(options)
 
 	if name == "" {
 		if name, err = src.Name(ctx); err != nil {
@@ -21,7 +21,7 @@ func Init(ctx context.Context, name string, src Source, options ...Option) (err 
 		}
 	}
 
-	err = opts.fs.Mkdir(DirName, os.ModePerm)
+	err = opts.Fs.Mkdir(DirName, os.ModePerm)
 	if err != nil && !errors.Is(err, os.ErrExist) {
 		return
 	}
@@ -31,7 +31,7 @@ func Init(ctx context.Context, name string, src Source, options ...Option) (err 
 		return
 	}
 
-	return afero.WriteFile(opts.fs,
+	return afero.WriteFile(opts.Fs,
 		filepath.Join(DirName, name),
 		[]byte(Clean(version)+"\n"),
 		os.ModePerm,
