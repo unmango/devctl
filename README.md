@@ -51,5 +51,5 @@ This convention is useful alongside `make` where version updates can trigger tar
 
 ```make
 bin/mybin: .versions/mybin
-    go install mybin@v$(shell cat $<)
+    go install mybin@$(shell devctl $<)
 ```

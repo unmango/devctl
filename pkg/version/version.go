@@ -1,6 +1,7 @@
 package version
 
 import (
+	"fmt"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -34,4 +35,8 @@ func Clean(version string) string {
 
 func IsPath(name string) bool {
 	return strings.HasPrefix(name, DirName)
+}
+
+func Prefixed(name string) string {
+	return fmt.Sprint("v", name)
 }
