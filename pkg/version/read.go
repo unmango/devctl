@@ -10,14 +10,18 @@ import (
 	"github.com/unmango/go/option"
 )
 
-func ReadFile(name string, options ...Option) (string, error) {
+func Read(name string, options ...Option) (string, error) {
+	return ReadFile(RelPath(name), options...)
+}
+
+func ReadFile(path string, options ...Option) (string, error) {
 	opts := &Options{fs: afero.NewOsFs()}
 	option.ApplyAll(opts, options)
 
-	if b, err := afero.ReadFile(opts.fs, RelPath(name)); err == nil {
+	if b, err := afero.ReadFile(opts.fs, path); err == nil {
 		return strings.TrimSpace(string(b)), nil
 	} else if errors.Is(err, os.ErrNotExist) {
-		return "", fmt.Errorf("dependency not found: %s", name)
+		return "", fmt.Errorf("dependency not found: %s", path)
 	} else {
 		return "", err
 	}

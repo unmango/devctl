@@ -31,3 +31,7 @@ func RelPath(name string) string {
 func Clean(version string) string {
 	return strings.TrimPrefix(version, "v")
 }
+
+func IsPath(name string) bool {
+	return strings.HasPrefix(name, DirName)
+}

@@ -146,8 +146,9 @@ func (p *printer) handle(path string) (err error) {
 
 func NewList(options *ListOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "list",
-		Short: "List source files in the current git repo",
+		Use:     "list",
+		Short:   "List source files in the current git repo",
+		Aliases: []string{"ls"},
 		Run: func(cmd *cobra.Command, args []string) {
 			ctx := cmd.Context()
 			log.Debug("running with options", "options", options)

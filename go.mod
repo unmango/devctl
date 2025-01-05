@@ -8,7 +8,7 @@ require (
 	github.com/onsi/gomega v1.36.2
 	github.com/spf13/afero v1.11.0
 	github.com/spf13/cobra v1.8.1
-	github.com/unmango/go v0.2.0
+	github.com/unmango/go v0.2.2
 )
 
 require (
