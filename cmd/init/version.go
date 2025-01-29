@@ -25,6 +25,7 @@ type VersionOptions struct {
 	Name     string
 	Source   string
 	Makefile bool
+	Renovate bool
 }
 
 func NewVersion() *cobra.Command {
@@ -86,6 +87,7 @@ devctl init version my-app 0.0.69 --makefile`,
 	)
 	cmd.Flags().StringVarP(&opts.Name, "name", "n", "", "explicit dependency name")
 	cmd.Flags().BoolVar(&opts.Makefile, "makefile", false, "generate a Makefile variable")
+	cmd.Flags().BoolVar(&opts.Renovate, "renovate", false, "generate a renovate custom manager")
 
 	return cmd
 }
