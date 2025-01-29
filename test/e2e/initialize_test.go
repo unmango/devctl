@@ -86,6 +86,44 @@ var _ = Describe("init", func() {
 			))
 		})
 
+		DescribeTable("should generate the makefile",
+			Entry(nil, "0.0.69"),
+			Entry(nil, "v0.0.69"),
+			func(v string) {
+				cmd := exec.Command(cmdPath, "init", "version", "test", v, "--makefile")
+				cmd.Dir = root
+
+				ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+				Expect(err).NotTo(HaveOccurred())
+				Eventually(ses).Should(gexec.Exit(0))
+				Expect(ses.Out).To(gbytes.Say(`^$`))
+				Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+					filepath.Join(root, version.DirName, "test.mk"),
+					[]byte("TEST_VERSION := $(shell devctl version test)\n"),
+				))
+			},
+		)
+
+		DescribeTable("should generate the renovate custom manager", Pending,
+			Entry(nil, "0.0.69"),
+			Entry(nil, "v0.0.69"),
+			func(v string) {
+				cmd := exec.Command(cmdPath, "init", "version", "test", v, "--renovate")
+				cmd.Dir = root
+
+				ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+				Expect(err).NotTo(HaveOccurred())
+				Eventually(ses).Should(gexec.Exit(0))
+				Expect(ses.Out).To(gbytes.Say(`^$`))
+				Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+					filepath.Join(root, version.DirName, "renovate.json"),
+					[]byte("TEST_VERSION := $(shell devctl version test)\n"),
+				))
+			},
+		)
+
 		It("should error with an inline version and the github source", Pending, func() {
 			cmd := exec.Command(cmdPath, "init", "version", "blah", "v0.0.69", "--source", "github")
 			cmd.Dir = root
