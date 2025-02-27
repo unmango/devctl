@@ -12,7 +12,7 @@ JQ      := ${LOCALBIN}/jq
 ifeq ($(shell test -f ${LOCALBIN}/devctl && echo yes),yes)
 DEVCTL := ${LOCALBIN}/devctl
 else
-DEVCTL := go run ./cmd
+DEVCTL := go run ./
 endif
 
 ifeq ($(CI),)
@@ -29,7 +29,7 @@ test_all:
 	$(GINKGO) run -r ./
 
 bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)
-	go build -o $@ ./cmd
+	go build -o $@ ./
 
 bin/ginkgo: go.mod
 	go install github.com/onsi/ginkgo/v2/ginkgo
