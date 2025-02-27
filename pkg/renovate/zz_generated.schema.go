@@ -652,6 +652,9 @@ type Config struct {
 	// List of URLs to try for dependency lookup. Package manager specific.
 	RegistryUrls []string `json:"registryUrls,omitempty" yaml:"registryUrls,omitempty" mapstructure:"registryUrls,omitempty"`
 
+	// Select whether to perform a direct replacement or alias replacement.
+	ReplacementApproach ConfigReplacementApproach `json:"replacementApproach,omitempty" yaml:"replacementApproach,omitempty" mapstructure:"replacementApproach,omitempty"`
+
 	// Path to where the file should be written. In case of `s3` this has to be a full
 	// S3 URI.
 	ReportPath *string `json:"reportPath,omitempty" yaml:"reportPath,omitempty" mapstructure:"reportPath,omitempty"`
@@ -964,6 +967,11 @@ type ConfigRecreateWhen string
 const ConfigRecreateWhenAlways ConfigRecreateWhen = "always"
 const ConfigRecreateWhenAuto ConfigRecreateWhen = "auto"
 const ConfigRecreateWhenNever ConfigRecreateWhen = "never"
+
+type ConfigReplacementApproach string
+
+const ConfigReplacementApproachAlias ConfigReplacementApproach = "alias"
+const ConfigReplacementApproachReplace ConfigReplacementApproach = "replace"
 
 type ConfigReportType string
 
