@@ -1,7 +1,9 @@
 package list
 
 import (
+	"fmt"
 	"io/fs"
+	"os"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -64,6 +66,10 @@ func Directory(root string, options *Options) error {
 	return filepath.WalkDir(root,
 		func(path string, d fs.DirEntry, err error) error {
 			if d.IsDir() {
+				if path != root && isSubmodule(path) {
+					fmt.Println("path:", path, "isSubmodule:", isSubmodule(path))
+					return filepath.SkipDir
+				}
 				if blacklisted(path) {
 					return filepath.SkipDir
 				}
@@ -80,4 +86,9 @@ func blacklisted(path string) bool {
 	return slices.ContainsFunc(Blacklist, func(b string) bool {
 		return strings.Contains(path, b)
 	})
+}
+
+func isSubmodule(path string) bool {
+	d, err := os.Stat(filepath.Join(path, ".git"))
+	return err == nil && d.IsDir()
 }
