@@ -6,6 +6,7 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 	"github.com/unmango/devctl/pkg/cmd"
+	"github.com/unmango/devctl/pkg/list"
 	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/go/cli"
 )
@@ -20,7 +21,7 @@ func main() {
 
 	rootCmd.AddCommand(
 		cmd.NewInit(),
-		cmd.NewList(&cmd.ListOptions{}),
+		cmd.NewList(&list.Options{}),
 		cmd.NewVersion(),
 	)
 
