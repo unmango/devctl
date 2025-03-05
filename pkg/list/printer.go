@@ -70,7 +70,7 @@ func (p *printer) shouldPrintDotnet(path string) bool {
 	return true
 }
 
-func (p *printer) Handle(path string) (err error) {
+func (p *printer) handle(path string) (err error) {
 	if !p.shouldPrint(path) {
 		return nil
 	}

@@ -1,5 +1,12 @@
 package list
 
+import (
+	"io/fs"
+	"path/filepath"
+	"slices"
+	"strings"
+)
+
 var Blacklist = []string{
 	"node_modules",
 	"bin", "obj",
@@ -44,10 +51,33 @@ func (o *Options) sources() []string {
 	return sources
 }
 
-func (o *Options) Printer(root string) *printer {
+func (o *Options) printer(root string) *printer {
 	return &printer{
 		Opts:    o,
 		Sources: o.sources(),
 		Root:    root,
 	}
+}
+
+func Directory(root string, options *Options) error {
+	printer := options.printer(root)
+	return filepath.WalkDir(root,
+		func(path string, d fs.DirEntry, err error) error {
+			if d.IsDir() {
+				if blacklisted(path) {
+					return filepath.SkipDir
+				}
+
+				return nil
+			}
+
+			return printer.handle(path)
+		},
+	)
+}
+
+func blacklisted(path string) bool {
+	return slices.ContainsFunc(Blacklist, func(b string) bool {
+		return strings.Contains(path, b)
+	})
 }
