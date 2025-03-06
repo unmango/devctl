@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/unmango/go/fs/github"
+	"github.com/unmango/aferox/github"
 	"github.com/unmango/go/lazy"
 )
 
