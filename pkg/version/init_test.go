@@ -7,9 +7,9 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/spf13/afero"
 
+	"github.com/unmango/aferox/testing/gfs"
 	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/devctl/pkg/version/opts"
-	"github.com/unmango/go/testing/gfs"
 )
 
 type source struct {
