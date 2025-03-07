@@ -23,6 +23,7 @@ endif
 
 build: bin/devctl
 tidy: go.sum
+format: .make/dprint-format
 
 test: .make/test
 test_all:
@@ -67,3 +68,6 @@ pkg/renovate/zz_generated.schema.go: .make/renovate-schema.json bin/go-jsonschem
 
 .make/renovate-schema.json: .make/renovate-schema.orig.json hack/renovate/*.jq | bin/jq
 	cat $< | $(JQ) -f hack/renovate/delete-refs.jq > $@
+
+.make/dprint-format: .dprint.json README.md .github/renovate.json .vscode/extensions.json
+	dprint fmt
