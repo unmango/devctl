@@ -1,7 +1,6 @@
 package list
 
 import (
-	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -67,7 +66,6 @@ func Directory(root string, options *Options) error {
 		func(path string, d fs.DirEntry, err error) error {
 			if d.IsDir() {
 				if path != root && isSubmodule(path) {
-					fmt.Println("path:", path, "isSubmodule:", isSubmodule(path))
 					return filepath.SkipDir
 				}
 				if blacklisted(path) {
