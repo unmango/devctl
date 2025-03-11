@@ -5,7 +5,7 @@ LOCALBIN    := ${WORKING_DIR}/bin
 
 export GOBIN := ${LOCALBIN}
 
-GINKGO  := ${LOCALBIN}/ginkgo
+GINKGO  := go tool ginkgo
 JSON2GO := ${LOCALBIN}/go-jsonschema
 JQ      := ${LOCALBIN}/jq
 
@@ -32,9 +32,6 @@ test_all:
 bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)
 	go build -o $@ ./
 
-bin/ginkgo: go.mod
-	go install github.com/onsi/ginkgo/v2/ginkgo
-
 bin/go-jsonschema: .versions/go-jsonschema
 	go install github.com/atombender/go-jsonschema@$(shell $(DEVCTL) $<)
 
@@ -50,16 +47,16 @@ pkg/renovate/zz_generated.schema.go: .make/renovate-schema.json bin/go-jsonschem
 	mkdir -p $(dir $@)
 	$(JSON2GO) --package renovate $< --only-models | sed s/RenovateSchemaJson/Config/g > $@
 
-%_suite_test.go: | bin/ginkgo
+%_suite_test.go:
 	cd $(dir $@) && $(GINKGO) bootstrap
 
-%_test.go: | bin/ginkgo
+%_test.go:
 	cd $(dir $@) && $(GINKGO) generate $(notdir $*)
 
 .envrc: hack/example.envrc
 	cp $< $@
 
-.make/test: $(shell $(DEVCTL) list --go) | bin/ginkgo
+.make/test: $(shell $(DEVCTL) list --go)
 	$(GINKGO) run ${TEST_FLAGS} $(sort $(dir $?))
 	@touch $@
 
