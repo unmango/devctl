@@ -2,6 +2,8 @@ module github.com/unmango/devctl
 
 go 1.24.0
 
+tool github.com/onsi/ginkgo/v2/ginkgo
+
 require (
 	github.com/charmbracelet/log v0.4.0
 	github.com/onsi/ginkgo/v2 v2.23.0
