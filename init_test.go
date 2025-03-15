@@ -12,6 +12,7 @@ import (
 	"github.com/onsi/gomega/gexec"
 	"github.com/spf13/afero"
 	"github.com/unmango/aferox/testing/gfs"
+	"github.com/unmango/devctl/pkg/config"
 	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/go/testing"
 )
@@ -206,6 +207,24 @@ var _ = Describe("init", func() {
 					))
 				},
 			)
+		})
+	})
+
+	Describe("config", func() {
+		When("no config files exist", func() {
+			It("should create a new config file", func() {
+				cmd := exec.Command(cmdPath, "init", "config")
+				cmd.Dir = root
+
+				ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
+				Expect(err).NotTo(HaveOccurred())
+				Eventually(ses).Should(gexec.Exit(0))
+				Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
+					filepath.Join(root, config.DefaultName),
+					[]byte("{}"),
+				))
+			})
 		})
 	})
 })
