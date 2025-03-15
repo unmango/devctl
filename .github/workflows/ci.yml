@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/cache@v4
+        with:
+          path: bin
+          key: bin-${{ runner.os }}-${{ hashFiles('.versions/*') }}
+          restore-keys: |
+            bin-${{ runner.os }}
+
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
