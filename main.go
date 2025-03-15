@@ -22,6 +22,7 @@ func main() {
 	rootCmd.AddCommand(
 		cmd.NewInit(),
 		cmd.NewList(&list.Options{}),
+		cmd.NewLocalBin(),
 		cmd.NewVersion(),
 	)
 
