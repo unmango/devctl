@@ -15,6 +15,7 @@ func NewInit() *cobra.Command {
 
 	cmd.AddCommand(
 		gen.NewVersion(),
+		gen.NewConfig(),
 	)
 
 	return cmd
