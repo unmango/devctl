@@ -10,7 +10,7 @@ type InitOptions struct{}
 func NewInit() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "init [scaffold]",
-		Short: "Generates files the specified scaffold",
+		Short: "Generates files for the specified scaffold",
 	}
 
 	cmd.AddCommand(
