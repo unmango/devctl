@@ -6,7 +6,7 @@ tool github.com/onsi/ginkgo/v2/ginkgo
 
 require (
 	github.com/charmbracelet/log v0.4.1
-	github.com/onsi/ginkgo/v2 v2.23.0
+	github.com/onsi/ginkgo/v2 v2.23.3
 	github.com/onsi/gomega v1.36.2
 	github.com/spf13/afero v1.12.0
 	github.com/spf13/cobra v1.9.1
