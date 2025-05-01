@@ -27,6 +27,8 @@ github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/google/go-github/v68 v68.0.0 h1:ZW57zeNZiXTdQ16qrDiZ0k6XucrxZ2CGmoTvcCyQG6s=
 github.com/google/go-github/v68 v68.0.0/go.mod h1:K9HAUBovM2sLwM408A18h+wd9vqdLOEqTUCbnRIcx68=
+github.com/google/go-github/v69 v69.2.0 h1:wR+Wi/fN2zdUx9YxSmYE0ktiX9IAR/BeePzeaUUbEHE=
+github.com/google/go-github/v69 v69.2.0/go.mod h1:xne4jymxLR6Uj9b7J7PyTpkMYstEMMwGZa0Aehh1azM=
 github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=
 github.com/google/go-querystring v1.1.0/go.mod h1:Kcdr2DB4koayq7X8pmAG4sNG59So17icRSOU623lUBU=
 github.com/google/pprof v0.0.0-20250302191652-9094ed2288e7 h1:+J3r2e8+RsmN3vKfo75g0YSY61ms37qzPglu4p0sGro=
@@ -77,6 +79,8 @@ github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOf
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/unmango/aferox v0.1.2 h1:F93/tyrErnOQuC1dgtJhSqo5zeA3t0PxPYKuQKkw+YY=
 github.com/unmango/aferox v0.1.2/go.mod h1:0l2A/3BdVBTSnE8mSakYvXV+1FUc6Y93hSg2F+Tkqy0=
+github.com/unmango/aferox v0.1.3 h1:nAL7RbJqID7FYu229pBj9t81G5ytMcHe0O84lbCDjLk=
+github.com/unmango/aferox v0.1.3/go.mod h1:XmGvucbp4fGTFGpZm25p+gCqlBrSrrNmg+R9uff0L2w=
 github.com/unmango/go v0.3.0 h1:0udbxchqbmVa6UiqIti7UU1bq3YNjR900kcYNmcxvG8=
 github.com/unmango/go v0.3.0/go.mod h1:4naCo6n5yEyN17iUdGdZCgRvMvPk7IhWbdA/Lw4R38o=
 go.uber.org/automaxprocs v1.6.0 h1:O3y2/QNTOdbF+e/dpXNNW7Rx2hZ4sTIPyybbxyNqTUs=
