@@ -23,5 +23,6 @@ var _ = Describe("MkFuncs", func() {
 	It("should contain the file", func() {
 		_, err := os.Open(filepath.Join(dir, "Makefile"))
 		Expect(err).NotTo(HaveOccurred())
+		Expect(mkfuncsSo).To(BeEmpty())
 	})
 })
