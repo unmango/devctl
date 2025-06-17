@@ -3,6 +3,9 @@
 package renovate
 
 type Config struct {
+	// Flags packages that have not been updated within this period as abandoned.
+	AbandonmentThreshold *string `json:"abandonmentThreshold,omitempty" yaml:"abandonmentThreshold,omitempty" mapstructure:"abandonmentThreshold,omitempty"`
+
 	// Labels to add to Pull Request.
 	AddLabels []string `json:"addLabels,omitempty" yaml:"addLabels,omitempty" mapstructure:"addLabels,omitempty"`
 
@@ -12,9 +15,6 @@ type Config struct {
 	// Additional reviewers for Pull Requests (in contrast to `reviewers`, this option
 	// adds to the existing reviewer list, rather than replacing it).
 	AdditionalReviewers []string `json:"additionalReviewers,omitempty" yaml:"additionalReviewers,omitempty" mapstructure:"additionalReviewers,omitempty"`
-
-	// Set this to `false` to disable template compilation for post-upgrade commands.
-	AllowCommandTemplating bool `json:"allowCommandTemplating,omitempty" yaml:"allowCommandTemplating,omitempty" mapstructure:"allowCommandTemplating,omitempty"`
 
 	// Set this to `true` to allow custom crate registries.
 	AllowCustomCrateRegistries bool `json:"allowCustomCrateRegistries,omitempty" yaml:"allowCustomCrateRegistries,omitempty" mapstructure:"allowCustomCrateRegistries,omitempty"`
@@ -144,6 +144,9 @@ type Config struct {
 	// Bump the version in the package file being updated.
 	BumpVersion *ConfigBumpVersion `json:"bumpVersion,omitempty" yaml:"bumpVersion,omitempty" mapstructure:"bumpVersion,omitempty"`
 
+	// A list of bumpVersion config options to bump generic version numbers.
+	BumpVersions []interface{} `json:"bumpVersions,omitempty" yaml:"bumpVersions,omitempty" mapstructure:"bumpVersions,omitempty"`
+
 	// The directory where Renovate stores its cache. If left empty, Renovate creates
 	// a subdirectory within the `baseDir`.
 	CacheDir *string `json:"cacheDir,omitempty" yaml:"cacheDir,omitempty" mapstructure:"cacheDir,omitempty"`
@@ -205,9 +208,12 @@ type Config struct {
 	// Enable this to get config migration PRs when needed.
 	ConfigMigration bool `json:"configMigration,omitempty" yaml:"configMigration,omitempty" mapstructure:"configMigration,omitempty"`
 
-	// Set this to `false` to make Renovate create a new issue for each config
-	// warning, instead of reopening or reusing an existing issue.
+	// Set this to `true` to make Renovate reuse/reopen an existing closed Config
+	// Warning issue, instead of opening a new one each time.
 	ConfigWarningReuseIssue bool `json:"configWarningReuseIssue,omitempty" yaml:"configWarningReuseIssue,omitempty" mapstructure:"configWarningReuseIssue,omitempty"`
+
+	// Configuration object to define language or manager version constraints.
+	Constraints ConfigConstraints `json:"constraints,omitempty" yaml:"constraints,omitempty" mapstructure:"constraints,omitempty"`
 
 	// Perform release filtering based on language constraints.
 	ConstraintsFiltering ConfigConstraintsFiltering `json:"constraintsFiltering,omitempty" yaml:"constraintsFiltering,omitempty" mapstructure:"constraintsFiltering,omitempty"`
@@ -255,6 +261,9 @@ type Config struct {
 	// Control if the Dependency Dashboard issue lists CVEs supplied by
 	// [osv.dev](https://osv.dev).
 	DependencyDashboardOSVVulnerabilitySummary ConfigDependencyDashboardOSVVulnerabilitySummary `json:"dependencyDashboardOSVVulnerabilitySummary,omitempty" yaml:"dependencyDashboardOSVVulnerabilitySummary,omitempty" mapstructure:"dependencyDashboardOSVVulnerabilitySummary,omitempty"`
+
+	// Controls whether abandoned packages are reported in the dependency dashboard.
+	DependencyDashboardReportAbandonment bool `json:"dependencyDashboardReportAbandonment,omitempty" yaml:"dependencyDashboardReportAbandonment,omitempty" mapstructure:"dependencyDashboardReportAbandonment,omitempty"`
 
 	// Title for the Dependency Dashboard issue.
 	DependencyDashboardTitle string `json:"dependencyDashboardTitle,omitempty" yaml:"dependencyDashboardTitle,omitempty" mapstructure:"dependencyDashboardTitle,omitempty"`
@@ -328,9 +337,6 @@ type Config struct {
 
 	// Controls if and when changelogs/release notes are fetched.
 	FetchChangeLogs ConfigFetchChangeLogs `json:"fetchChangeLogs,omitempty" yaml:"fetchChangeLogs,omitempty" mapstructure:"fetchChangeLogs,omitempty"`
-
-	// RegEx (`re2`) pattern for matching manager files.
-	FileMatch interface{} `json:"fileMatch,omitempty" yaml:"fileMatch,omitempty" mapstructure:"fileMatch,omitempty"`
 
 	// Filter reviewers and assignees based on their availability.
 	FilterUnavailableUsers bool `json:"filterUnavailableUsers,omitempty" yaml:"filterUnavailableUsers,omitempty" mapstructure:"filterUnavailableUsers,omitempty"`
@@ -835,6 +841,9 @@ type ConfigCommitMessageLowerCase string
 const ConfigCommitMessageLowerCaseAuto ConfigCommitMessageLowerCase = "auto"
 const ConfigCommitMessageLowerCaseNever ConfigCommitMessageLowerCase = "never"
 
+// Configuration object to define language or manager version constraints.
+type ConfigConstraints map[string]string
+
 type ConfigConstraintsFiltering string
 
 const ConfigConstraintsFilteringNone ConfigConstraintsFiltering = "none"
@@ -929,6 +938,7 @@ const ConfigPostUpdateOptionsElemGomodTidyE ConfigPostUpdateOptionsElem = "gomod
 const ConfigPostUpdateOptionsElemGomodUpdateImportPaths ConfigPostUpdateOptionsElem = "gomodUpdateImportPaths"
 const ConfigPostUpdateOptionsElemGomodVendor ConfigPostUpdateOptionsElem = "gomodVendor"
 const ConfigPostUpdateOptionsElemHelmUpdateSubChartArchives ConfigPostUpdateOptionsElem = "helmUpdateSubChartArchives"
+const ConfigPostUpdateOptionsElemKustomizeInflateHelmCharts ConfigPostUpdateOptionsElem = "kustomizeInflateHelmCharts"
 const ConfigPostUpdateOptionsElemNpmDedupe ConfigPostUpdateOptionsElem = "npmDedupe"
 const ConfigPostUpdateOptionsElemPnpmDedupe ConfigPostUpdateOptionsElem = "pnpmDedupe"
 const ConfigPostUpdateOptionsElemYarnDedupeFewer ConfigPostUpdateOptionsElem = "yarnDedupeFewer"
