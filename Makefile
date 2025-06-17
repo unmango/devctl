@@ -25,7 +25,7 @@ endif
 
 # $(info ${.LOADED})
 
-build: bin/devctl
+build: bin/devctl bin/mk_funcs.so
 tidy: go.sum
 format: .make/dprint-format
 

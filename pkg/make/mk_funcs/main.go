@@ -2,8 +2,9 @@ package main
 
 import "github.com/unmango/gnumake-go"
 
-//export plugin_is_GPL_compatible
-var plugin_is_GPL_compatible int
+/*
+int plugin_is_GPL_compatible;
+*/
 
 func InitMkFunc() {
 	gnumake.AddFunction("", func(nm string, argc uint32, argv [][]byte) *byte {
