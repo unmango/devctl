@@ -1,8 +1,5 @@
 package main
 
-/*
-int plugin_is_GPL_compatible;
-*/
 import "C"
 
 import "github.com/unmango/gnumake-go"
