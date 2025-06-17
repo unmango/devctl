@@ -3,10 +3,12 @@ package e2e_test
 import (
 	"io/fs"
 	"os"
+	"os/exec"
 	"path/filepath"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
+	"github.com/onsi/gomega/gexec"
 )
 
 var _ = Describe("MkFuncs", func() {
@@ -24,8 +26,12 @@ var _ = Describe("MkFuncs", func() {
 	})
 
 	It("should contain the file", func() {
-		dirs, err := os.ReadDir(dir)
+		cmd := exec.Command("make")
+		cmd.Dir = dir
+
+		ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+
 		Expect(err).NotTo(HaveOccurred())
-		Expect(dirs).To(BeEmpty())
+		Eventually(ses).Should(gexec.Exit(0))
 	})
 })
