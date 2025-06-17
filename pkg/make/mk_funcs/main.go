@@ -1,8 +1,11 @@
 package main
 
-import "github.com/unmango/gnumake-go"
+/*
+int plugin_is_GPL_compatible;
+*/
+import "C"
 
-var plugin_is_GPL_compatible int
+import "github.com/unmango/gnumake-go"
 
 //export InitMkFunc
 func InitMkFunc() {
