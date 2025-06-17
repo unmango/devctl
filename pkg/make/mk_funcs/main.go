@@ -1,19 +1,14 @@
 package main
 
-import "C"
-
 import (
-	"fmt"
+	"C"
 
-	"github.com/unmango/gnumake-go"
+	"github.com/unmango/devctl/pkg/make"
 )
 
 //export InitMkFunc
 func InitMkFunc() {
-	gnumake.AddFunction("test", func(nm string, argc uint32, argv [][]byte) *byte {
-		fmt.Println("called custom function")
-		return nil
-	}, 0, 0, 0)
+	make.RegisterFuncs()
 }
 
 func main() {}
