@@ -5,6 +5,7 @@ version: 2
 before:
   hooks:
     - make tidy
+    - make bin/mk_funcs.so
 
 builds:
   - id: devctl
@@ -17,14 +18,6 @@ builds:
     goarch:
       - amd64
       - arm64
-
-  - id: mk_funcs
-    env:
-      - CGO_ENABLED=1
-    main: ./pkg/make/mk_funcs
-    buildmode: c-shared
-    goos: [linux]
-    goarch: [amd64]
 
 archives:
   - formats: [tar.gz]
@@ -51,3 +44,6 @@ changelog:
 release:
   draft: false
   prerelease: auto
+  extra_files:
+    - glob: ./bin/mk_funcs.so
+      name_template: mk_funcs.so
