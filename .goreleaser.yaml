@@ -7,14 +7,16 @@ before:
     - make tidy
 
 builds:
-  - env:
+  - id: devctl
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
       - windows
       - darwin
 
-  - goos:
+  - id: mk_funcs
+    goos:
       - linux
       - darwin
     main: ./pkg/make/mk_funcs
