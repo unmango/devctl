@@ -10,7 +10,7 @@ require (
 	github.com/onsi/gomega v1.37.0
 	github.com/spf13/afero v1.14.0
 	github.com/spf13/cobra v1.9.1
-	github.com/unmango/aferox v0.2.4
+	github.com/unmango/aferox v0.3.0
 	github.com/unmango/aferox/github v0.0.1
 	github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6
 	github.com/unmango/go v0.4.1
