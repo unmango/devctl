@@ -20,7 +20,6 @@ builds:
       - linux
       - darwin
     main: ./pkg/make/mk_funcs
-    binary: mk_funcs.so
     buildmode: c-shared
 
 archives:
