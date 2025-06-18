@@ -1,10 +1,5 @@
 _ := $(shell mkdir -p .make bin)
 
-WORKING_DIR := $(shell pwd)
-LOCALBIN    := ${WORKING_DIR}/bin
-
-export GOBIN := ${LOCALBIN}
-
 GINKGO  := go tool ginkgo
 JSON2GO := ${LOCALBIN}/go-jsonschema
 JQ      := ${LOCALBIN}/jq
@@ -21,7 +16,10 @@ else
 TEST_FLAGS := --github-output --race --trace --coverprofile=cover.profile
 endif
 
--load bin/mk_funcs.so
+load bin/mk_funcs.so
+
+$(testfunc)
+$(info $(testfunc))
 
 build: bin/devctl bin/mk_funcs.so
 tidy: go.sum
@@ -34,7 +32,7 @@ test_all:
 bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)
 	go build -o $@ ./
 
-bin/mk_funcs.so:
+bin/mk_funcs.so: $(shell $(DEVCTL) list --go)
 	go build -o $@ -buildmode=c-shared ./pkg/make/mk_funcs
 
 bin/go-jsonschema: .versions/go-jsonschema
