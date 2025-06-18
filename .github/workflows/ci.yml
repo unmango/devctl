@@ -25,4 +25,5 @@ jobs:
           go-version-file: go.mod
           cache-dependency-path: go.sum
 
+      - run: make bin/mk_funcs.so
       - run: make test

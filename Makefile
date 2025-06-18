@@ -21,7 +21,11 @@ else
 TEST_FLAGS := --github-output --race --trace --coverprofile=cover.profile
 endif
 
-build: bin/devctl
+# load bin/mk_funcs.so(InitMkFunc)
+
+# $(info ${.LOADED})
+
+build: bin/devctl bin/mk_funcs.so
 tidy: go.sum
 format: .make/dprint-format
 
@@ -31,6 +35,9 @@ test_all:
 
 bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)
 	go build -o $@ ./
+
+bin/mk_funcs.so:
+	go build -o $@ -buildmode=c-shared ./pkg/make/mk_funcs
 
 bin/go-jsonschema: .versions/go-jsonschema
 	go install github.com/atombender/go-jsonschema@$(shell $(DEVCTL) $<)
