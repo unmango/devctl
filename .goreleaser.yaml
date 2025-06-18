@@ -14,15 +14,21 @@ builds:
       - linux
       - windows
       - darwin
+    goarch:
+      - amd64
+      - arm64
 
   - id: mk_funcs
     env:
       - CGO_ENABLED=1
+    main: ./pkg/make/mk_funcs
+    buildmode: c-shared
     goos:
       - linux
       - darwin
-    main: ./pkg/make/mk_funcs
-    buildmode: c-shared
+    goarch:
+      - amd64
+      - arm64
 
 archives:
   - formats: [tar.gz]
