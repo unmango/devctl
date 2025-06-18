@@ -1,4 +1,4 @@
-load mk_funcs.so(InitMkFunc)
+load mk_funcs.so
 
 $(info ${.LOADED})
 
