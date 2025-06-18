@@ -21,9 +21,7 @@ else
 TEST_FLAGS := --github-output --race --trace --coverprofile=cover.profile
 endif
 
-# load bin/mk_funcs.so(InitMkFunc)
-
-# $(info ${.LOADED})
+-load bin/mk_funcs.so
 
 build: bin/devctl bin/mk_funcs.so
 tidy: go.sum
