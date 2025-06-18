@@ -74,6 +74,8 @@ github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOf
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/unmango/aferox v0.2.4 h1:ENFkKtAy7SGRTTvthDOYljn9l3/eEwX4gLWYmbyAOKk=
 github.com/unmango/aferox v0.2.4/go.mod h1:o9wfgqh4MLkcbXKKzWphz2JZm1KW2cLKhDdBWxsVsb4=
+github.com/unmango/aferox v0.3.0 h1:bSbLBiDOzDjSwhgf3SbTWxq6i1SOxVKeCpIeCnLNzG8=
+github.com/unmango/aferox v0.3.0/go.mod h1:o9wfgqh4MLkcbXKKzWphz2JZm1KW2cLKhDdBWxsVsb4=
 github.com/unmango/aferox/github v0.0.1 h1:RbW0a7N7mDk5TkhxcEtDt9voaVYRoWKmfNql/bunIvU=
 github.com/unmango/aferox/github v0.0.1/go.mod h1:SZzx1l0WkKOO6+7Mc6UpJ4nuMYEiZiiaTOsejpwzndY=
 github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6 h1:2v3Q15eRHEbJCYR3LDc0iY/No2e1U68ZS7KR4aqcr5E=
