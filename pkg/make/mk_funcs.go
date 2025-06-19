@@ -7,20 +7,21 @@ package make
 import "C"
 
 import (
-	"unsafe"
+	"fmt"
 
 	"github.com/unmango/gnumake-go"
 )
 
-func Test(nm string, argc uint32, argv [][]byte) *byte {
-	mem := gnumake.Alloc(4)
-	// C.strncpy((*C.char)(buf), C.CString(""), 4)
-	// fmt.Fprintln(os.Stderr, "Test log")
-	buf := C.GoBytes(unsafe.Pointer(mem), 4)
-	copy(buf, "test")
-	return mem
+var fileLocation *gnumake.FileLocation
+
+func Test(nm string, argc uint32, argv []*byte) []byte {
+	fmt.Println("nm", nm)
+	fmt.Println("argc", argc)
+	fmt.Println("argv", argv)
+	return nil
 }
 
-func RegisterFuncs() {
-	gnumake.AddFunction("testfunc", Test, 0, 0, 0)
+func RegisterFuncs(floc *gnumake.FileLocation) {
+	fmt.Println("floc", floc.LineNumber)
+	gnumake.AddFunction("testfunc", Test, 1, 2, 0)
 }

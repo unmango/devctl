@@ -18,8 +18,7 @@ endif
 
 load bin/mk_funcs.so
 
-$(testfunc)
-$(info $(testfunc))
+$(info $(testfunc blah bleh))
 
 build: bin/devctl bin/mk_funcs.so
 tidy: go.sum
