@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/charmbracelet/log"
 	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 	"github.com/unmango/devctl/pkg/tool"
@@ -14,8 +15,9 @@ const (
 )
 
 type NotFoundError = viper.ConfigFileNotFoundError
+
 type Config struct {
-	Tools  map[string]tool.Config `json:"tools,omitempty"`
+	Tools map[string]tool.Config `json:"tools,omitempty"`
 }
 
 var Empty = &Config{}
@@ -26,6 +28,10 @@ type Options struct {
 
 type Option func(*Options)
 
+func FromDirectory(dir work.Directory) (*Config, error) {
+	return Load(Viper(dir))
+}
+
 func Init(viper *viper.Viper) error {
 	return viper.SafeWriteConfigAs(DefaultFile)
 }
@@ -33,6 +39,7 @@ func Init(viper *viper.Viper) error {
 func Load(viper *viper.Viper) (*Config, error) {
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(NotFoundError); ok {
+			log.Warn("No config file found")
 			return Empty, nil
 		} else {
 			return nil, err

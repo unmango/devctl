@@ -16,6 +16,7 @@ func init() {
 	root.AddCommand(
 		initialize.Cmd,
 		config.Cmd,
+		InstallCmd,
 		ListCmd,
 		LocalBinCmd,
 		VersionCmd,
