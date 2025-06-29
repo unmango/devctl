@@ -46,6 +46,14 @@ func Load(viper *viper.Viper) (*Config, error) {
 	}
 }
 
+func Unmarshal(viper *viper.Viper) (cfg Config, err error) {
+	if err := viper.Unmarshal(&cfg); err != nil {
+		return cfg, err
+	} else {
+		return cfg, nil
+	}
+}
+
 func Viper(dir work.Directory) *viper.Viper {
 	v := viper.New()
 	v.SetFs(dir.Fs())

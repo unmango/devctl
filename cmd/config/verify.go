@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"os"
 
 	"github.com/charmbracelet/log"
@@ -29,12 +30,12 @@ func NewVerify() *cobra.Command {
 			}
 
 			log.Info("Loading config")
-			config, err := config.Load(config.Viper(work))
-			if err != nil {
+			c, err := config.Load(config.Viper(work))
+			if err != nil && errors.Is(err, config.NotFoundError{}) {
 				cli.Fail(err)
 			}
 
-			if config != nil {
+			if c != nil {
 				log.Info("Configuration is valid!")
 			} else {
 				log.Info("No configuration to verify")
