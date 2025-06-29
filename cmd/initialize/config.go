@@ -19,8 +19,7 @@ func NewConfig() *cobra.Command {
 				cli.Fail(err)
 			}
 
-			v := config.Viper(work)
-			if err = config.Init(v); err != nil {
+			if err = config.Init(work); err != nil {
 				cli.Fail(err)
 			}
 		},

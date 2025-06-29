@@ -1,7 +1,6 @@
 package config
 
 import (
-	"errors"
 	"os"
 
 	"github.com/charmbracelet/log"
@@ -30,8 +29,8 @@ func NewVerify() *cobra.Command {
 			}
 
 			log.Info("Loading config")
-			c, err := config.Load(config.Viper(work))
-			if err != nil && errors.Is(err, config.NotFoundError{}) {
+			c, err := config.FromDirectory(work)
+			if err != nil {
 				cli.Fail(err)
 			}
 

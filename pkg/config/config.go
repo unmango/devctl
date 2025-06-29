@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/charmbracelet/log"
 	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 	"github.com/unmango/devctl/pkg/tool"
@@ -16,11 +15,11 @@ const (
 
 type NotFoundError = viper.ConfigFileNotFoundError
 
+var Empty = &Config{}
+
 type Config struct {
 	Tools map[string]tool.Config `json:"tools,omitempty"`
 }
-
-var Empty = &Config{}
 
 type Options struct {
 	fs afero.Fs
@@ -29,21 +28,16 @@ type Options struct {
 type Option func(*Options)
 
 func FromDirectory(dir work.Directory) (*Config, error) {
-	return Load(Viper(dir))
+	return Unmarshal(Viper(dir))
 }
 
-func Init(viper *viper.Viper) error {
-	return viper.SafeWriteConfigAs(DefaultFile)
+func Init(dir work.Directory) error {
+	return Viper(dir).SafeWriteConfigAs(DefaultFile)
 }
 
-func Load(viper *viper.Viper) (*Config, error) {
+func Unmarshal(viper *viper.Viper) (*Config, error) {
 	if err := viper.ReadInConfig(); err != nil {
-		if _, ok := err.(NotFoundError); ok {
-			log.Warn("No config file found")
-			return Empty, nil
-		} else {
-			return nil, err
-		}
+		return nil, err
 	}
 
 	var config Config
@@ -51,14 +45,6 @@ func Load(viper *viper.Viper) (*Config, error) {
 		return nil, err
 	} else {
 		return &config, nil
-	}
-}
-
-func Unmarshal(viper *viper.Viper) (cfg Config, err error) {
-	if err := viper.Unmarshal(&cfg); err != nil {
-		return cfg, err
-	} else {
-		return cfg, nil
 	}
 }
 
