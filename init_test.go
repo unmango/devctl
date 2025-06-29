@@ -10,6 +10,7 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
+
 	"github.com/spf13/afero"
 	"github.com/unmango/aferox/testing/gfs"
 	"github.com/unmango/devctl/pkg/config"
@@ -221,7 +222,7 @@ var _ = Describe("init", func() {
 				Expect(err).NotTo(HaveOccurred())
 				Eventually(ses).Should(gexec.Exit(0))
 				Expect(afero.NewOsFs()).To(gfs.ContainFileWithBytes(
-					filepath.Join(root, config.DefaultName),
+					filepath.Join(root, config.DefaultFile),
 					[]byte("{}"),
 				))
 			})
