@@ -1,8 +1,6 @@
 package config
 
 import (
-	"encoding/json"
-
 	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 	"github.com/unmango/devctl/pkg/work"
@@ -14,10 +12,9 @@ const (
 	DefaultFile = DefaultName + DefaultExt
 )
 
-type Config struct{}
+type NotFoundError = viper.ConfigFileNotFoundError
 
-func (c *Config) Marshal() ([]byte, error) {
-	return json.Marshal(c)
+type Config struct {
 }
 
 var Empty = &Config{}
@@ -28,13 +25,13 @@ type Options struct {
 
 type Option func(*Options)
 
-func Init(dir work.Directory) error {
-	return Viper(dir).SafeWriteConfigAs(DefaultFile)
+func Init(viper *viper.Viper) error {
+	return viper.SafeWriteConfigAs(DefaultFile)
 }
 
-func Load(dir work.Directory) (*Config, error) {
-	if err := Viper(dir).ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+func Load(viper *viper.Viper) (*Config, error) {
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(NotFoundError); ok {
 			return Empty, nil
 		} else {
 			return nil, err
@@ -46,6 +43,14 @@ func Load(dir work.Directory) (*Config, error) {
 		return nil, err
 	} else {
 		return &config, nil
+	}
+}
+
+func Unmarshal(viper *viper.Viper) (cfg Config, err error) {
+	if err := viper.Unmarshal(&cfg); err != nil {
+		return cfg, err
+	} else {
+		return cfg, nil
 	}
 }
 

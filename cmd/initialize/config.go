@@ -1,4 +1,4 @@
-package init
+package initialize
 
 import (
 	"github.com/spf13/cobra"
@@ -19,7 +19,8 @@ func NewConfig() *cobra.Command {
 				cli.Fail(err)
 			}
 
-			if err = config.Init(work); err != nil {
+			v := config.Viper(work)
+			if err = config.Init(v); err != nil {
 				cli.Fail(err)
 			}
 		},
