@@ -12,10 +12,15 @@ import (
 	"github.com/unmango/go/vcs/git"
 )
 
+//go:embed testdata/happypath/*
+//go:embed testdata/prefixed/*
 //go:embed testdata/Makefile
 var testdata embed.FS
 
-var mkfuncsSo string
+var (
+	cmdPath   string
+	mkfuncsSo string
+)
 
 func TestE2e(t *testing.T) {
 	RegisterFailHandler(Fail)
@@ -24,6 +29,9 @@ func TestE2e(t *testing.T) {
 
 var _ = BeforeSuite(func(ctx context.Context) {
 	root, err := git.Root(ctx)
+	Expect(err).NotTo(HaveOccurred())
+
+	cmdPath, err = gexec.Build(root)
 	Expect(err).NotTo(HaveOccurred())
 
 	mkfuncsSo, err = gexec.Build(
