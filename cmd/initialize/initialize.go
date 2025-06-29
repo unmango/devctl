@@ -1,4 +1,4 @@
-package init
+package initialize
 
 import (
 	"github.com/spf13/cobra"
@@ -17,8 +17,9 @@ type InitOptions struct{}
 
 func New() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "init [scaffold]",
-		Short: "Generates files for the specified scaffold",
+		Use:     "initialize [scaffold]",
+		Short:   "Generates files for the specified scaffold",
+		Aliases: []string{"init"},
 	}
 
 	return cmd

@@ -3,7 +3,8 @@ package cmd
 import (
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-	initcmd "github.com/unmango/devctl/cmd/init"
+	"github.com/unmango/devctl/cmd/config"
+	"github.com/unmango/devctl/cmd/initialize"
 )
 
 var root = &cobra.Command{
@@ -13,7 +14,8 @@ var root = &cobra.Command{
 
 func init() {
 	root.AddCommand(
-		initcmd.Cmd,
+		initialize.Cmd,
+		config.Cmd,
 		ListCmd,
 		LocalBinCmd,
 		VersionCmd,
