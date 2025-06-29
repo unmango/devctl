@@ -5,7 +5,6 @@ import (
 	"github.com/spf13/viper"
 	"github.com/unmango/devctl/pkg/tool"
 	"github.com/unmango/devctl/pkg/work"
-	"gopkg.in/yaml.v3"
 )
 
 const (
@@ -15,13 +14,8 @@ const (
 )
 
 type NotFoundError = viper.ConfigFileNotFoundError
-
 type Config struct {
 	Tools  map[string]tool.Config `json:"tools,omitempty"`
-}
-
-func (c *Config) Unmarshal(data []byte) error {
-	return yaml.Unmarshal(data, c)
 }
 
 var Empty = &Config{}
