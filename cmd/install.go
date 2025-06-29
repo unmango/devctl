@@ -1,9 +1,7 @@
 package cmd
 
 import (
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-	"github.com/unmango/devctl/pkg/config"
 	"github.com/unmango/devctl/pkg/tool"
 	"github.com/unmango/devctl/pkg/work"
 	"github.com/unmango/go/cli"
@@ -13,27 +11,30 @@ var InstallCmd = NewInstall()
 
 func NewInstall() *cobra.Command {
 	return &cobra.Command{
-		Use:   "install",
+		Use:   "install <name> <url>",
 		Short: "Install tools in the local workspace",
+		Args:  cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
-			log.SetLevel(log.InfoLevel)
-
-			work, err := work.Load(cmd.Context())
+			ctx := cmd.Context()
+			tool, err := tool.FromConfig(args[0], tool.Config{
+				Url: args[1],
+			})
 			if err != nil {
 				cli.Fail(err)
 			}
 
-			config, err := config.FromDirectory(work)
+			work, err := work.Load(ctx)
 			if err != nil {
 				cli.Fail(err)
 			}
 
-			for n, c := range config.Tools {
-				if t, err := tool.FromConfig(n, c); err != nil {
-					cli.Fail(err)
-				} else {
-					log.Infof("Loaded tool: %s", t.Name)
-				}
+			bin, err := work.Join("bin")
+			if err != nil {
+				cli.Fail(err)
+			}
+
+			if err = tool.Install(ctx, bin); err != nil {
+				cli.Fail(err)
 			}
 		},
 	}

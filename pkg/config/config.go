@@ -60,7 +60,6 @@ func Viper(dir work.Directory) *viper.Viper {
 	// v.SetFs(dir.Fs())
 	v.SetConfigName("devctl")
 	v.AddConfigPath(dir.Path())
-	v.AddConfigPath(".")
 
 	return v
 }

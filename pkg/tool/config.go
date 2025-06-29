@@ -1,10 +1,28 @@
 package tool
 
+import "fmt"
+
 type Config struct {
-	Url    string `json:"url,omitempty"`
-	Script bool   `json:"script,omitempty"`
+	Script  bool   `json:"script,omitempty"`
+	Url     string `json:"url,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
+func (c Config) Verify() error {
+	if c.Url == "" {
+		return fmt.Errorf("no url")
+	}
+
+	return nil
 }
 
 func FromConfig(name string, config Config) (*Tool, error) {
-	return &Tool{Config: config, Name: name}, nil
+	if err := config.Verify(); err != nil {
+		return nil, err
+	}
+
+	return &Tool{
+		Config: config,
+		Name:   name,
+	}, nil
 }
