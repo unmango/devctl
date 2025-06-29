@@ -20,6 +20,8 @@ var (
 	}
 )
 
+var VersionCmd = NewVersion()
+
 type VersionOptions struct {
 	work.ChdirOptions
 	Name     string

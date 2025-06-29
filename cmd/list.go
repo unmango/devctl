@@ -9,6 +9,8 @@ import (
 	"github.com/unmango/go/vcs/git"
 )
 
+var ListCmd = NewList(&list.Options{})
+
 func NewList(options *list.Options) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "list",
