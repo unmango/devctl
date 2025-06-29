@@ -4,27 +4,13 @@ import (
 	"os"
 
 	"github.com/charmbracelet/log"
-	"github.com/spf13/cobra"
 	"github.com/unmango/devctl/cmd"
-	"github.com/unmango/devctl/pkg/list"
 	"github.com/unmango/devctl/pkg/version"
 	"github.com/unmango/go/cli"
 )
 
-var rootCmd = &cobra.Command{
-	Use:   "devctl [path]",
-	Short: "Helper utilities for developing code",
-}
-
 func main() {
 	log.SetLevel(log.ErrorLevel)
-
-	rootCmd.AddCommand(
-		cmd.NewInit(),
-		cmd.NewList(&list.Options{}),
-		cmd.NewLocalBin(),
-		cmd.NewVersion(),
-	)
 
 	if len(os.Args) == 2 {
 		n, err := version.PrintIfPath(os.Args[1])
@@ -36,7 +22,7 @@ func main() {
 		}
 	}
 
-	if err := rootCmd.Execute(); err != nil {
+	if err := cmd.Execute(); err != nil {
 		cli.Fail(err)
 	}
 }

@@ -7,6 +7,8 @@ import (
 	"github.com/unmango/go/cli"
 )
 
+var ConfigCmd = NewConfig()
+
 func NewConfig() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "config",

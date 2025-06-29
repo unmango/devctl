@@ -10,6 +10,8 @@ import (
 	"github.com/unmango/go/cli"
 )
 
+var VersionCmd = NewVersion()
+
 type VersionOptions struct {
 	work.ChdirOptions
 	Prefixed bool

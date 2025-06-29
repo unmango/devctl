@@ -1,22 +1,25 @@
-package cmd
+package init
 
 import (
 	"github.com/spf13/cobra"
-	gen "github.com/unmango/devctl/cmd/init"
 )
+
+var Cmd = New()
+
+func init() {
+	Cmd.AddCommand(
+		ConfigCmd,
+		VersionCmd,
+	)
+}
 
 type InitOptions struct{}
 
-func NewInit() *cobra.Command {
+func New() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "init [scaffold]",
 		Short: "Generates files for the specified scaffold",
 	}
-
-	cmd.AddCommand(
-		gen.NewVersion(),
-		gen.NewConfig(),
-	)
 
 	return cmd
 }

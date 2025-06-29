@@ -9,6 +9,8 @@ import (
 	"github.com/unmango/go/cli"
 )
 
+var LocalBinCmd = NewLocalBin()
+
 func NewLocalBin() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "localbin",
