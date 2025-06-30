@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/afero"
@@ -24,6 +25,14 @@ type Option func(*Options)
 func WithRoot(fs afero.Fs) Option {
 	return func(o *Options) {
 		o.fs = fs
+	}
+}
+
+func (c Directory) Join(path string, options ...Option) (Directory, error) {
+	if err := c.Fs(options...).MkdirAll(path, os.ModePerm); err != nil {
+		return c, err
+	} else {
+		return Directory(filepath.Join(c.Path(), path)), nil
 	}
 }
 
