@@ -101,6 +101,8 @@ github.com/unmango/aferox/github v0.0.1 h1:RbW0a7N7mDk5TkhxcEtDt9voaVYRoWKmfNql/
 github.com/unmango/aferox/github v0.0.1/go.mod h1:SZzx1l0WkKOO6+7Mc6UpJ4nuMYEiZiiaTOsejpwzndY=
 github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6 h1:2v3Q15eRHEbJCYR3LDc0iY/No2e1U68ZS7KR4aqcr5E=
 github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6/go.mod h1:puO3xGoDKfGk7ZoAviaJxner9ZiY5uFHrle3XynEls8=
+github.com/unmango/gnumake-go v0.0.2 h1:fKdpFgbc44zdXbEcozviXa0dLfeMX+DoYmvhC6rclBE=
+github.com/unmango/gnumake-go v0.0.2/go.mod h1:puO3xGoDKfGk7ZoAviaJxner9ZiY5uFHrle3XynEls8=
 github.com/unmango/go v0.5.0 h1:CiDedNOH7BNVHaJdiceq2Dcc0P7DnRmgIJ4SDLEEWok=
 github.com/unmango/go v0.5.0/go.mod h1:tScFvFdrUZ7PSjm1AXhjfP0Mvgzipk2AjvmfyWG/4ag=
 github.com/unmango/go v0.5.1 h1:gEDM8/w5weCPnFEAGtKPI/k0blrXlFD/fm53Hnhd9So=
