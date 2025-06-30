@@ -95,6 +95,8 @@ github.com/subosito/gotenv v1.6.0 h1:9NlTDc1FTs4qu0DDq7AEtTPNw6SVm7uBMsUCUjABIf8
 github.com/subosito/gotenv v1.6.0/go.mod h1:Dk4QP5c2W3ibzajGcXpNraDfq2IrhjMIvMSWPKKo0FU=
 github.com/unmango/aferox v0.3.0 h1:bSbLBiDOzDjSwhgf3SbTWxq6i1SOxVKeCpIeCnLNzG8=
 github.com/unmango/aferox v0.3.0/go.mod h1:o9wfgqh4MLkcbXKKzWphz2JZm1KW2cLKhDdBWxsVsb4=
+github.com/unmango/aferox v0.3.1 h1:SpV0wgCEtPVtCvi2vteVSEkV9yM2ll57ep0hzPkZ+ec=
+github.com/unmango/aferox v0.3.1/go.mod h1:+r0J+wjEcgk+fWzPN5cefaRiSt/GSX2lKCe+3SufDes=
 github.com/unmango/aferox/github v0.0.1 h1:RbW0a7N7mDk5TkhxcEtDt9voaVYRoWKmfNql/bunIvU=
 github.com/unmango/aferox/github v0.0.1/go.mod h1:SZzx1l0WkKOO6+7Mc6UpJ4nuMYEiZiiaTOsejpwzndY=
 github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6 h1:2v3Q15eRHEbJCYR3LDc0iY/No2e1U68ZS7KR4aqcr5E=
