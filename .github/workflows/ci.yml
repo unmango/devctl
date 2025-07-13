@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: thecluster
     steps:
       - uses: actions/checkout@v4
 
