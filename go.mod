@@ -12,7 +12,7 @@ require (
 	github.com/spf13/cobra v1.10.1
 	github.com/spf13/viper v1.21.0
 	github.com/unmango/aferox v0.3.3
-	github.com/unmango/aferox/github v0.0.2
+	github.com/unmango/aferox/github v0.0.3
 	github.com/unmango/gnumake-go v0.0.0-20250617040417-e93f5333a4d6
 	github.com/unmango/go v0.10.0
 )
@@ -32,7 +32,7 @@ require (
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
-	github.com/google/go-github/v74 v74.0.0 // indirect
+	github.com/google/go-github/v75 v75.0.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/pprof v0.0.0-20251007162407-5df77e3f7d1d // indirect
 	github.com/goware/urlx v0.3.2 // indirect
