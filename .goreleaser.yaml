@@ -5,7 +5,6 @@ version: 2
 before:
   hooks:
     - make tidy
-    - make bin/mk_funcs.so
 
 builds:
   - id: devctl
@@ -44,6 +43,3 @@ changelog:
 release:
   draft: false
   prerelease: auto
-  extra_files:
-    - glob: ./bin/mk_funcs.so
-      name_template: mk_funcs.so
