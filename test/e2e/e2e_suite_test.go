@@ -3,7 +3,6 @@ package e2e_test
 import (
 	"context"
 	"embed"
-	"path/filepath"
 	"testing"
 
 	. "github.com/onsi/ginkgo/v2"
@@ -18,8 +17,7 @@ import (
 var testdata embed.FS
 
 var (
-	cmdPath   string
-	mkfuncsSo string
+	cmdPath string
 )
 
 func TestE2e(t *testing.T) {
@@ -32,12 +30,6 @@ var _ = BeforeSuite(func(ctx context.Context) {
 	Expect(err).NotTo(HaveOccurred())
 
 	cmdPath, err = gexec.Build(root)
-	Expect(err).NotTo(HaveOccurred())
-
-	mkfuncsSo, err = gexec.Build(
-		filepath.Join(root, "pkg", "make", "mk_funcs"),
-		"-buildmode=c-shared",
-	)
 	Expect(err).NotTo(HaveOccurred())
 })
 
