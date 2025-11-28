@@ -23,16 +23,35 @@
       ];
       perSystem =
         { inputs', pkgs, ... }:
+        let
+          devctl = inputs'.gomod2nix.legacyPackages.buildGoApplication {
+            pname = "devctl";
+            version = "v0.3.0";
+            src = ./.;
+            modules = ./gomod2nix.toml;
+            nativeBuildInputs = with pkgs; [ git ];
+          };
+        in
         {
+          packages.devctl = devctl;
+          packages.default = devctl;
+
           devShells.default = pkgs.mkShell {
             buildInputs = with pkgs; [
+              direnv
               dprint
               git
               gnumake
               go
-              # inputs'.gomod2nix.packages.gomod2nix
+              inputs'.gomod2nix.packages.default
+              nil
               nixfmt-rfc-style
             ];
+
+            DPRINT = pkgs.dprint + "/bin/dprint";
+            GO = pkgs.go + "/bin/go";
+            GOMOD2NIX = inputs'.gomod2nix.packages.default + "/bin/gomod2nix";
+            NIXFMT = pkgs.nixfmt-rfc-style + "/bin/nixfmt";
           };
 
           treefmt = {

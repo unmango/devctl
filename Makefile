@@ -1,13 +1,14 @@
 _ := $(shell mkdir -p .make bin)
 
-WORKING_DIR := $(shell pwd)
-LOCALBIN    := ${WORKING_DIR}/bin
+LOCALBIN    := ${CURDIR}/bin
 
 export GOBIN := ${LOCALBIN}
 
-GINKGO  := go tool ginkgo
-JSON2GO := ${LOCALBIN}/go-jsonschema
-JQ      := ${LOCALBIN}/jq
+GO        ?= go
+GINKGO    ?= $(GO) tool ginkgo
+GOMOD2NIX ?= $(GO) tool gomod2nix
+JSON2GO   := ${LOCALBIN}/go-jsonschema
+JQ        := ${LOCALBIN}/jq
 
 ifeq ($(shell test -f ${LOCALBIN}/devctl && echo yes),yes)
 DEVCTL := ${LOCALBIN}/devctl
@@ -22,7 +23,7 @@ TEST_FLAGS := --github-output --race --trace --coverprofile=cover.profile
 endif
 
 build: bin/devctl
-tidy: go.sum
+tidy: go.sum gomod2nix.toml
 format: .make/dprint-format
 
 test: .make/test
@@ -38,6 +39,9 @@ bin/go-jsonschema: .versions/go-jsonschema
 bin/jq: .versions/jq
 	curl -L -o $@ https://github.com/jqlang/jq/releases/download/jq-$(shell $(DEVCTL) v jq)/jq-$(shell go env GOOS | sed s/darwin/macos/)-$(shell go env GOARCH)
 	chmod +x $@
+
+gomod2nix.toml: go.mod
+	$(GOMOD2NIX)
 
 go.sum: go.mod $(shell $(DEVCTL) list --go)
 	go mod tidy
