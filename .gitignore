@@ -4,3 +4,5 @@ bin/
 *.test
 .DS_Store
 go.work*
+.direnv/
+result

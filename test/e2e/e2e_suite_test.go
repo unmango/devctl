@@ -3,12 +3,13 @@ package e2e_test
 import (
 	"context"
 	"embed"
+	"os"
+	"path/filepath"
 	"testing"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gexec"
-	"github.com/unmango/go/vcs/git"
 )
 
 //go:embed testdata/happypath/*
@@ -26,8 +27,9 @@ func TestE2e(t *testing.T) {
 }
 
 var _ = BeforeSuite(func(ctx context.Context) {
-	root, err := git.Root(ctx)
+	wd, err := os.Getwd()
 	Expect(err).NotTo(HaveOccurred())
+	root := filepath.Join(wd, "../..")
 
 	cmdPath, err = gexec.Build(root)
 	Expect(err).NotTo(HaveOccurred())
