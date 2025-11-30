@@ -21,7 +21,7 @@ var _ = Describe("Cmd", func() {
 			Expect(p.Path()).To(Equal("blah"))
 		})
 
-		It("should return the git path with chdir is empty", func(ctx context.Context) {
+		It("should return the git path when chdir is empty", func(ctx context.Context) {
 			expected, err := gitInit(ctx)
 			Expect(err).NotTo(HaveOccurred())
 			GinkgoT().Chdir(expected)
