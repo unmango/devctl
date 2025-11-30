@@ -9,6 +9,7 @@ GINKGO    ?= $(GO) tool ginkgo
 GOMOD2NIX ?= $(GO) tool gomod2nix
 JSON2GO   := ${LOCALBIN}/go-jsonschema
 JQ        := ${LOCALBIN}/jq
+NIX       ?= nix
 
 ifeq ($(shell test -f ${LOCALBIN}/devctl && echo yes),yes)
 DEVCTL := ${LOCALBIN}/devctl
@@ -25,6 +26,9 @@ endif
 build: bin/devctl
 tidy: go.sum gomod2nix.toml
 format: .make/dprint-format
+
+check:
+	$(NIX) flake check --all-systems
 
 test: .make/test
 test_all:

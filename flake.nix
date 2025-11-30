@@ -29,7 +29,11 @@
             version = "v0.3.0";
             src = ./.;
             modules = ./gomod2nix.toml;
-            nativeBuildInputs = with pkgs; [ git ginkgo ];
+
+            nativeBuildInputs = with pkgs; [
+              git
+              ginkgo
+            ];
 
             checkPhase = ''
               ginkgo run --label-filter=!E2E -r .
