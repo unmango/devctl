@@ -51,7 +51,7 @@ func (c Directory) Fs(options ...Option) afero.Fs {
 
 // Git returns a [Directory] pointing to the git repository closest to the current working directory
 func Git(ctx context.Context) (work Directory, err error) {
-	if p, err := git.Root(ctx); err != nil {
+	if p, err := git.RootContext(ctx); err != nil {
 		return "", err
 	} else {
 		return Directory(p), nil

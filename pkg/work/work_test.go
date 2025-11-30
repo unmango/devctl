@@ -35,7 +35,7 @@ var _ = Describe("Work", func() {
 		It("should error when the directory does not exist", func(ctx context.Context) {
 			_, err := work.Git(git.WithWorkingDirectory(ctx, "blah"))
 
-			Expect(err).To(MatchError("chdir blah: no such file or directory"))
+			Expect(err).To(MatchError(ContainSubstring("chdir blah: no such file or directory")))
 		})
 	})
 

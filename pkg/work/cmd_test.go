@@ -2,12 +2,12 @@ package work_test
 
 import (
 	"context"
+	"os/exec"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/unmango/devctl/pkg/work"
-	"github.com/unmango/go/vcs/git"
 )
 
 var _ = Describe("Cmd", func() {
@@ -22,8 +22,9 @@ var _ = Describe("Cmd", func() {
 		})
 
 		It("should return the git path with chdir is empty", func(ctx context.Context) {
-			expected, err := git.Root(ctx)
+			expected, err := gitInit(ctx)
 			Expect(err).NotTo(HaveOccurred())
+			GinkgoT().Chdir(expected)
 			o := work.ChdirOptions{}
 
 			p, err := o.Cwd(ctx)
@@ -33,3 +34,9 @@ var _ = Describe("Cmd", func() {
 		})
 	})
 })
+
+func gitInit(ctx context.Context) (string, error) {
+	cmd := exec.CommandContext(ctx, "git", "init")
+	cmd.Dir = GinkgoT().TempDir()
+	return cmd.Dir, cmd.Run()
+}
