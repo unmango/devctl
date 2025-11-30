@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Development control tool for managing development environments";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
