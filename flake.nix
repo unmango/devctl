@@ -50,6 +50,10 @@
           };
         in
         {
+          overlayAttrs = {
+            inherit devctl;
+          };
+
           packages.devctl = devctl;
           packages.default = devctl;
 
