@@ -92,11 +92,11 @@ schema = 3
     version = "v1.7.0"
     hash = "sha256-KSsBTMpggbVO4AmI0JaXbALrXeygr2sT+IuoVAfkNqw="
   [mod."github.com/onsi/ginkgo/v2"]
-    version = "v2.27.2"
-    hash = "sha256-qC1xMMGvCe14xhOQtHJSz5NFNde+/6AxGb81cNKPTB4="
+    version = "v2.27.3"
+    hash = "sha256-8rYXtDcKRStw+j1kXcAsMGxxRfszj3qRut1SxJHKI9k="
   [mod."github.com/onsi/gomega"]
-    version = "v1.38.2"
-    hash = "sha256-chit6Aia8qLfUfn/2stQmXG/nqM13fDN7edfixXBFsM="
+    version = "v1.38.3"
+    hash = "sha256-dz6Q5L0Rxu/rhdLRz5iCrO+kpTTRFa09yGTBqWi5Bvs="
   [mod."github.com/pelletier/go-toml/v2"]
     version = "v2.2.4"
     hash = "sha256-8qQIPldbsS5RO8v/FW/se3ZsAyvLzexiivzJCbGRg2Q="
@@ -116,8 +116,8 @@ schema = 3
     version = "v1.10.0"
     hash = "sha256-dQ6Qqf26IZsa6XsGKP7GDuCj+WmSsBmkBwGTDfue/rk="
   [mod."github.com/spf13/cobra"]
-    version = "v1.10.1"
-    hash = "sha256-OP6wdqk4dvBD8U5aicTkySHZ2s0LWnBo2TST2SmgcpM="
+    version = "v1.10.2"
+    hash = "sha256-nbRCTFiDCC2jKK7AHi79n7urYCMP5yDZnWtNVJrDi+k="
   [mod."github.com/spf13/pflag"]
     version = "v1.0.10"
     hash = "sha256-uDPnWjHpSrzXr17KEYEA1yAbizfcsfo5AyztY2tS6ZU="
@@ -134,8 +134,8 @@ schema = 3
     version = "v0.0.3"
     hash = "sha256-t4Ax3cwmnx2ouMS7xP8FhzAFjLKiuoIxp2yh6XLfTzU="
   [mod."github.com/unmango/go"]
-    version = "v0.10.2"
-    hash = "sha256-VGyCQlsvTD2fab+y1SNx4ifxrkOaRBQRe5fFHNqwj+4="
+    version = "v0.10.3"
+    hash = "sha256-Yo8jjPznkFsmW5HtTl07ypQDBAeVZKrdFNmohok/McQ="
   [mod."github.com/xo/terminfo"]
     version = "v0.0.0-20220910002029-abceb7e1c41e"
     hash = "sha256-GyCDxxMQhXA3Pi/TsWXpA8cX5akEoZV7CFx4RO3rARU="
