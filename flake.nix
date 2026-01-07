@@ -25,7 +25,10 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
-      imports = [ inputs.treefmt-nix.flakeModule ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        inputs.flake-parts.flakeModules.easyOverlay
+      ];
 
       perSystem =
         { inputs', pkgs, ... }:
@@ -47,6 +50,10 @@
           };
         in
         {
+          overlayAttrs = {
+            inherit devctl;
+          };
+
           packages.devctl = devctl;
           packages.default = devctl;
 
