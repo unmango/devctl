@@ -13,6 +13,7 @@
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.inputs.systems.follows = "systems";
     };
 
     treefmt-nix = {
@@ -33,7 +34,9 @@
       perSystem =
         { inputs', pkgs, ... }:
         let
-          devctl = inputs'.gomod2nix.legacyPackages.buildGoApplication {
+          inherit (inputs'.gomod2nix.legacyPackages) gomod2nix buildGoApplication;
+
+          devctl = buildGoApplication {
             pname = "devctl";
             version = "v0.3.0";
             src = ./.;
@@ -64,15 +67,15 @@
               git
               gnumake
               go
-              inputs'.gomod2nix.packages.default
+              gomod2nix
               nil
-              nixfmt-rfc-style
+              nixfmt
             ];
 
             DPRINT = pkgs.dprint + "/bin/dprint";
             GO = pkgs.go + "/bin/go";
-            GOMOD2NIX = inputs'.gomod2nix.packages.default + "/bin/gomod2nix";
-            NIXFMT = pkgs.nixfmt-rfc-style + "/bin/nixfmt";
+            GOMOD2NIX = gomod2nix + "/bin/gomod2nix";
+            NIXFMT = pkgs.nixfmt + "/bin/nixfmt";
           };
 
           treefmt = {
