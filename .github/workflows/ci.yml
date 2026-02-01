@@ -45,6 +45,7 @@ jobs:
       - run: nix build
 
   gomod2nix:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -56,3 +57,17 @@ jobs:
 
       - run: go tool gomod2nix
       - run: git diff --exit-code gomod2nix.toml
+
+  clean:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - run: make pkg/renovate/zz_generated.schema.go
+      - run: git diff --exit-code
