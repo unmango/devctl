@@ -8,7 +8,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/afero"
-	"github.com/unmango/go/option"
+	"github.com/unmango/go/fopt"
 	"github.com/unmango/go/vcs/git"
 )
 
@@ -44,7 +44,7 @@ func (c Directory) Path() string {
 // Fs returns an [afero.Fs] rooted at c
 func (c Directory) Fs(options ...Option) afero.Fs {
 	opts := &Options{fs: afero.NewOsFs()}
-	option.ApplyAll(opts, options)
+	fopt.ApplyAll(opts, options)
 
 	return afero.NewBasePathFs(opts.fs, c.Path())
 }
