@@ -187,6 +187,8 @@ github.com/tidwall/sjson v1.2.5/go.mod h1:Fvgq9kS/6ociJEDnK0Fk1cpYF4FIW6ZF7LAe+6
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
 github.com/unmango/aferox v0.3.3 h1:gKCJ2XybO+3ffmizYOi2hSKnDVdAIdW+AuGs8mBTChg=
 github.com/unmango/aferox v0.3.3/go.mod h1:Td9BGmIdfyN8+sOiK3+aR2bGufOlyG5MNG6rAJwssHM=
+github.com/unmango/aferox v0.5.0 h1:VvlPQXypFIINMyR/RG1R8AwQU6D5q6p8RclHfgnTgRA=
+github.com/unmango/aferox v0.5.0/go.mod h1:/3W/F56XXNqSUd+AuUTAOCjl/bhrcSpb1jDynZCdC7A=
 github.com/unmango/aferox/github v0.0.4 h1:GIGa07cEgizVL+lLikwrjp23N3M1ysZkuWHYQW9TWek=
 github.com/unmango/aferox/github v0.0.4/go.mod h1:Pm6syvix97VE7OAmRgqIQqMhs96fSnpjIVK9AyB9c4Q=
 github.com/unmango/go v0.15.1 h1:JvZg+4baEAKypm68LhZisu0KeZeXmZ9yewfjV19JQuA=

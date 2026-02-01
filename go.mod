@@ -14,7 +14,7 @@ require (
 	github.com/spf13/afero v1.15.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
-	github.com/unmango/aferox v0.3.3
+	github.com/unmango/aferox v0.5.0
 	github.com/unmango/aferox/github v0.0.4
 	github.com/unmango/go v0.15.1
 )
