@@ -10,12 +10,12 @@ import (
 var _ = Describe("Renovate", func() {
 	Describe("Unmarshal", func() {
 		It("should work", func() {
-			data := []byte(`{"baseDir": "test"}`)
+			data := []byte(`{"branchName": "test"}`)
 
 			c, err := renovate.Unmarshal(data)
 
 			Expect(err).NotTo(HaveOccurred())
-			Expect(*c.BaseDir).To(Equal("test"))
+			Expect(c.BranchName).To(Equal("test"))
 		})
 	})
 })
