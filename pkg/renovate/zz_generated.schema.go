@@ -16,62 +16,6 @@ type Config struct {
 	// adds to the existing reviewer list, rather than replacing it).
 	AdditionalReviewers []string `json:"additionalReviewers,omitempty" yaml:"additionalReviewers,omitempty" mapstructure:"additionalReviewers,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set this to `true` to allow custom crate registries.
-	AllowCustomCrateRegistries bool `json:"allowCustomCrateRegistries,omitempty" yaml:"allowCustomCrateRegistries,omitempty" mapstructure:"allowCustomCrateRegistries,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set this to `true` if repositories are allowed to run install plugins.
-	AllowPlugins bool `json:"allowPlugins,omitempty" yaml:"allowPlugins,omitempty" mapstructure:"allowPlugins,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set this to `true` if repositories are allowed to run install scripts.
-	AllowScripts bool `json:"allowScripts,omitempty" yaml:"allowScripts,omitempty" mapstructure:"allowScripts,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// A list of regular expressions that decide which commands are allowed in
-	// post-upgrade tasks.
-	AllowedCommands []string `json:"allowedCommands,omitempty" yaml:"allowedCommands,omitempty" mapstructure:"allowedCommands,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// List of allowed patterns for environment variable names in repository env
-	// config.
-	AllowedEnv []string `json:"allowedEnv,omitempty" yaml:"allowedEnv,omitempty" mapstructure:"allowedEnv,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// List of allowed patterns for header names in repository hostRules config.
-	AllowedHeaders []string `json:"allowedHeaders,omitempty" yaml:"allowedHeaders,omitempty" mapstructure:"allowedHeaders,omitempty"`
-
 	// Assign reviewers and assignees even if the PR is to be automerged.
 	AssignAutomerge bool `json:"assignAutomerge,omitempty" yaml:"assignAutomerge,omitempty" mapstructure:"assignAutomerge,omitempty"`
 
@@ -91,69 +35,6 @@ type Config struct {
 	// Control whether replacement regular expressions are global matches or only the
 	// first match.
 	AutoReplaceGlobalMatch bool `json:"autoReplaceGlobalMatch,omitempty" yaml:"autoReplaceGlobalMatch,omitempty" mapstructure:"autoReplaceGlobalMatch,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Autodiscover all repositories.
-	Autodiscover bool `json:"autodiscover,omitempty" yaml:"autodiscover,omitempty" mapstructure:"autodiscover,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Filter the list of autodiscovered repositories.
-	AutodiscoverFilter []interface{} `json:"autodiscoverFilter,omitempty" yaml:"autodiscoverFilter,omitempty" mapstructure:"autodiscoverFilter,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Filter the list of autodiscovered repositories by namespaces.
-	AutodiscoverNamespaces []string `json:"autodiscoverNamespaces,omitempty" yaml:"autodiscoverNamespaces,omitempty" mapstructure:"autodiscoverNamespaces,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Filter the list of autodiscovered repositories by project names.
-	AutodiscoverProjects []string `json:"autodiscoverProjects,omitempty" yaml:"autodiscoverProjects,omitempty" mapstructure:"autodiscoverProjects,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The order method for autodiscover server side repository search.
-	AutodiscoverRepoOrder *ConfigAutodiscoverRepoOrder `json:"autodiscoverRepoOrder,omitempty" yaml:"autodiscoverRepoOrder,omitempty" mapstructure:"autodiscoverRepoOrder,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The sort method for autodiscover server side repository search.
-	AutodiscoverRepoSort *ConfigAutodiscoverRepoSort `json:"autodiscoverRepoSort,omitempty" yaml:"autodiscoverRepoSort,omitempty" mapstructure:"autodiscoverRepoSort,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Filter the list of autodiscovered repositories by topics.
-	AutodiscoverTopics []string `json:"autodiscoverTopics,omitempty" yaml:"autodiscoverTopics,omitempty" mapstructure:"autodiscoverTopics,omitempty"`
 
 	// Whether to automerge branches/PRs automatically, without human intervention.
 	Automerge bool `json:"automerge,omitempty" yaml:"automerge,omitempty" mapstructure:"automerge,omitempty"`
@@ -179,43 +60,11 @@ type Config struct {
 	// regex expressions.
 	BaseBranchPatterns []string `json:"baseBranchPatterns,omitempty" yaml:"baseBranchPatterns,omitempty" mapstructure:"baseBranchPatterns,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The base directory for Renovate to store local files, including repository
-	// files and cache. If left empty, Renovate will create its own temporary
-	// directory to use.
-	BaseDir *string `json:"baseDir,omitempty" yaml:"baseDir,omitempty" mapstructure:"baseDir,omitempty"`
-
 	// The PR tasks will be automatically completed after the PR is raised.
 	BbAutoResolvePrTasks bool `json:"bbAutoResolvePrTasks,omitempty" yaml:"bbAutoResolvePrTasks,omitempty" mapstructure:"bbAutoResolvePrTasks,omitempty"`
 
 	// Use the default reviewers (Bitbucket only).
 	BbUseDefaultReviewers bool `json:"bbUseDefaultReviewers,omitempty" yaml:"bbUseDefaultReviewers,omitempty" mapstructure:"bbUseDefaultReviewers,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Use the repository's [development
-	// branch](https://support.atlassian.com/bitbucket-cloud/docs/branch-a-repository/#The-branching-model)
-	// as the repository's default branch.
-	BbUseDevelopmentBranch bool `json:"bbUseDevelopmentBranch,omitempty" yaml:"bbUseDevelopmentBranch,omitempty" mapstructure:"bbUseDevelopmentBranch,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Controls how third-party tools like npm or Gradle are called: directly, via
-	// Docker sidecar containers, or via dynamic install.
-	BinarySource ConfigBinarySource `json:"binarySource,omitempty" yaml:"binarySource,omitempty" mapstructure:"binarySource,omitempty"`
 
 	// Limit to a maximum of x concurrent branches. 0 means no limit, `null` (default)
 	// inherits value from `prConcurrentLimit`.
@@ -242,45 +91,6 @@ type Config struct {
 
 	// A list of bumpVersion config options to bump generic version numbers.
 	BumpVersions []interface{} `json:"bumpVersions,omitempty" yaml:"bumpVersions,omitempty" mapstructure:"bumpVersions,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The directory where Renovate stores its cache. If left empty, Renovate creates
-	// a subdirectory within the `baseDir`.
-	CacheDir *string `json:"cacheDir,omitempty" yaml:"cacheDir,omitempty" mapstructure:"cacheDir,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Maximum duration in minutes to keep datasource cache entries.
-	CacheHardTtlMinutes int `json:"cacheHardTtlMinutes,omitempty" yaml:"cacheHardTtlMinutes,omitempty" mapstructure:"cacheHardTtlMinutes,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Cache private packages in the datasource cache. This is useful for self-hosted
-	// setups
-	CachePrivatePackages bool `json:"cachePrivatePackages,omitempty" yaml:"cachePrivatePackages,omitempty" mapstructure:"cachePrivatePackages,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// A list of branch names to mark for creation or rebasing as if it was selected
-	// in the Dependency Dashboard issue.
-	CheckedBranches []string `json:"checkedBranches,omitempty" yaml:"checkedBranches,omitempty" mapstructure:"checkedBranches,omitempty"`
 
 	// Set to `true` to initialize submodules during repository clone.
 	CloneSubmodules bool `json:"cloneSubmodules,omitempty" yaml:"cloneSubmodules,omitempty" mapstructure:"cloneSubmodules,omitempty"`
@@ -325,27 +135,8 @@ type Config struct {
 	// If enabled, issues created by Renovate are set as confidential.
 	Confidential bool `json:"confidential,omitempty" yaml:"confidential,omitempty" mapstructure:"confidential,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// List of filenames where repository config will be stored.
-	ConfigFileNames []string `json:"configFileNames,omitempty" yaml:"configFileNames,omitempty" mapstructure:"configFileNames,omitempty"`
-
 	// Enable this to get config migration PRs when needed.
 	ConfigMigration bool `json:"configMigration,omitempty" yaml:"configMigration,omitempty" mapstructure:"configMigration,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If enabled, config validation errors will be reported as errors instead of
-	// warnings, and Renovate will exit with a non-zero exit code.
-	ConfigValidationError bool `json:"configValidationError,omitempty" yaml:"configValidationError,omitempty" mapstructure:"configValidationError,omitempty"`
 
 	// Set this to `true` to make Renovate reuse/reopen an existing closed Config
 	// Warning issue, instead of opening a new one each time.
@@ -357,16 +148,6 @@ type Config struct {
 	// Perform release filtering based on language constraints.
 	ConstraintsFiltering ConfigConstraintsFiltering `json:"constraintsFiltering,omitempty" yaml:"constraintsFiltering,omitempty" mapstructure:"constraintsFiltering,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The directory where Renovate stores its containerbase cache. If left empty,
-	// Renovate creates a subdirectory within the `cacheDir`.
-	ContainerbaseDir *string `json:"containerbaseDir,omitempty" yaml:"containerbaseDir,omitempty" mapstructure:"containerbaseDir,omitempty"`
-
 	// Custom managers using regex matching.
 	CustomManagers []interface{} `json:"customManagers,omitempty" yaml:"customManagers,omitempty" mapstructure:"customManagers,omitempty"`
 
@@ -375,26 +156,6 @@ type Config struct {
 
 	// List of registry URLs to use as the default for a datasource.
 	DefaultRegistryUrls []string `json:"defaultRegistryUrls,omitempty" yaml:"defaultRegistryUrls,omitempty" mapstructure:"defaultRegistryUrls,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set to `true`, Renovate tries to delete the additional self-hosted config
-	// file after reading it.
-	DeleteAdditionalConfigFile bool `json:"deleteAdditionalConfigFile,omitempty" yaml:"deleteAdditionalConfigFile,omitempty" mapstructure:"deleteAdditionalConfigFile,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set to `true`, Renovate tries to delete the self-hosted config file after
-	// reading it.
-	DeleteConfigFile bool `json:"deleteConfigFile,omitempty" yaml:"deleteConfigFile,omitempty" mapstructure:"deleteConfigFile,omitempty"`
 
 	// Whether to create a "Dependency Dashboard" issue in the repository.
 	DependencyDashboard bool `json:"dependencyDashboard,omitempty" yaml:"dependencyDashboard,omitempty" mapstructure:"dependencyDashboard,omitempty"`
@@ -435,85 +196,8 @@ type Config struct {
 	// Plain text description for a config or preset.
 	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If `true`, Renovate tries to detect global manager configuration from the file
-	// system.
-	DetectGlobalManagerConfig bool `json:"detectGlobalManagerConfig,omitempty" yaml:"detectGlobalManagerConfig,omitempty" mapstructure:"detectGlobalManagerConfig,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If `true`, Renovate tries to detect host rules from environment variables.
-	DetectHostRulesFromEnv bool `json:"detectHostRulesFromEnv,omitempty" yaml:"detectHostRulesFromEnv,omitempty" mapstructure:"detectHostRulesFromEnv,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to add a prefix to the Renovate Docker sidecar container
-	// names and labels.
-	DockerChildPrefix string `json:"dockerChildPrefix,omitempty" yaml:"dockerChildPrefix,omitempty" mapstructure:"dockerChildPrefix,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Pass CLI flags to `docker run` command when `binarySource=docker`.
-	DockerCliOptions *string `json:"dockerCliOptions,omitempty" yaml:"dockerCliOptions,omitempty" mapstructure:"dockerCliOptions,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// By default, Renovate fetches up to 20 pages of Docker tags from registries. But
-	// you can set your own limit with this config option.
-	DockerMaxPages int `json:"dockerMaxPages,omitempty" yaml:"dockerMaxPages,omitempty" mapstructure:"dockerMaxPages,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to override the default Renovate sidecar image.
-	DockerSidecarImage string `json:"dockerSidecarImage,omitempty" yaml:"dockerSidecarImage,omitempty" mapstructure:"dockerSidecarImage,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set the `UID` and `GID` for Docker-based binaries if you use
-	// `binarySource=docker`.
-	DockerUser *string `json:"dockerUser,omitempty" yaml:"dockerUser,omitempty" mapstructure:"dockerUser,omitempty"`
-
 	// If set to `true` then Renovate creates draft PRs, instead of normal status PRs.
 	DraftPR bool `json:"draftPR,omitempty" yaml:"draftPR,omitempty" mapstructure:"draftPR,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If enabled, perform a dry run by logging messages instead of
-	// creating/updating/deleting branches and PRs.
-	DryRun *ConfigDryRun `json:"dryRun,omitempty" yaml:"dryRun,omitempty" mapstructure:"dryRun,omitempty"`
 
 	// Enable or disable corresponding functionality.
 	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty" mapstructure:"enabled,omitempty"`
@@ -521,49 +205,12 @@ type Config struct {
 	// A list of package managers to enable. Only managers on the list are enabled.
 	EnabledManagers []string `json:"enabledManagers,omitempty" yaml:"enabledManagers,omitempty" mapstructure:"enabledManagers,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Warning text to use if encrypted config is found.
-	EncryptedWarning *string `json:"encryptedWarning,omitempty" yaml:"encryptedWarning,omitempty" mapstructure:"encryptedWarning,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Custom endpoint to use.
-	Endpoint *string `json:"endpoint,omitempty" yaml:"endpoint,omitempty" mapstructure:"endpoint,omitempty"`
-
 	// A file matching any of these glob patterns will not be committed, even if the
 	// file has been updated.
 	ExcludeCommitPaths []string `json:"excludeCommitPaths,omitempty" yaml:"excludeCommitPaths,omitempty" mapstructure:"excludeCommitPaths,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Default execution timeout in minutes for child processes Renovate creates.
-	ExecutionTimeout int `json:"executionTimeout,omitempty" yaml:"executionTimeout,omitempty" mapstructure:"executionTimeout,omitempty"`
-
 	// Expand the configured code owner groups into a full list of group members.
 	ExpandCodeOwnersGroups bool `json:"expandCodeOwnersGroups,omitempty" yaml:"expandCodeOwnersGroups,omitempty" mapstructure:"expandCodeOwnersGroups,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set this to `true` to allow passing of all environment variables to package
-	// managers.
-	ExposeAllEnv bool `json:"exposeAllEnv,omitempty" yaml:"exposeAllEnv,omitempty" mapstructure:"exposeAllEnv,omitempty"`
 
 	// Configuration presets to use or extend.
 	Extends interface{} `json:"extends,omitempty" yaml:"extends,omitempty" mapstructure:"extends,omitempty"`
@@ -580,50 +227,13 @@ type Config struct {
 	// If defined, packages will follow this release tag exactly.
 	FollowTag *string `json:"followTag,omitempty" yaml:"followTag,omitempty" mapstructure:"followTag,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Decides if CLI configuration options are moved to the `force` config section.
-	ForceCli bool `json:"forceCli,omitempty" yaml:"forceCli,omitempty" mapstructure:"forceCli,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Whether to create forks as needed at runtime when running in "fork mode".
-	ForkCreation bool `json:"forkCreation,omitempty" yaml:"forkCreation,omitempty" mapstructure:"forkCreation,omitempty"`
-
 	// Disallow maintainers to push to Renovate pull requests when running in fork
 	// mode.
 	ForkModeDisallowMaintainerEdits bool `json:"forkModeDisallowMaintainerEdits,omitempty" yaml:"forkModeDisallowMaintainerEdits,omitempty" mapstructure:"forkModeDisallowMaintainerEdits,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// The preferred organization to create or find forked repositories, when in fork
-	// mode.
-	ForkOrg *string `json:"forkOrg,omitempty" yaml:"forkOrg,omitempty" mapstructure:"forkOrg,omitempty"`
-
 	// Whether to process forked repositories. By default, all forked repositories are
 	// skipped when in `autodiscover` mode.
 	ForkProcessing ConfigForkProcessing `json:"forkProcessing,omitempty" yaml:"forkProcessing,omitempty" mapstructure:"forkProcessing,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set a personal access token here to enable "fork mode".
-	ForkToken *string `json:"forkToken,omitempty" yaml:"forkToken,omitempty" mapstructure:"forkToken,omitempty"`
 
 	// Author to use for Git commits. Must conform to
 	// [RFC5322](https://datatracker.ietf.org/doc/html/rfc5322).
@@ -636,70 +246,6 @@ type Config struct {
 	// Ignore approval rules for MRs created by Renovate, which is useful for
 	// automerge.
 	GitLabIgnoreApprovals bool `json:"gitLabIgnoreApprovals,omitempty" yaml:"gitLabIgnoreApprovals,omitempty" mapstructure:"gitLabIgnoreApprovals,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Which Git commands will be run with the `--no-verify` option.
-	GitNoVerify interface{} `json:"gitNoVerify,omitempty" yaml:"gitNoVerify,omitempty" mapstructure:"gitNoVerify,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// PGP key to use for signing Git commits.
-	GitPrivateKey *string `json:"gitPrivateKey,omitempty" yaml:"gitPrivateKey,omitempty" mapstructure:"gitPrivateKey,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Passphrase for the `gitPrivateKey`
-	GitPrivateKeyPassphrase *string `json:"gitPrivateKeyPassphrase,omitempty" yaml:"gitPrivateKeyPassphrase,omitempty" mapstructure:"gitPrivateKeyPassphrase,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Configure the timeout with a number of milliseconds to wait for a Git task.
-	GitTimeout int `json:"gitTimeout,omitempty" yaml:"gitTimeout,omitempty" mapstructure:"gitTimeout,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Overrides the default resolution for Git remote, e.g. to switch GitLab from
-	// HTTPS to SSH-based.
-	GitUrl ConfigGitUrl `json:"gitUrl,omitempty" yaml:"gitUrl,omitempty" mapstructure:"gitUrl,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Display warnings about GitHub token not being set.
-	GithubTokenWarn bool `json:"githubTokenWarn,omitempty" yaml:"githubTokenWarn,omitempty" mapstructure:"githubTokenWarn,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Configuration presets to use or extend for a self-hosted config.
-	GlobalExtends []string `json:"globalExtends,omitempty" yaml:"globalExtends,omitempty" mapstructure:"globalExtends,omitempty"`
 
 	// Directory pattern to run `go get` on.
 	GoGetDirs []string `json:"goGetDirs,omitempty" yaml:"goGetDirs,omitempty" mapstructure:"goGetDirs,omitempty"`
@@ -718,15 +264,6 @@ type Config struct {
 	// Host rules/configuration including credentials.
 	HostRules []interface{} `json:"hostRules,omitempty" yaml:"hostRules,omitempty" mapstructure:"hostRules,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Maximum duration in days to keep HTTP cache entries.
-	HttpCacheTtlDays int `json:"httpCacheTtlDays,omitempty" yaml:"httpCacheTtlDays,omitempty" mapstructure:"httpCacheTtlDays,omitempty"`
-
 	// Avoid upgrading from a non-deprecated version to a deprecated one.
 	IgnoreDeprecated bool `json:"ignoreDeprecated,omitempty" yaml:"ignoreDeprecated,omitempty" mapstructure:"ignoreDeprecated,omitempty"`
 
@@ -740,16 +277,6 @@ type Config struct {
 	// Set this to `true` if `allowPlugins=true` but you wish to skip running plugins
 	// when updating lock files.
 	IgnorePlugins bool `json:"ignorePlugins,omitempty" yaml:"ignorePlugins,omitempty" mapstructure:"ignorePlugins,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set to `true` to fetch the entire list of PRs instead of only those authored by
-	// the Renovate user.
-	IgnorePrAuthor bool `json:"ignorePrAuthor,omitempty" yaml:"ignorePrAuthor,omitempty" mapstructure:"ignorePrAuthor,omitempty"`
 
 	// A list of presets to ignore, including any that are nested inside an `extends`
 	// array.
@@ -769,55 +296,8 @@ type Config struct {
 	// Ignore versions with unstable SemVer.
 	IgnoreUnstable bool `json:"ignoreUnstable,omitempty" yaml:"ignoreUnstable,omitempty" mapstructure:"ignoreUnstable,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Whether to process repositories that are mirrors. By default, repositories that
-	// are mirrors are skipped.
-	IncludeMirrors bool `json:"includeMirrors,omitempty" yaml:"includeMirrors,omitempty" mapstructure:"includeMirrors,omitempty"`
-
 	// Include package files only within these defined paths.
 	IncludePaths []string `json:"includePaths,omitempty" yaml:"includePaths,omitempty" mapstructure:"includePaths,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If `true`, Renovate will inherit configuration from the `inheritConfigFileName`
-	// file in `inheritConfigRepoName`.
-	InheritConfig bool `json:"inheritConfig,omitempty" yaml:"inheritConfig,omitempty" mapstructure:"inheritConfig,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Renovate will look for this config file name in the `inheritConfigRepoName`.
-	InheritConfigFileName string `json:"inheritConfigFileName,omitempty" yaml:"inheritConfigFileName,omitempty" mapstructure:"inheritConfigFileName,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Renovate will look in this repo for the `inheritConfigFileName`.
-	InheritConfigRepoName string `json:"inheritConfigRepoName,omitempty" yaml:"inheritConfigRepoName,omitempty" mapstructure:"inheritConfigRepoName,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If `true`, any `inheritedConfig` fetch error will result in an aborted run.
-	InheritConfigStrict bool `json:"inheritConfigStrict,omitempty" yaml:"inheritConfigStrict,omitempty" mapstructure:"inheritConfigStrict,omitempty"`
 
 	// Whether to consider passing internal checks such as `minimumReleaseAge` when
 	// determining branch status.
@@ -833,36 +313,11 @@ type Config struct {
 	// Labels to set in Pull Request.
 	Labels []string `json:"labels,omitempty" yaml:"labels,omitempty" mapstructure:"labels,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Add a global or per-repo log context to each log entry.
-	LogContext *string `json:"logContext,omitempty" yaml:"logContext,omitempty" mapstructure:"logContext,omitempty"`
-
 	// Remap log levels to different levels.
 	LogLevelRemap []interface{} `json:"logLevelRemap,omitempty" yaml:"logLevelRemap,omitempty" mapstructure:"logLevelRemap,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set, Renovate will query the merge-confidence JSON API only for datasources
-	// that are part of this list.
-	MergeConfidenceDatasources []ConfigMergeConfidenceDatasourcesElem `json:"mergeConfidenceDatasources,omitempty" yaml:"mergeConfidenceDatasources,omitempty" mapstructure:"mergeConfidenceDatasources,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set, Renovate will query this API for Merge Confidence data.
-	MergeConfidenceEndpoint string `json:"mergeConfidenceEndpoint,omitempty" yaml:"mergeConfidenceEndpoint,omitempty" mapstructure:"mergeConfidenceEndpoint,omitempty"`
+	// Limit the maximum major version increment allowed. Set to 0 to disable.
+	MaxMajorIncrement int `json:"maxMajorIncrement,omitempty" yaml:"maxMajorIncrement,omitempty" mapstructure:"maxMajorIncrement,omitempty"`
 
 	// The number of a milestone. If set, the milestone will be set when Renovate
 	// creates the PR.
@@ -891,114 +346,14 @@ type Config struct {
 	// Whether to merge `config.npmrc` with repo `.npmrc` content if both are found.
 	NpmrcMerge bool `json:"npmrcMerge,omitempty" yaml:"npmrcMerge,omitempty" mapstructure:"npmrcMerge,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Require a Configuration PR first.
-	Onboarding *bool `json:"onboarding,omitempty" yaml:"onboarding,omitempty" mapstructure:"onboarding,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to override the default onboarding branch name.
-	OnboardingBranch string `json:"onboardingBranch,omitempty" yaml:"onboardingBranch,omitempty" mapstructure:"onboardingBranch,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to override the default onboarding commit message.
-	OnboardingCommitMessage *string `json:"onboardingCommitMessage,omitempty" yaml:"onboardingCommitMessage,omitempty" mapstructure:"onboardingCommitMessage,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to override the default onboarding config file name.
-	OnboardingConfigFileName string `json:"onboardingConfigFileName,omitempty" yaml:"onboardingConfigFileName,omitempty" mapstructure:"onboardingConfigFileName,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Onboard the repository even if no dependencies are found.
-	OnboardingNoDeps ConfigOnboardingNoDeps `json:"onboardingNoDeps,omitempty" yaml:"onboardingNoDeps,omitempty" mapstructure:"onboardingNoDeps,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Change this value to override the default onboarding PR title.
-	OnboardingPrTitle string `json:"onboardingPrTitle,omitempty" yaml:"onboardingPrTitle,omitempty" mapstructure:"onboardingPrTitle,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set to enable rebase/retry markdown checkbox for onboarding PRs.
-	OnboardingRebaseCheckbox bool `json:"onboardingRebaseCheckbox,omitempty" yaml:"onboardingRebaseCheckbox,omitempty" mapstructure:"onboardingRebaseCheckbox,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set to `true` to perform a check for disabled config prior to cloning.
-	OptimizeForDisabled bool `json:"optimizeForDisabled,omitempty" yaml:"optimizeForDisabled,omitempty" mapstructure:"optimizeForDisabled,omitempty"`
-
 	// Use vulnerability alerts from `osv.dev`.
 	OsvVulnerabilityAlerts bool `json:"osvVulnerabilityAlerts,omitempty" yaml:"osvVulnerabilityAlerts,omitempty" mapstructure:"osvVulnerabilityAlerts,omitempty"`
 
 	// Rules for matching packages.
 	PackageRules []interface{} `json:"packageRules,omitempty" yaml:"packageRules,omitempty" mapstructure:"packageRules,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Password for authentication.
-	Password *string `json:"password,omitempty" yaml:"password,omitempty" mapstructure:"password,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set to `true`: keep repository data between runs instead of deleting the
-	// data.
-	PersistRepoData bool `json:"persistRepoData,omitempty" yaml:"persistRepoData,omitempty" mapstructure:"persistRepoData,omitempty"`
-
 	// Whether to add digests to Dockerfile source images.
 	PinDigests bool `json:"pinDigests,omitempty" yaml:"pinDigests,omitempty" mapstructure:"pinDigests,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Platform type of repository.
-	Platform ConfigPlatform `json:"platform,omitempty" yaml:"platform,omitempty" mapstructure:"platform,omitempty"`
 
 	// Controls if platform-native auto-merge is used.
 	PlatformAutomerge bool `json:"platformAutomerge,omitempty" yaml:"platformAutomerge,omitempty" mapstructure:"platformAutomerge,omitempty"`
@@ -1025,16 +380,6 @@ type Config struct {
 	// the pull request.
 	PrBodyTemplate string `json:"prBodyTemplate,omitempty" yaml:"prBodyTemplate,omitempty" mapstructure:"prBodyTemplate,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set the maximum number of commits per Renovate run. By default there is no
-	// limit.
-	PrCommitsPerRunLimit int `json:"prCommitsPerRunLimit,omitempty" yaml:"prCommitsPerRunLimit,omitempty" mapstructure:"prCommitsPerRunLimit,omitempty"`
-
 	// Limit to a maximum of x concurrent branches/PRs. 0 means no limit.
 	PrConcurrentLimit int `json:"prConcurrentLimit,omitempty" yaml:"prConcurrentLimit,omitempty" mapstructure:"prConcurrentLimit,omitempty"`
 
@@ -1060,54 +405,9 @@ type Config struct {
 	// Whether to bypass appending extra context to the Pull Request title.
 	PrTitleStrict bool `json:"prTitleStrict,omitempty" yaml:"prTitleStrict,omitempty" mapstructure:"prTitleStrict,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Cache resolved presets in package cache.
-	PresetCachePersistence bool `json:"presetCachePersistence,omitempty" yaml:"presetCachePersistence,omitempty" mapstructure:"presetCachePersistence,omitempty"`
-
 	// If enabled, Renovate logs the fully resolved config for each repository, plus
 	// the fully resolved presets.
 	PrintConfig bool `json:"printConfig,omitempty" yaml:"printConfig,omitempty" mapstructure:"printConfig,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Server-side private key.
-	PrivateKey *string `json:"privateKey,omitempty" yaml:"privateKey,omitempty" mapstructure:"privateKey,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Secondary or old private key to try.
-	PrivateKeyOld *string `json:"privateKeyOld,omitempty" yaml:"privateKeyOld,omitempty" mapstructure:"privateKeyOld,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Path to the Server-side private key.
-	PrivateKeyPath *string `json:"privateKeyPath,omitempty" yaml:"privateKeyPath,omitempty" mapstructure:"privateKeyPath,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Path to the Server-side old private key.
-	PrivateKeyPathOld *string `json:"privateKeyPathOld,omitempty" yaml:"privateKeyPathOld,omitempty" mapstructure:"privateKeyPathOld,omitempty"`
 
 	// Set to `true` to enable branch pruning after automerging.
 	PruneBranchAfterAutomerge bool `json:"pruneBranchAfterAutomerge,omitempty" yaml:"pruneBranchAfterAutomerge,omitempty" mapstructure:"pruneBranchAfterAutomerge,omitempty"`
@@ -1127,85 +427,11 @@ type Config struct {
 	// Recreate PRs even if same ones were closed previously.
 	RecreateWhen ConfigRecreateWhen `json:"recreateWhen,omitempty" yaml:"recreateWhen,omitempty" mapstructure:"recreateWhen,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Key prefix for redis cache entries.
-	RedisPrefix *string `json:"redisPrefix,omitempty" yaml:"redisPrefix,omitempty" mapstructure:"redisPrefix,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set, this Redis URL will be used for caching instead of the file system.
-	RedisUrl *string `json:"redisUrl,omitempty" yaml:"redisUrl,omitempty" mapstructure:"redisUrl,omitempty"`
-
 	// List of URLs to try for dependency lookup. Package manager specific.
 	RegistryUrls []string `json:"registryUrls,omitempty" yaml:"registryUrls,omitempty" mapstructure:"registryUrls,omitempty"`
 
 	// Select whether to perform a direct replacement or alias replacement.
 	ReplacementApproach ConfigReplacementApproach `json:"replacementApproach,omitempty" yaml:"replacementApproach,omitempty" mapstructure:"replacementApproach,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Path to where the file should be written. In case of `s3` this has to be a full
-	// S3 URI.
-	ReportPath *string `json:"reportPath,omitempty" yaml:"reportPath,omitempty" mapstructure:"reportPath,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set how, or if, reports should be generated.
-	ReportType *ConfigReportType `json:"reportType,omitempty" yaml:"reportType,omitempty" mapstructure:"reportType,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// List of Repositories.
-	Repositories []string `json:"repositories,omitempty" yaml:"repositories,omitempty" mapstructure:"repositories,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// This option decides if Renovate uses a JSON cache to speed up extractions.
-	RepositoryCache ConfigRepositoryCache `json:"repositoryCache,omitempty" yaml:"repositoryCache,omitempty" mapstructure:"repositoryCache,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Set the type of renovate repository cache if `repositoryCache` is enabled.
-	RepositoryCacheType string `json:"repositoryCacheType,omitempty" yaml:"repositoryCacheType,omitempty" mapstructure:"repositoryCacheType,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Controls Renovate's behavior regarding repository config files such as
-	// `renovate.json`.
-	RequireConfig ConfigRequireConfig `json:"requireConfig,omitempty" yaml:"requireConfig,omitempty" mapstructure:"requireConfig,omitempty"`
 
 	// Ignore versions newer than npm "latest" version.
 	RespectLatest bool `json:"respectLatest,omitempty" yaml:"respectLatest,omitempty" mapstructure:"respectLatest,omitempty"`
@@ -1223,26 +449,6 @@ type Config struct {
 	// Create PRs to roll back versions if the current version is not found in the
 	// registry.
 	RollbackPrs bool `json:"rollbackPrs,omitempty" yaml:"rollbackPrs,omitempty" mapstructure:"rollbackPrs,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set, Renovate will use this string as the `endpoint` when creating the AWS
-	// S3 client instance.
-	S3Endpoint *string `json:"s3Endpoint,omitempty" yaml:"s3Endpoint,omitempty" mapstructure:"s3Endpoint,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set, Renovate will enable `forcePathStyle` when creating the AWS S3 client
-	// instance.
-	S3PathStyle bool `json:"s3PathStyle,omitempty" yaml:"s3PathStyle,omitempty" mapstructure:"s3PathStyle,omitempty"`
 
 	// Limit branch creation to these times of day or week.
 	Schedule interface{} `json:"schedule,omitempty" yaml:"schedule,omitempty" mapstructure:"schedule,omitempty"`
@@ -1288,24 +494,6 @@ type Config struct {
 	// Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) format.
 	Timezone *string `json:"timezone,omitempty" yaml:"timezone,omitempty" mapstructure:"timezone,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Repository Auth Token.
-	Token *string `json:"token,omitempty" yaml:"token,omitempty" mapstructure:"token,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Enable or disable Unicode emoji.
-	UnicodeEmoji bool `json:"unicodeEmoji,omitempty" yaml:"unicodeEmoji,omitempty" mapstructure:"unicodeEmoji,omitempty"`
-
 	// Whether to update internal dep versions in a monorepo. Works on Yarn
 	// Workspaces.
 	UpdateInternalDeps bool `json:"updateInternalDeps,omitempty" yaml:"updateInternalDeps,omitempty" mapstructure:"updateInternalDeps,omitempty"`
@@ -1321,36 +509,8 @@ type Config struct {
 	// branch.
 	UseBaseBranchConfig ConfigUseBaseBranchConfig `json:"useBaseBranchConfig,omitempty" yaml:"useBaseBranchConfig,omitempty" mapstructure:"useBaseBranchConfig,omitempty"`
 
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If `false`, Renovate does not try to access cloud metadata services.
-	UseCloudMetadataServices bool `json:"useCloudMetadataServices,omitempty" yaml:"useCloudMetadataServices,omitempty" mapstructure:"useCloudMetadataServices,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// If set to any string, Renovate will use this as the `user-agent` it sends with
-	// HTTP requests.
-	UserAgent *string `json:"userAgent,omitempty" yaml:"userAgent,omitempty" mapstructure:"userAgent,omitempty"`
-
 	// User-facing strings for the Renovate comment when a PR is closed.
 	UserStrings ConfigUserStrings `json:"userStrings,omitempty" yaml:"userStrings,omitempty" mapstructure:"userStrings,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Username for authentication.
-	Username *string `json:"username,omitempty" yaml:"username,omitempty" mapstructure:"username,omitempty"`
 
 	// A regex (`re2`) with named capture groups to show how version and compatibility
 	// are split from a raw version string.
@@ -1358,29 +518,7 @@ type Config struct {
 
 	// Versioning to use for filtering and comparisons.
 	Versioning *string `json:"versioning,omitempty" yaml:"versioning,omitempty" mapstructure:"versioning,omitempty"`
-
-	// Deprecated: This configuration option is only intended to be used with 'global'
-	// configuration when self-hosting, not used in a repository configuration file.
-	// Renovate likely won't use the configuration, and these fields will be removed
-	// from the repository configuration documentation in Renovate v43
-	// (https://github.com/renovatebot/renovate/issues/38728)
-	//
-	// Writes discovered repositories to a JSON file and then exit.
-	WriteDiscoveredRepos *string `json:"writeDiscoveredRepos,omitempty" yaml:"writeDiscoveredRepos,omitempty" mapstructure:"writeDiscoveredRepos,omitempty"`
 }
-
-type ConfigAutodiscoverRepoOrder string
-
-const ConfigAutodiscoverRepoOrderAsc ConfigAutodiscoverRepoOrder = "asc"
-const ConfigAutodiscoverRepoOrderDesc ConfigAutodiscoverRepoOrder = "desc"
-
-type ConfigAutodiscoverRepoSort string
-
-const ConfigAutodiscoverRepoSortAlpha ConfigAutodiscoverRepoSort = "alpha"
-const ConfigAutodiscoverRepoSortCreated ConfigAutodiscoverRepoSort = "created"
-const ConfigAutodiscoverRepoSortId ConfigAutodiscoverRepoSort = "id"
-const ConfigAutodiscoverRepoSortSize ConfigAutodiscoverRepoSort = "size"
-const ConfigAutodiscoverRepoSortUpdated ConfigAutodiscoverRepoSort = "updated"
 
 type ConfigAutomergeStrategy string
 
@@ -1396,13 +534,6 @@ type ConfigAutomergeType string
 const ConfigAutomergeTypeBranch ConfigAutomergeType = "branch"
 const ConfigAutomergeTypePr ConfigAutomergeType = "pr"
 const ConfigAutomergeTypePrComment ConfigAutomergeType = "pr-comment"
-
-type ConfigBinarySource string
-
-const ConfigBinarySourceDocker ConfigBinarySource = "docker"
-const ConfigBinarySourceGlobal ConfigBinarySource = "global"
-const ConfigBinarySourceHermit ConfigBinarySource = "hermit"
-const ConfigBinarySourceInstall ConfigBinarySource = "install"
 
 type ConfigBumpVersion string
 
@@ -1433,12 +564,6 @@ const ConfigDependencyDashboardOSVVulnerabilitySummaryAll ConfigDependencyDashbo
 const ConfigDependencyDashboardOSVVulnerabilitySummaryNone ConfigDependencyDashboardOSVVulnerabilitySummary = "none"
 const ConfigDependencyDashboardOSVVulnerabilitySummaryUnresolved ConfigDependencyDashboardOSVVulnerabilitySummary = "unresolved"
 
-type ConfigDryRun string
-
-const ConfigDryRunExtract ConfigDryRun = "extract"
-const ConfigDryRunFull ConfigDryRun = "full"
-const ConfigDryRunLookup ConfigDryRun = "lookup"
-
 type ConfigFetchChangeLogs string
 
 const ConfigFetchChangeLogsBranch ConfigFetchChangeLogs = "branch"
@@ -1451,27 +576,11 @@ const ConfigForkProcessingAuto ConfigForkProcessing = "auto"
 const ConfigForkProcessingDisabled ConfigForkProcessing = "disabled"
 const ConfigForkProcessingEnabled ConfigForkProcessing = "enabled"
 
-type ConfigGitUrl string
-
-const ConfigGitUrlDefault ConfigGitUrl = "default"
-const ConfigGitUrlEndpoint ConfigGitUrl = "endpoint"
-const ConfigGitUrlSsh ConfigGitUrl = "ssh"
-
 type ConfigInternalChecksFilter string
 
 const ConfigInternalChecksFilterFlexible ConfigInternalChecksFilter = "flexible"
 const ConfigInternalChecksFilterNone ConfigInternalChecksFilter = "none"
 const ConfigInternalChecksFilterStrict ConfigInternalChecksFilter = "strict"
-
-type ConfigMergeConfidenceDatasourcesElem string
-
-const ConfigMergeConfidenceDatasourcesElemGo ConfigMergeConfidenceDatasourcesElem = "go"
-const ConfigMergeConfidenceDatasourcesElemMaven ConfigMergeConfidenceDatasourcesElem = "maven"
-const ConfigMergeConfidenceDatasourcesElemNpm ConfigMergeConfidenceDatasourcesElem = "npm"
-const ConfigMergeConfidenceDatasourcesElemNuget ConfigMergeConfidenceDatasourcesElem = "nuget"
-const ConfigMergeConfidenceDatasourcesElemPackagist ConfigMergeConfidenceDatasourcesElem = "packagist"
-const ConfigMergeConfidenceDatasourcesElemPypi ConfigMergeConfidenceDatasourcesElem = "pypi"
-const ConfigMergeConfidenceDatasourcesElemRubygems ConfigMergeConfidenceDatasourcesElem = "rubygems"
 
 type ConfigMinimumReleaseAgeBehaviour string
 
@@ -1483,36 +592,19 @@ type ConfigMode string
 const ConfigModeFull ConfigMode = "full"
 const ConfigModeSilent ConfigMode = "silent"
 
-type ConfigOnboardingNoDeps string
-
-const ConfigOnboardingNoDepsAuto ConfigOnboardingNoDeps = "auto"
-const ConfigOnboardingNoDepsDisabled ConfigOnboardingNoDeps = "disabled"
-const ConfigOnboardingNoDepsEnabled ConfigOnboardingNoDeps = "enabled"
-
-type ConfigPlatform string
-
-const ConfigPlatformAzure ConfigPlatform = "azure"
-const ConfigPlatformBitbucket ConfigPlatform = "bitbucket"
-const ConfigPlatformBitbucketServer ConfigPlatform = "bitbucket-server"
-const ConfigPlatformCodecommit ConfigPlatform = "codecommit"
-
 type ConfigPlatformCommit string
 
 const ConfigPlatformCommitAuto ConfigPlatformCommit = "auto"
 const ConfigPlatformCommitDisabled ConfigPlatformCommit = "disabled"
 const ConfigPlatformCommitEnabled ConfigPlatformCommit = "enabled"
-const ConfigPlatformForgejo ConfigPlatform = "forgejo"
-const ConfigPlatformGerrit ConfigPlatform = "gerrit"
-const ConfigPlatformGitea ConfigPlatform = "gitea"
-const ConfigPlatformGithub ConfigPlatform = "github"
-const ConfigPlatformGitlab ConfigPlatform = "gitlab"
-const ConfigPlatformLocal ConfigPlatform = "local"
 
 type ConfigPostUpdateOptionsElem string
 
 const ConfigPostUpdateOptionsElemBundlerConservative ConfigPostUpdateOptionsElem = "bundlerConservative"
+const ConfigPostUpdateOptionsElemComposerNoMinimalChanges ConfigPostUpdateOptionsElem = "composerNoMinimalChanges"
 const ConfigPostUpdateOptionsElemComposerWithAll ConfigPostUpdateOptionsElem = "composerWithAll"
 const ConfigPostUpdateOptionsElemDotnetWorkloadRestore ConfigPostUpdateOptionsElem = "dotnetWorkloadRestore"
+const ConfigPostUpdateOptionsElemGoGenerate ConfigPostUpdateOptionsElem = "goGenerate"
 const ConfigPostUpdateOptionsElemGomodMassage ConfigPostUpdateOptionsElem = "gomodMassage"
 const ConfigPostUpdateOptionsElemGomodSkipVendor ConfigPostUpdateOptionsElem = "gomodSkipVendor"
 const ConfigPostUpdateOptionsElemGomodTidy ConfigPostUpdateOptionsElem = "gomodTidy"
@@ -1569,24 +661,6 @@ type ConfigReplacementApproach string
 
 const ConfigReplacementApproachAlias ConfigReplacementApproach = "alias"
 const ConfigReplacementApproachReplace ConfigReplacementApproach = "replace"
-
-type ConfigReportType string
-
-const ConfigReportTypeFile ConfigReportType = "file"
-const ConfigReportTypeLogging ConfigReportType = "logging"
-const ConfigReportTypeS3 ConfigReportType = "s3"
-
-type ConfigRepositoryCache string
-
-const ConfigRepositoryCacheDisabled ConfigRepositoryCache = "disabled"
-const ConfigRepositoryCacheEnabled ConfigRepositoryCache = "enabled"
-const ConfigRepositoryCacheReset ConfigRepositoryCache = "reset"
-
-type ConfigRequireConfig string
-
-const ConfigRequireConfigIgnored ConfigRequireConfig = "ignored"
-const ConfigRequireConfigOptional ConfigRequireConfig = "optional"
-const ConfigRequireConfigRequired ConfigRequireConfig = "required"
 
 type ConfigSemanticCommits string
 
