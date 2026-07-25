@@ -67,7 +67,9 @@
               git
               gnumake
               go
+              go-jsonschema
               gomod2nix
+              jq
               nil
               nixfmt
             ];

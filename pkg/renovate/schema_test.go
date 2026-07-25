@@ -12,8 +12,9 @@ import (
 var _ = Describe("Schema", func() {
 	Describe("CustomManager", func() {
 		It("should marshal", func() {
-			c := renovate.Config{CustomManagers: []interface{}{
-				renovate.CustomManager{CustomType: "regex"},
+			customType := renovate.ConfigCustomManagersElemCustomTypeRegex
+			c := renovate.Config{CustomManagers: []renovate.ConfigCustomManagersElem{
+				{CustomType: &customType},
 			}}
 
 			data, err := json.Marshal(c)

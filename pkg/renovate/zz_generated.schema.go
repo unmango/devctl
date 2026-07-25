@@ -4,7 +4,7 @@ package renovate
 
 type Config struct {
 	// Flags packages that have not been updated within this period as abandoned.
-	AbandonmentThreshold *string `json:"abandonmentThreshold,omitempty" yaml:"abandonmentThreshold,omitempty" mapstructure:"abandonmentThreshold,omitempty"`
+	AbandonmentThreshold ConfigAbandonmentThreshold `json:"abandonmentThreshold,omitempty" yaml:"abandonmentThreshold,omitempty" mapstructure:"abandonmentThreshold,omitempty"`
 
 	// Labels to add to Pull Request.
 	AddLabels []string `json:"addLabels,omitempty" yaml:"addLabels,omitempty" mapstructure:"addLabels,omitempty"`
@@ -27,7 +27,7 @@ type Config struct {
 	AssigneesFromCodeOwners bool `json:"assigneesFromCodeOwners,omitempty" yaml:"assigneesFromCodeOwners,omitempty" mapstructure:"assigneesFromCodeOwners,omitempty"`
 
 	// Take a random sample of given size from `assignees`.
-	AssigneesSampleSize *int `json:"assigneesSampleSize,omitempty" yaml:"assigneesSampleSize,omitempty" mapstructure:"assigneesSampleSize,omitempty"`
+	AssigneesSampleSize ConfigAssigneesSampleSize `json:"assigneesSampleSize,omitempty" yaml:"assigneesSampleSize,omitempty" mapstructure:"assigneesSampleSize,omitempty"`
 
 	// Set to `true` to automatically approve PRs.
 	AutoApprove bool `json:"autoApprove,omitempty" yaml:"autoApprove,omitempty" mapstructure:"autoApprove,omitempty"`
@@ -68,7 +68,7 @@ type Config struct {
 
 	// Limit to a maximum of x concurrent branches. 0 means no limit, `null` (default)
 	// inherits value from `prConcurrentLimit`.
-	BranchConcurrentLimit *int `json:"branchConcurrentLimit,omitempty" yaml:"branchConcurrentLimit,omitempty" mapstructure:"branchConcurrentLimit,omitempty"`
+	BranchConcurrentLimit ConfigBranchConcurrentLimit `json:"branchConcurrentLimit,omitempty" yaml:"branchConcurrentLimit,omitempty" mapstructure:"branchConcurrentLimit,omitempty"`
 
 	// Branch name template.
 	BranchName string `json:"branchName,omitempty" yaml:"branchName,omitempty" mapstructure:"branchName,omitempty"`
@@ -90,7 +90,7 @@ type Config struct {
 	BumpVersion *ConfigBumpVersion `json:"bumpVersion,omitempty" yaml:"bumpVersion,omitempty" mapstructure:"bumpVersion,omitempty"`
 
 	// A list of bumpVersion config options to bump generic version numbers.
-	BumpVersions []interface{} `json:"bumpVersions,omitempty" yaml:"bumpVersions,omitempty" mapstructure:"bumpVersions,omitempty"`
+	BumpVersions []ConfigBumpVersionsElem `json:"bumpVersions,omitempty" yaml:"bumpVersions,omitempty" mapstructure:"bumpVersions,omitempty"`
 
 	// Set to `true` to initialize submodules during repository clone.
 	CloneSubmodules bool `json:"cloneSubmodules,omitempty" yaml:"cloneSubmodules,omitempty" mapstructure:"cloneSubmodules,omitempty"`
@@ -149,13 +149,13 @@ type Config struct {
 	ConstraintsFiltering ConfigConstraintsFiltering `json:"constraintsFiltering,omitempty" yaml:"constraintsFiltering,omitempty" mapstructure:"constraintsFiltering,omitempty"`
 
 	// Custom managers using regex matching.
-	CustomManagers []interface{} `json:"customManagers,omitempty" yaml:"customManagers,omitempty" mapstructure:"customManagers,omitempty"`
+	CustomManagers []ConfigCustomManagersElem `json:"customManagers,omitempty" yaml:"customManagers,omitempty" mapstructure:"customManagers,omitempty"`
 
 	// Customize sections in the Dependency Dashboard issue.
 	CustomizeDashboard ConfigCustomizeDashboard `json:"customizeDashboard,omitempty" yaml:"customizeDashboard,omitempty" mapstructure:"customizeDashboard,omitempty"`
 
 	// List of registry URLs to use as the default for a datasource.
-	DefaultRegistryUrls []string `json:"defaultRegistryUrls,omitempty" yaml:"defaultRegistryUrls,omitempty" mapstructure:"defaultRegistryUrls,omitempty"`
+	DefaultRegistryUrls *ConfigDefaultRegistryUrls `json:"defaultRegistryUrls,omitempty" yaml:"defaultRegistryUrls,omitempty" mapstructure:"defaultRegistryUrls,omitempty"`
 
 	// Whether to create a "Dependency Dashboard" issue in the repository.
 	DependencyDashboard bool `json:"dependencyDashboard,omitempty" yaml:"dependencyDashboard,omitempty" mapstructure:"dependencyDashboard,omitempty"`
@@ -169,7 +169,7 @@ type Config struct {
 	DependencyDashboardAutoclose bool `json:"dependencyDashboardAutoclose,omitempty" yaml:"dependencyDashboardAutoclose,omitempty" mapstructure:"dependencyDashboardAutoclose,omitempty"`
 
 	// The category to group branches on the Dependency Dashboard issue.
-	DependencyDashboardCategory *string `json:"dependencyDashboardCategory,omitempty" yaml:"dependencyDashboardCategory,omitempty" mapstructure:"dependencyDashboardCategory,omitempty"`
+	DependencyDashboardCategory ConfigDependencyDashboardCategory `json:"dependencyDashboardCategory,omitempty" yaml:"dependencyDashboardCategory,omitempty" mapstructure:"dependencyDashboardCategory,omitempty"`
 
 	// Any text added here will be placed last in the Dependency Dashboard issue body,
 	// with a divider separator before it.
@@ -181,7 +181,7 @@ type Config struct {
 
 	// These labels will always be applied on the Dependency Dashboard issue, even
 	// when they have been removed manually.
-	DependencyDashboardLabels []string `json:"dependencyDashboardLabels,omitempty" yaml:"dependencyDashboardLabels,omitempty" mapstructure:"dependencyDashboardLabels,omitempty"`
+	DependencyDashboardLabels *ConfigDependencyDashboardLabels `json:"dependencyDashboardLabels,omitempty" yaml:"dependencyDashboardLabels,omitempty" mapstructure:"dependencyDashboardLabels,omitempty"`
 
 	// Control if the Dependency Dashboard issue lists CVEs supplied by
 	// [osv.dev](https://osv.dev).
@@ -251,18 +251,18 @@ type Config struct {
 	GoGetDirs []string `json:"goGetDirs,omitempty" yaml:"goGetDirs,omitempty" mapstructure:"goGetDirs,omitempty"`
 
 	// Human understandable name for the dependency group.
-	GroupName *string `json:"groupName,omitempty" yaml:"groupName,omitempty" mapstructure:"groupName,omitempty"`
+	GroupName ConfigGroupName `json:"groupName,omitempty" yaml:"groupName,omitempty" mapstructure:"groupName,omitempty"`
 
 	// Slug to use for group (e.g. in branch name). Slug is calculated from
 	// `groupName` if `null`.
-	GroupSlug *string `json:"groupSlug,omitempty" yaml:"groupSlug,omitempty" mapstructure:"groupSlug,omitempty"`
+	GroupSlug ConfigGroupSlug `json:"groupSlug,omitempty" yaml:"groupSlug,omitempty" mapstructure:"groupSlug,omitempty"`
 
 	// If enabled, branch names will use a hashing function to ensure each branch has
 	// that length.
-	HashedBranchLength *int `json:"hashedBranchLength,omitempty" yaml:"hashedBranchLength,omitempty" mapstructure:"hashedBranchLength,omitempty"`
+	HashedBranchLength ConfigHashedBranchLength `json:"hashedBranchLength,omitempty" yaml:"hashedBranchLength,omitempty" mapstructure:"hashedBranchLength,omitempty"`
 
 	// Host rules/configuration including credentials.
-	HostRules []interface{} `json:"hostRules,omitempty" yaml:"hostRules,omitempty" mapstructure:"hostRules,omitempty"`
+	HostRules []ConfigHostRulesElem `json:"hostRules,omitempty" yaml:"hostRules,omitempty" mapstructure:"hostRules,omitempty"`
 
 	// Avoid upgrading from a non-deprecated version to a deprecated one.
 	IgnoreDeprecated bool `json:"ignoreDeprecated,omitempty" yaml:"ignoreDeprecated,omitempty" mapstructure:"ignoreDeprecated,omitempty"`
@@ -314,21 +314,21 @@ type Config struct {
 	Labels []string `json:"labels,omitempty" yaml:"labels,omitempty" mapstructure:"labels,omitempty"`
 
 	// Remap log levels to different levels.
-	LogLevelRemap []interface{} `json:"logLevelRemap,omitempty" yaml:"logLevelRemap,omitempty" mapstructure:"logLevelRemap,omitempty"`
+	LogLevelRemap []ConfigLogLevelRemapElem `json:"logLevelRemap,omitempty" yaml:"logLevelRemap,omitempty" mapstructure:"logLevelRemap,omitempty"`
 
 	// Limit the maximum major version increment allowed. Set to 0 to disable.
 	MaxMajorIncrement int `json:"maxMajorIncrement,omitempty" yaml:"maxMajorIncrement,omitempty" mapstructure:"maxMajorIncrement,omitempty"`
 
 	// The number of a milestone. If set, the milestone will be set when Renovate
 	// creates the PR.
-	Milestone *int `json:"milestone,omitempty" yaml:"milestone,omitempty" mapstructure:"milestone,omitempty"`
+	Milestone ConfigMilestone `json:"milestone,omitempty" yaml:"milestone,omitempty" mapstructure:"milestone,omitempty"`
 
 	// The minimum number of updates which must be in a group for branches to be
 	// created.
 	MinimumGroupSize int `json:"minimumGroupSize,omitempty" yaml:"minimumGroupSize,omitempty" mapstructure:"minimumGroupSize,omitempty"`
 
 	// Time required before a new release is considered stable.
-	MinimumReleaseAge *string `json:"minimumReleaseAge,omitempty" yaml:"minimumReleaseAge,omitempty" mapstructure:"minimumReleaseAge,omitempty"`
+	MinimumReleaseAge ConfigMinimumReleaseAge `json:"minimumReleaseAge,omitempty" yaml:"minimumReleaseAge,omitempty" mapstructure:"minimumReleaseAge,omitempty"`
 
 	// When set in conjunction with `minimumReleaseAge`, controls whether the
 	// `releaseTimestamp` for a dependency update is required.
@@ -350,7 +350,7 @@ type Config struct {
 	OsvVulnerabilityAlerts bool `json:"osvVulnerabilityAlerts,omitempty" yaml:"osvVulnerabilityAlerts,omitempty" mapstructure:"osvVulnerabilityAlerts,omitempty"`
 
 	// Rules for matching packages.
-	PackageRules []interface{} `json:"packageRules,omitempty" yaml:"packageRules,omitempty" mapstructure:"packageRules,omitempty"`
+	PackageRules []ConfigPackageRulesElem `json:"packageRules,omitempty" yaml:"packageRules,omitempty" mapstructure:"packageRules,omitempty"`
 
 	// Whether to add digests to Dockerfile source images.
 	PinDigests bool `json:"pinDigests,omitempty" yaml:"pinDigests,omitempty" mapstructure:"pinDigests,omitempty"`
@@ -400,7 +400,7 @@ type Config struct {
 	PrNotPendingHours int `json:"prNotPendingHours,omitempty" yaml:"prNotPendingHours,omitempty" mapstructure:"prNotPendingHours,omitempty"`
 
 	// Pull Request title template. Inherits from `commitMessage` if null.
-	PrTitle *string `json:"prTitle,omitempty" yaml:"prTitle,omitempty" mapstructure:"prTitle,omitempty"`
+	PrTitle ConfigPrTitle `json:"prTitle,omitempty" yaml:"prTitle,omitempty" mapstructure:"prTitle,omitempty"`
 
 	// Whether to bypass appending extra context to the Pull Request title.
 	PrTitleStrict bool `json:"prTitleStrict,omitempty" yaml:"prTitleStrict,omitempty" mapstructure:"prTitleStrict,omitempty"`
@@ -428,7 +428,7 @@ type Config struct {
 	RecreateWhen ConfigRecreateWhen `json:"recreateWhen,omitempty" yaml:"recreateWhen,omitempty" mapstructure:"recreateWhen,omitempty"`
 
 	// List of URLs to try for dependency lookup. Package manager specific.
-	RegistryUrls []string `json:"registryUrls,omitempty" yaml:"registryUrls,omitempty" mapstructure:"registryUrls,omitempty"`
+	RegistryUrls *ConfigRegistryUrls `json:"registryUrls,omitempty" yaml:"registryUrls,omitempty" mapstructure:"registryUrls,omitempty"`
 
 	// Select whether to perform a direct replacement or alias replacement.
 	ReplacementApproach ConfigReplacementApproach `json:"replacementApproach,omitempty" yaml:"replacementApproach,omitempty" mapstructure:"replacementApproach,omitempty"`
@@ -444,7 +444,7 @@ type Config struct {
 	ReviewersFromCodeOwners bool `json:"reviewersFromCodeOwners,omitempty" yaml:"reviewersFromCodeOwners,omitempty" mapstructure:"reviewersFromCodeOwners,omitempty"`
 
 	// Take a random sample of given size from `reviewers`.
-	ReviewersSampleSize *int `json:"reviewersSampleSize,omitempty" yaml:"reviewersSampleSize,omitempty" mapstructure:"reviewersSampleSize,omitempty"`
+	ReviewersSampleSize ConfigReviewersSampleSize `json:"reviewersSampleSize,omitempty" yaml:"reviewersSampleSize,omitempty" mapstructure:"reviewersSampleSize,omitempty"`
 
 	// Create PRs to roll back versions if the current version is not found in the
 	// registry.
@@ -482,7 +482,7 @@ type Config struct {
 
 	// Skip installing modules/dependencies if lock file updating is possible without
 	// a full install.
-	SkipInstalls *bool `json:"skipInstalls,omitempty" yaml:"skipInstalls,omitempty" mapstructure:"skipInstalls,omitempty"`
+	SkipInstalls ConfigSkipInstalls `json:"skipInstalls,omitempty" yaml:"skipInstalls,omitempty" mapstructure:"skipInstalls,omitempty"`
 
 	// Label to make Renovate stop updating a PR.
 	StopUpdatingLabel string `json:"stopUpdatingLabel,omitempty" yaml:"stopUpdatingLabel,omitempty" mapstructure:"stopUpdatingLabel,omitempty"`
@@ -520,6 +520,12 @@ type Config struct {
 	Versioning *string `json:"versioning,omitempty" yaml:"versioning,omitempty" mapstructure:"versioning,omitempty"`
 }
 
+// Flags packages that have not been updated within this period as abandoned.
+type ConfigAbandonmentThreshold *string
+
+// Take a random sample of given size from `assignees`.
+type ConfigAssigneesSampleSize *int
+
 type ConfigAutomergeStrategy string
 
 const ConfigAutomergeStrategyAuto ConfigAutomergeStrategy = "auto"
@@ -535,12 +541,34 @@ const ConfigAutomergeTypeBranch ConfigAutomergeType = "branch"
 const ConfigAutomergeTypePr ConfigAutomergeType = "pr"
 const ConfigAutomergeTypePrComment ConfigAutomergeType = "pr-comment"
 
+// Limit to a maximum of x concurrent branches. 0 means no limit, `null` (default)
+// inherits value from `prConcurrentLimit`.
+type ConfigBranchConcurrentLimit *int
+
 type ConfigBumpVersion string
 
 const ConfigBumpVersionMajor ConfigBumpVersion = "major"
 const ConfigBumpVersionMinor ConfigBumpVersion = "minor"
 const ConfigBumpVersionPatch ConfigBumpVersion = "patch"
 const ConfigBumpVersionPrerelease ConfigBumpVersion = "prerelease"
+
+type ConfigBumpVersionsElem struct {
+	// The semver level to use when bumping versions. This is used by the
+	// `bumpVersions` feature.
+	BumpType *string `json:"bumpType,omitempty" yaml:"bumpType,omitempty" mapstructure:"bumpType,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// A list of patterns to match files that contain the version string.
+	FilePatterns []string `json:"filePatterns,omitempty" yaml:"filePatterns,omitempty" mapstructure:"filePatterns,omitempty"`
+
+	// Queries to use. Valid only within `bumpVersions` or `customManagers` object.
+	MatchStrings []string `json:"matchStrings,omitempty" yaml:"matchStrings,omitempty" mapstructure:"matchStrings,omitempty"`
+
+	// A name for the bumpVersion config. This is used for logging and debugging.
+	Name *string `json:"name,omitempty" yaml:"name,omitempty" mapstructure:"name,omitempty"`
+}
 
 type ConfigCommitMessageLowerCase string
 
@@ -555,8 +583,92 @@ type ConfigConstraintsFiltering string
 const ConfigConstraintsFilteringNone ConfigConstraintsFiltering = "none"
 const ConfigConstraintsFilteringStrict ConfigConstraintsFiltering = "strict"
 
+type ConfigCustomManagersElem struct {
+	// Optional `extractVersion` for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	AutoReplaceStringTemplate *string `json:"autoReplaceStringTemplate,omitempty" yaml:"autoReplaceStringTemplate,omitempty" mapstructure:"autoReplaceStringTemplate,omitempty"`
+
+	// Optional `currentValue` for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	CurrentValueTemplate *string `json:"currentValueTemplate,omitempty" yaml:"currentValueTemplate,omitempty" mapstructure:"currentValueTemplate,omitempty"`
+
+	// Custom manager to use. Valid only within a `customManagers` object.
+	CustomType *ConfigCustomManagersElemCustomType `json:"customType,omitempty" yaml:"customType,omitempty" mapstructure:"customType,omitempty"`
+
+	// Optional datasource for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	DatasourceTemplate *string `json:"datasourceTemplate,omitempty" yaml:"datasourceTemplate,omitempty" mapstructure:"datasourceTemplate,omitempty"`
+
+	// Optional depName for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	DepNameTemplate *string `json:"depNameTemplate,omitempty" yaml:"depNameTemplate,omitempty" mapstructure:"depNameTemplate,omitempty"`
+
+	// Optional `depType` for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	DepTypeTemplate *string `json:"depTypeTemplate,omitempty" yaml:"depTypeTemplate,omitempty" mapstructure:"depTypeTemplate,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// Optional `extractVersion` for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	ExtractVersionTemplate *string `json:"extractVersionTemplate,omitempty" yaml:"extractVersionTemplate,omitempty" mapstructure:"extractVersionTemplate,omitempty"`
+
+	// It specifies the syntax of the package file being managed by the custom JSONata
+	// manager.
+	FileFormat *ConfigCustomManagersElemFileFormat `json:"fileFormat,omitempty" yaml:"fileFormat,omitempty" mapstructure:"fileFormat,omitempty"`
+
+	// RegEx (`re2`) and glob patterns for matching manager files.
+	ManagerFilePatterns interface{} `json:"managerFilePatterns,omitempty" yaml:"managerFilePatterns,omitempty" mapstructure:"managerFilePatterns,omitempty"`
+
+	// Queries to use. Valid only within `bumpVersions` or `customManagers` object.
+	MatchStrings []string `json:"matchStrings,omitempty" yaml:"matchStrings,omitempty" mapstructure:"matchStrings,omitempty"`
+
+	// Strategy how to interpret matchStrings.
+	MatchStringsStrategy ConfigCustomManagersElemMatchStringsStrategy `json:"matchStringsStrategy,omitempty" yaml:"matchStringsStrategy,omitempty" mapstructure:"matchStringsStrategy,omitempty"`
+
+	// Optional packageName for extracted dependencies, else defaults to `depName`
+	// value. Valid only within a `customManagers` object.
+	PackageNameTemplate *string `json:"packageNameTemplate,omitempty" yaml:"packageNameTemplate,omitempty" mapstructure:"packageNameTemplate,omitempty"`
+
+	// Optional registry URL for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	RegistryUrlTemplate *string `json:"registryUrlTemplate,omitempty" yaml:"registryUrlTemplate,omitempty" mapstructure:"registryUrlTemplate,omitempty"`
+
+	// Optional versioning for extracted dependencies. Valid only within a
+	// `customManagers` object.
+	VersioningTemplate *string `json:"versioningTemplate,omitempty" yaml:"versioningTemplate,omitempty" mapstructure:"versioningTemplate,omitempty"`
+}
+
+type ConfigCustomManagersElemCustomType string
+
+const ConfigCustomManagersElemCustomTypeJsonata ConfigCustomManagersElemCustomType = "jsonata"
+const ConfigCustomManagersElemCustomTypeRegex ConfigCustomManagersElemCustomType = "regex"
+
+type ConfigCustomManagersElemFileFormat string
+
+const ConfigCustomManagersElemFileFormatJson ConfigCustomManagersElemFileFormat = "json"
+const ConfigCustomManagersElemFileFormatToml ConfigCustomManagersElemFileFormat = "toml"
+const ConfigCustomManagersElemFileFormatYaml ConfigCustomManagersElemFileFormat = "yaml"
+
+type ConfigCustomManagersElemMatchStringsStrategy string
+
+const ConfigCustomManagersElemMatchStringsStrategyAny ConfigCustomManagersElemMatchStringsStrategy = "any"
+const ConfigCustomManagersElemMatchStringsStrategyCombination ConfigCustomManagersElemMatchStringsStrategy = "combination"
+const ConfigCustomManagersElemMatchStringsStrategyRecursive ConfigCustomManagersElemMatchStringsStrategy = "recursive"
+
 // Customize sections in the Dependency Dashboard issue.
 type ConfigCustomizeDashboard map[string]string
+
+// List of registry URLs to use as the default for a datasource.
+type ConfigDefaultRegistryUrls []string
+
+// The category to group branches on the Dependency Dashboard issue.
+type ConfigDependencyDashboardCategory *string
+
+// These labels will always be applied on the Dependency Dashboard issue, even when
+// they have been removed manually.
+type ConfigDependencyDashboardLabels []string
 
 type ConfigDependencyDashboardOSVVulnerabilitySummary string
 
@@ -576,11 +688,133 @@ const ConfigForkProcessingAuto ConfigForkProcessing = "auto"
 const ConfigForkProcessingDisabled ConfigForkProcessing = "disabled"
 const ConfigForkProcessingEnabled ConfigForkProcessing = "enabled"
 
+// Human understandable name for the dependency group.
+type ConfigGroupName *string
+
+// Slug to use for group (e.g. in branch name). Slug is calculated from `groupName`
+// if `null`.
+type ConfigGroupSlug *string
+
+// If enabled, branch names will use a hashing function to ensure each branch has
+// that length.
+type ConfigHashedBranchLength *int
+
+type ConfigHostRulesElem struct {
+	// A list of HTTP status codes safe to ignore even when `abortOnError=true`.
+	AbortIgnoreStatusCodes []float64 `json:"abortIgnoreStatusCodes,omitempty" yaml:"abortIgnoreStatusCodes,omitempty" mapstructure:"abortIgnoreStatusCodes,omitempty"`
+
+	// If enabled, Renovate aborts its run when HTTP request errors occur.
+	AbortOnError bool `json:"abortOnError,omitempty" yaml:"abortOnError,omitempty" mapstructure:"abortOnError,omitempty"`
+
+	// A list of package managers to enable artifact auth. Only managers on the list
+	// are enabled. All are enabled if `null`.
+	ArtifactAuth *ConfigHostRulesElemArtifactAuth `json:"artifactAuth,omitempty" yaml:"artifactAuth,omitempty" mapstructure:"artifactAuth,omitempty"`
+
+	// Authentication type for HTTP header. e.g. `"Bearer"` or `"Basic"`. Use
+	// `"Token-Only"` to use only the token without an authorization type.
+	AuthType string `json:"authType,omitempty" yaml:"authType,omitempty" mapstructure:"authType,omitempty"`
+
+	// Limit concurrent requests per host.
+	ConcurrentRequestLimit ConfigHostRulesElemConcurrentRequestLimit `json:"concurrentRequestLimit,omitempty" yaml:"concurrentRequestLimit,omitempty" mapstructure:"concurrentRequestLimit,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// Enable got DNS cache.
+	DnsCache bool `json:"dnsCache,omitempty" yaml:"dnsCache,omitempty" mapstructure:"dnsCache,omitempty"`
+
+	// Enable got HTTP/2 support.
+	EnableHttp2 bool `json:"enableHttp2,omitempty" yaml:"enableHttp2,omitempty" mapstructure:"enableHttp2,omitempty"`
+
+	// Enable or disable corresponding functionality.
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty" mapstructure:"enabled,omitempty"`
+
+	// hostType for a package rule. Can be a platform name or a datasource name.
+	HostType *string `json:"hostType,omitempty" yaml:"hostType,omitempty" mapstructure:"hostType,omitempty"`
+
+	// The certificate chains in PEM format.
+	HttpsCertificate ConfigHostRulesElemHttpsCertificate `json:"httpsCertificate,omitempty" yaml:"httpsCertificate,omitempty" mapstructure:"httpsCertificate,omitempty"`
+
+	// The overriding trusted CA certificate.
+	HttpsCertificateAuthority ConfigHostRulesElemHttpsCertificateAuthority `json:"httpsCertificateAuthority,omitempty" yaml:"httpsCertificateAuthority,omitempty" mapstructure:"httpsCertificateAuthority,omitempty"`
+
+	// The private key in PEM format.
+	HttpsPrivateKey ConfigHostRulesElemHttpsPrivateKey `json:"httpsPrivateKey,omitempty" yaml:"httpsPrivateKey,omitempty" mapstructure:"httpsPrivateKey,omitempty"`
+
+	// Explicitly turn on insecure Docker registry access (HTTP).
+	InsecureRegistry bool `json:"insecureRegistry,omitempty" yaml:"insecureRegistry,omitempty" mapstructure:"insecureRegistry,omitempty"`
+
+	// Enable HTTP keep-alive for hosts.
+	KeepAlive bool `json:"keepAlive,omitempty" yaml:"keepAlive,omitempty" mapstructure:"keepAlive,omitempty"`
+
+	// A domain name, host name or base URL to match against.
+	MatchHost *string `json:"matchHost,omitempty" yaml:"matchHost,omitempty" mapstructure:"matchHost,omitempty"`
+
+	// Limit requests rate per host.
+	MaxRequestsPerSecond int `json:"maxRequestsPerSecond,omitempty" yaml:"maxRequestsPerSecond,omitempty" mapstructure:"maxRequestsPerSecond,omitempty"`
+
+	// Maximum retry-after header value to wait for before retrying a failed request.
+	MaxRetryAfter int `json:"maxRetryAfter,omitempty" yaml:"maxRetryAfter,omitempty" mapstructure:"maxRetryAfter,omitempty"`
+
+	// Match against requests that only read data and do not mutate anything.
+	ReadOnly *bool `json:"readOnly,omitempty" yaml:"readOnly,omitempty" mapstructure:"readOnly,omitempty"`
+
+	// Timeout (in milliseconds) for queries to external endpoints.
+	Timeout *int `json:"timeout,omitempty" yaml:"timeout,omitempty" mapstructure:"timeout,omitempty"`
+}
+
+// A list of package managers to enable artifact auth. Only managers on the list
+// are enabled. All are enabled if `null`.
+type ConfigHostRulesElemArtifactAuth []ConfigHostRulesElemArtifactAuthElem
+
+type ConfigHostRulesElemArtifactAuthElem string
+
+const ConfigHostRulesElemArtifactAuthElemComposer ConfigHostRulesElemArtifactAuthElem = "composer"
+
+// Limit concurrent requests per host.
+type ConfigHostRulesElemConcurrentRequestLimit *int
+
+// The certificate chains in PEM format.
+type ConfigHostRulesElemHttpsCertificate *string
+
+// The overriding trusted CA certificate.
+type ConfigHostRulesElemHttpsCertificateAuthority *string
+
+// The private key in PEM format.
+type ConfigHostRulesElemHttpsPrivateKey *string
+
 type ConfigInternalChecksFilter string
 
 const ConfigInternalChecksFilterFlexible ConfigInternalChecksFilter = "flexible"
 const ConfigInternalChecksFilterNone ConfigInternalChecksFilter = "none"
 const ConfigInternalChecksFilterStrict ConfigInternalChecksFilter = "strict"
+
+type ConfigLogLevelRemapElem struct {
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// Regex/minimatch expression to match against log message.
+	MatchMessage *string `json:"matchMessage,omitempty" yaml:"matchMessage,omitempty" mapstructure:"matchMessage,omitempty"`
+
+	// New log level to use if matchMessage matches.
+	NewLogLevel *ConfigLogLevelRemapElemNewLogLevel `json:"newLogLevel,omitempty" yaml:"newLogLevel,omitempty" mapstructure:"newLogLevel,omitempty"`
+}
+
+type ConfigLogLevelRemapElemNewLogLevel string
+
+const ConfigLogLevelRemapElemNewLogLevelDebug ConfigLogLevelRemapElemNewLogLevel = "debug"
+const ConfigLogLevelRemapElemNewLogLevelError ConfigLogLevelRemapElemNewLogLevel = "error"
+const ConfigLogLevelRemapElemNewLogLevelFatal ConfigLogLevelRemapElemNewLogLevel = "fatal"
+const ConfigLogLevelRemapElemNewLogLevelInfo ConfigLogLevelRemapElemNewLogLevel = "info"
+const ConfigLogLevelRemapElemNewLogLevelTrace ConfigLogLevelRemapElemNewLogLevel = "trace"
+const ConfigLogLevelRemapElemNewLogLevelWarn ConfigLogLevelRemapElemNewLogLevel = "warn"
+
+// The number of a milestone. If set, the milestone will be set when Renovate
+// creates the PR.
+type ConfigMilestone *int
+
+// Time required before a new release is considered stable.
+type ConfigMinimumReleaseAge *string
 
 type ConfigMinimumReleaseAgeBehaviour string
 
@@ -591,6 +825,119 @@ type ConfigMode string
 
 const ConfigModeFull ConfigMode = "full"
 const ConfigModeSilent ConfigMode = "silent"
+
+type ConfigPackageRulesElem struct {
+	// A version range or regex pattern capturing allowed versions for dependencies.
+	AllowedVersions *string `json:"allowedVersions,omitempty" yaml:"allowedVersions,omitempty" mapstructure:"allowedVersions,omitempty"`
+
+	// Set a custom URL for the changelog. Renovate will put this URL in the PR body
+	// text.
+	ChangelogUrl *string `json:"changelogUrl,omitempty" yaml:"changelogUrl,omitempty" mapstructure:"changelogUrl,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// Enable or disable corresponding functionality.
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty" mapstructure:"enabled,omitempty"`
+
+	// List of strings containing exact matches (e.g. `["main"]`) and/or regex
+	// expressions (e.g. `["/^release/.*/"]`). Valid only within a `packageRules`
+	// object.
+	MatchBaseBranches interface{} `json:"matchBaseBranches,omitempty" yaml:"matchBaseBranches,omitempty" mapstructure:"matchBaseBranches,omitempty"`
+
+	// List of categories to match (for example: `["python"]`). Valid only within a
+	// `packageRules` object.
+	MatchCategories interface{} `json:"matchCategories,omitempty" yaml:"matchCategories,omitempty" mapstructure:"matchCategories,omitempty"`
+
+	// Merge confidence levels to match against (`low`, `neutral`, `high`, `very
+	// high`). Valid only within `packageRules` object.
+	MatchConfidence interface{} `json:"matchConfidence,omitempty" yaml:"matchConfidence,omitempty" mapstructure:"matchConfidence,omitempty"`
+
+	// Matches the current age of the package derived from its release timestamp.
+	// Valid only within a `packageRules` object.
+	MatchCurrentAge *string `json:"matchCurrentAge,omitempty" yaml:"matchCurrentAge,omitempty" mapstructure:"matchCurrentAge,omitempty"`
+
+	// A regex or glob pattern to match against the raw `currentValue` string of a
+	// dependency. Valid only within a `packageRules` object.
+	MatchCurrentValue *string `json:"matchCurrentValue,omitempty" yaml:"matchCurrentValue,omitempty" mapstructure:"matchCurrentValue,omitempty"`
+
+	// A version, or range of versions, to match against the current version of a
+	// package. Valid only within a `packageRules` object.
+	MatchCurrentVersion *string `json:"matchCurrentVersion,omitempty" yaml:"matchCurrentVersion,omitempty" mapstructure:"matchCurrentVersion,omitempty"`
+
+	// List of datasources to match (e.g. `["orb"]`). Valid only within a
+	// `packageRules` object.
+	MatchDatasources interface{} `json:"matchDatasources,omitempty" yaml:"matchDatasources,omitempty" mapstructure:"matchDatasources,omitempty"`
+
+	// Dep names to match. Valid only within a `packageRules` object.
+	MatchDepNames interface{} `json:"matchDepNames,omitempty" yaml:"matchDepNames,omitempty" mapstructure:"matchDepNames,omitempty"`
+
+	// List of depTypes to match (e.g. [`peerDependencies`]). Valid only within
+	// `packageRules` object.
+	MatchDepTypes interface{} `json:"matchDepTypes,omitempty" yaml:"matchDepTypes,omitempty" mapstructure:"matchDepTypes,omitempty"`
+
+	// List of strings to do an exact match against package and lock files with full
+	// path. Only works inside a `packageRules` object.
+	MatchFileNames []string `json:"matchFileNames,omitempty" yaml:"matchFileNames,omitempty" mapstructure:"matchFileNames,omitempty"`
+
+	// A JSONata expression to match against the full config object. Valid only within
+	// a `packageRules` object.
+	MatchJsonata []string `json:"matchJsonata,omitempty" yaml:"matchJsonata,omitempty" mapstructure:"matchJsonata,omitempty"`
+
+	// List of package managers to match (e.g. `["pipenv"]`). Valid only within a
+	// `packageRules` object.
+	MatchManagers interface{} `json:"matchManagers,omitempty" yaml:"matchManagers,omitempty" mapstructure:"matchManagers,omitempty"`
+
+	// A regex or glob pattern to match against the raw `newValue` string of a
+	// dependency. Valid only within a `packageRules` object.
+	MatchNewValue *string `json:"matchNewValue,omitempty" yaml:"matchNewValue,omitempty" mapstructure:"matchNewValue,omitempty"`
+
+	// Package names to match. Valid only within a `packageRules` object.
+	MatchPackageNames interface{} `json:"matchPackageNames,omitempty" yaml:"matchPackageNames,omitempty" mapstructure:"matchPackageNames,omitempty"`
+
+	// List of repositories to match (e.g. `["**/*-archived"]`). Valid only within a
+	// `packageRules` object.
+	MatchRepositories interface{} `json:"matchRepositories,omitempty" yaml:"matchRepositories,omitempty" mapstructure:"matchRepositories,omitempty"`
+
+	// A list of exact match URLs (or URL patterns) to match sourceUrl against.
+	MatchSourceUrls interface{} `json:"matchSourceUrls,omitempty" yaml:"matchSourceUrls,omitempty" mapstructure:"matchSourceUrls,omitempty"`
+
+	// Update types to match against (`major`, `minor`, `pin`, `pinDigest`, etc).
+	// Valid only within `packageRules` object.
+	MatchUpdateTypes interface{} `json:"matchUpdateTypes,omitempty" yaml:"matchUpdateTypes,omitempty" mapstructure:"matchUpdateTypes,omitempty"`
+
+	// Override the datasource value.
+	OverrideDatasource *string `json:"overrideDatasource,omitempty" yaml:"overrideDatasource,omitempty" mapstructure:"overrideDatasource,omitempty"`
+
+	// Override the depName value.
+	OverrideDepName *string `json:"overrideDepName,omitempty" yaml:"overrideDepName,omitempty" mapstructure:"overrideDepName,omitempty"`
+
+	// Override the packageName value.
+	OverridePackageName *string `json:"overridePackageName,omitempty" yaml:"overridePackageName,omitempty" mapstructure:"overridePackageName,omitempty"`
+
+	// Set sorting priority for PR creation. PRs with higher priority are created
+	// first, negative priority last.
+	PrPriority int `json:"prPriority,omitempty" yaml:"prPriority,omitempty" mapstructure:"prPriority,omitempty"`
+
+	// The name of the new dependency that replaces the old deprecated dependency.
+	ReplacementName *string `json:"replacementName,omitempty" yaml:"replacementName,omitempty" mapstructure:"replacementName,omitempty"`
+
+	// Controls what the replacement package name.
+	ReplacementNameTemplate string `json:"replacementNameTemplate,omitempty" yaml:"replacementNameTemplate,omitempty" mapstructure:"replacementNameTemplate,omitempty"`
+
+	// The version of the new dependency that replaces the old deprecated dependency.
+	ReplacementVersion *string `json:"replacementVersion,omitempty" yaml:"replacementVersion,omitempty" mapstructure:"replacementVersion,omitempty"`
+
+	// Template field for the version of the new dependency that replaces the old
+	// deprecated dependency.
+	ReplacementVersionTemplate *string `json:"replacementVersionTemplate,omitempty" yaml:"replacementVersionTemplate,omitempty" mapstructure:"replacementVersionTemplate,omitempty"`
+
+	// The source directory in which the package is present at its source.
+	SourceDirectory *string `json:"sourceDirectory,omitempty" yaml:"sourceDirectory,omitempty" mapstructure:"sourceDirectory,omitempty"`
+
+	// The source URL of the package.
+	SourceUrl *string `json:"sourceUrl,omitempty" yaml:"sourceUrl,omitempty" mapstructure:"sourceUrl,omitempty"`
+}
 
 type ConfigPlatformCommit string
 
@@ -633,6 +980,9 @@ const ConfigPrCreationImmediate ConfigPrCreation = "immediate"
 const ConfigPrCreationNotPending ConfigPrCreation = "not-pending"
 const ConfigPrCreationStatusSuccess ConfigPrCreation = "status-success"
 
+// Pull Request title template. Inherits from `commitMessage` if null.
+type ConfigPrTitle *string
+
 type ConfigRangeStrategy string
 
 const ConfigRangeStrategyAuto ConfigRangeStrategy = "auto"
@@ -657,16 +1007,26 @@ const ConfigRecreateWhenAlways ConfigRecreateWhen = "always"
 const ConfigRecreateWhenAuto ConfigRecreateWhen = "auto"
 const ConfigRecreateWhenNever ConfigRecreateWhen = "never"
 
+// List of URLs to try for dependency lookup. Package manager specific.
+type ConfigRegistryUrls []string
+
 type ConfigReplacementApproach string
 
 const ConfigReplacementApproachAlias ConfigReplacementApproach = "alias"
 const ConfigReplacementApproachReplace ConfigReplacementApproach = "replace"
+
+// Take a random sample of given size from `reviewers`.
+type ConfigReviewersSampleSize *int
 
 type ConfigSemanticCommits string
 
 const ConfigSemanticCommitsAuto ConfigSemanticCommits = "auto"
 const ConfigSemanticCommitsDisabled ConfigSemanticCommits = "disabled"
 const ConfigSemanticCommitsEnabled ConfigSemanticCommits = "enabled"
+
+// Skip installing modules/dependencies if lock file updating is possible without a
+// full install.
+type ConfigSkipInstalls *bool
 
 type ConfigSuppressNotificationsElem string
 
