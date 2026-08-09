@@ -74,5 +74,4 @@ jobs:
           name: unstoppablemango
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - run: nix develop -c make pkg/renovate/zz_generated.schema.go
       - run: git diff --exit-code
