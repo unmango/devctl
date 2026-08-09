@@ -13,7 +13,7 @@ Build/test go through `make`, which drives itself using `devctl` (dogfooding —
 ```shell
 make build          # builds bin/devctl
 make test           # ginkgo run, non-E2E specs only (uses .make/test as a stamp file)
-make test_all        # ginkgo run -r ./ , including E2E specs
+make test_all        # ginkgo run -r ./, including E2E specs
 make format          # dprint fmt (README.md, .github/renovate.json, .vscode/extensions.json, .dprint.json)
 make check           # nix flake check --all-systems
 make tidy            # regenerates go.sum and gomod2nix.toml from go.mod
@@ -67,9 +67,6 @@ Core convention: a repo's root `.versions/<name>` file holds a plaintext version
 
 ### `pkg/list` — source file discovery
 Language-aware source listing (`--go`, `--ts`, `--proto`, `--cs`, `--fs`, `--dotnet`, with `--exclude-tests`/`--absolute`) used both as a CLI feature and by the Makefile to compute Go build dependencies (`bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)`).
-
-### `pkg/renovate` — generated schema
-`pkg/renovate/zz_generated.schema.go` is generated from `.make/renovate-schema.json` (downloaded from docs.renovatebot.com, filtered by `hack/renovate/*.jq`, then run through `go-jsonschema`). Regenerate via `make pkg/renovate/zz_generated.schema.go`; don't hand-edit the `zz_generated` file. CI's `clean` job fails if this file is out of sync with its inputs.
 
 ## Conventions
 
