@@ -7,8 +7,6 @@ export GOBIN := ${LOCALBIN}
 GO        ?= go
 GINKGO    ?= $(GO) tool ginkgo
 GOMOD2NIX ?= $(GO) tool gomod2nix
-JSON2GO   ?= go-jsonschema
-JQ        ?= jq
 NIX       ?= nix
 
 ifeq ($(shell test -f ${LOCALBIN}/devctl && echo yes),yes)
@@ -43,11 +41,6 @@ gomod2nix.toml: go.mod
 go.sum: go.mod $(shell $(DEVCTL) list --go)
 	go mod tidy
 
-# I can't seem to get --schema-root-type to do what I want it to
-pkg/renovate/zz_generated.schema.go: .make/renovate-schema.json
-	mkdir -p $(dir $@)
-	$(JSON2GO) --package renovate $< --only-models | sed s/RenovateSchemaJson/Config/g > $@
-
 %_suite_test.go:
 	cd $(dir $@) && $(GINKGO) bootstrap
 
@@ -60,12 +53,6 @@ pkg/renovate/zz_generated.schema.go: .make/renovate-schema.json
 .make/test: $(shell $(DEVCTL) list --go)
 	$(GINKGO) run ${TEST_FLAGS} $(sort $(dir $?))
 	@touch $@
-
-.make/renovate-schema.orig.json:
-	curl https://docs.renovatebot.com/renovate-schema.json -o $@
-
-.make/renovate-schema.json: .make/renovate-schema.orig.json hack/renovate/*.jq
-	cat $< | $(JQ) -f hack/renovate/delete-refs.jq > $@
 
 .make/dprint-format: .dprint.json README.md .github/renovate.json .vscode/extensions.json
 	dprint fmt
