@@ -61,6 +61,9 @@ schema = 3
   [mod."github.com/google/go-github/v81"]
     version = "v81.0.0"
     hash = "sha256-+ufveUz5MphSn3KVU0v+5mlV0sPyeZC5g7jyR37kg0Q="
+  [mod."github.com/google/go-github/v84"]
+    version = "v84.0.0"
+    hash = "sha256-PCi2rQfQ4L2pmgGwOFSIW1u+exocIaq94K0OzuA++5I="
   [mod."github.com/google/go-querystring"]
     version = "v1.2.0"
     hash = "sha256-F/Ve4oDaEqho8RryvdGSRR22/DbYHWZQa6M60n6oSYM="
@@ -92,11 +95,11 @@ schema = 3
     version = "v1.7.0"
     hash = "sha256-KSsBTMpggbVO4AmI0JaXbALrXeygr2sT+IuoVAfkNqw="
   [mod."github.com/onsi/ginkgo/v2"]
-    version = "v2.27.5"
-    hash = "sha256-4YtMCQDR+odfRReIah0jHLXFdG8UyX+EOaDT00XpMr0="
+    version = "v2.28.1"
+    hash = "sha256-ndaovLQb6s4cztI8MXXJajJDY1kMsuz5zEbVjlfKgAE="
   [mod."github.com/onsi/gomega"]
-    version = "v1.39.0"
-    hash = "sha256-in2eEUjcDC3JGDSAQxBI/mWdT0E2X1yCBKoGXemlWaE="
+    version = "v1.39.1"
+    hash = "sha256-ZlbQhUVwQBzmhBWCQ9iPWoJOVr+OqqIHB4iCNDFMEds="
   [mod."github.com/pelletier/go-toml/v2"]
     version = "v2.2.4"
     hash = "sha256-8qQIPldbsS5RO8v/FW/se3ZsAyvLzexiivzJCbGRg2Q="
@@ -128,11 +131,11 @@ schema = 3
     version = "v1.6.0"
     hash = "sha256-LspbjTniiq2xAICSXmgqP7carwlNaLqnCTQfw2pa80A="
   [mod."github.com/unmango/aferox"]
-    version = "v0.3.3"
-    hash = "sha256-pdIvZefa8Yl5zK1PFQYab+ExPHALTKgfKDZ5WLEcT3A="
+    version = "v0.5.0"
+    hash = "sha256-ugi7ILxoL3R6xjgl/8ruxzx+BAaux7IEJNnfae3FqeM="
   [mod."github.com/unmango/aferox/github"]
-    version = "v0.0.4"
-    hash = "sha256-tz0jH4jLGR2S4rQPpHngzy9Ho/OAuQTBgqWmt9xR51s="
+    version = "v0.0.6"
+    hash = "sha256-8OinTfBi4FYya+TU6zUtwwhPBsw6Xwf7ueah0pSrCHM="
   [mod."github.com/unmango/go"]
     version = "v0.15.1"
     hash = "sha256-iaw6AuhEYu7LdLQnOL6Zmu9kp41nRwaz+lpeZ5ihRww="

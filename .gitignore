@@ -6,3 +6,4 @@ bin/
 go.work*
 .direnv/
 result
+.claude/*

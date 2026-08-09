@@ -13,19 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/cache@v5
+      - uses: cachix/install-nix-action@v31
         with:
-          path: bin
-          key: bin-${{ runner.os }}-${{ hashFiles('.versions/*') }}
-          restore-keys: |
-            bin-${{ runner.os }}
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-go@v6
+      - uses: cachix/cachix-action@v17
         with:
-          go-version-file: go.mod
-          cache-dependency-path: go.sum
+          name: unstoppablemango
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - run: make test
+      - run: nix develop -c make test
 
   nix:
     runs-on: ubuntu-latest
@@ -50,12 +47,16 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-go@v6
+      - uses: cachix/install-nix-action@v31
         with:
-          go-version-file: go.mod
-          cache-dependency-path: go.sum
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: go tool gomod2nix
+      - uses: cachix/cachix-action@v17
+        with:
+          name: unstoppablemango
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - run: nix develop -c go tool gomod2nix
       - run: git diff --exit-code gomod2nix.toml
 
   clean:
@@ -64,10 +65,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-go@v6
+      - uses: cachix/install-nix-action@v31
         with:
-          go-version-file: go.mod
-          cache-dependency-path: go.sum
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: make pkg/renovate/zz_generated.schema.go
+      - uses: cachix/cachix-action@v17
+        with:
+          name: unstoppablemango
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
       - run: git diff --exit-code

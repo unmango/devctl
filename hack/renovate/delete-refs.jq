@@ -1,1 +1,0 @@
-del(.properties.[]|select(.["$ref"] == "#"))
