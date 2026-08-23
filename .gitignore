@@ -1,7 +1,3 @@
-# .envrc is tracked here: it is just `use flake`, and a global gitignore
-# commonly excludes it.
-!.envrc
-
 bin/
 dist/
 *.test
@@ -10,3 +6,4 @@ go.work*
 .direnv/
 result
 .claude/*
+.envrc
