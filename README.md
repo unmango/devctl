@@ -10,7 +10,7 @@ go install github.com/unmango/devctl/cmd
 
 ## Usage
 
-The current supported functionalitly includes listing source code files and managing dependency version files.
+The current supported functionalitly includes listing source code files, managing dependency version files, and driving stacked diffs.
 
 ### List source files
 
@@ -53,6 +53,39 @@ This convention is useful alongside `make` where version updates can trigger tar
 bin/mybin: .versions/mybin
     go install mybin@$(shell devctl $<)
 ```
+
+### Stacked diffs
+
+Thin orchestration over [gh-stack](https://gh.io/stacks), which must be installed:
+
+```shell
+gh extension install github/gh-stack
+```
+
+Each subcommand runs a fixed sequence of `git` and `gh stack` commands, nothing more.
+
+| Command                                | Runs                                                                                                                       |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `devctl stack add <branch> -Am "msg"`  | `gh stack add`, or `gh stack init` plus a commit when there is no stack yet                                                |
+| `devctl stack save -Am "msg"`          | `git add`, `git commit`, `gh stack rebase --upstack`, `gh stack push`                                                      |
+| `devctl stack edit <branch> -Am "msg"` | `gh stack checkout`, `git add`, `git commit`, `gh stack rebase --upstack`, `gh stack checkout <original>`, `gh stack push` |
+| `devctl stack ship`                    | `gh stack sync`, `gh stack submit --auto`                                                                                  |
+
+```shell
+$ devctl stack add feat/auth -Am "Add auth middleware"
+$ devctl stack add feat/api -Am "Add API routes"
+$ devctl stack save -Am "Handle expired tokens"
+$ devctl stack edit feat/auth -Am "Fix the middleware"  # commits down the stack, returns to where you were
+$ devctl stack ship --open
+```
+
+`-A`, `-u`, and `-m` mirror their `gh stack add` meanings, and staging or committing is skipped when none are given.
+`gh stack` exit codes are passed through untouched, so a rebase conflict still exits 3.
+
+Two things worth knowing:
+
+- Pass `--remote` when the repo has more than one remote and `remote.pushDefault` isn't configured.
+- `gh stack sync` succeeds while printing `Sync aborted` when the local and remote stacks have diverged, so `ship` cannot detect that case and will go on to submit.
 
 ## Development
 
