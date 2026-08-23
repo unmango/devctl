@@ -4,5 +4,9 @@
     "config:recommended",
     "github>UnstoppableMango/renovate-config"
   ],
-  "automerge": true
+  "automerge": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  }
 }

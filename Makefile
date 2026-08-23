@@ -1,58 +1,31 @@
-_ := $(shell mkdir -p .make bin)
+NIX ?= nix
 
-LOCALBIN    := ${CURDIR}/bin
+.PHONY: build check fmt test e2e tidy dev
 
-export GOBIN := ${LOCALBIN}
-
-GO        ?= go
-GINKGO    ?= $(GO) tool ginkgo
-GOMOD2NIX ?= $(GO) tool gomod2nix
-NIX       ?= nix
-
-ifeq ($(shell test -f ${LOCALBIN}/devctl && echo yes),yes)
-DEVCTL := ${LOCALBIN}/devctl
-else
-DEVCTL := go run ./
-endif
-
-ifeq ($(CI),)
-TEST_FLAGS := --label-filter !E2E
-else
-TEST_FLAGS := --github-output --race --trace --coverprofile=cover.profile
-endif
-
-build: bin/devctl
-tidy: go.sum gomod2nix.toml
-format: .make/dprint-format
+build:
+	$(NIX) build
 
 check:
 	$(NIX) flake check --all-systems
 
-test: .make/test
-test_all:
-	$(GINKGO) run -r ./
+fmt:
+	$(NIX) fmt
 
-bin/devctl: $(shell $(DEVCTL) list --go --exclude-tests)
-	go build -o $@ ./
+test:
+	$(NIX) run .#test
 
-gomod2nix.toml: go.mod
-	$(GOMOD2NIX)
+e2e:
+	$(NIX) run .#e2e
 
-go.sum: go.mod $(shell $(DEVCTL) list --go)
-	go mod tidy
+tidy:
+	$(NIX) run .#tidy
 
+dev:
+	$(NIX) develop
+
+# ginkgo scaffolding
 %_suite_test.go:
-	cd $(dir $@) && $(GINKGO) bootstrap
+	cd $(dir $@) && go tool ginkgo bootstrap
 
 %_test.go:
-	cd $(dir $@) && $(GINKGO) generate $(notdir $*)
-
-.envrc: hack/example.envrc
-	cp $< $@
-
-.make/test: $(shell $(DEVCTL) list --go)
-	$(GINKGO) run ${TEST_FLAGS} $(sort $(dir $?))
-	@touch $@
-
-.make/dprint-format: .dprint.json README.md .github/renovate.json .vscode/extensions.json
-	dprint fmt
+	cd $(dir $@) && go tool ginkgo generate $(notdir $*)

@@ -53,3 +53,20 @@ This convention is useful alongside `make` where version updates can trigger tar
 bin/mybin: .versions/mybin
     go install mybin@$(shell devctl $<)
 ```
+
+## Development
+
+This repo is driven by Nix.
+[direnv](https://direnv.net) picks up the checked-in `.envrc` and drops you into the dev shell; without it, run `nix develop`.
+
+| Command           | Equivalent   | Does                                                                |
+| ----------------- | ------------ | ------------------------------------------------------------------- |
+| `nix flake check` | `make check` | Unit tests, formatting, and linting. The one command CI runs.       |
+| `nix build`       | `make build` | Builds the `devctl` binary to `result/bin/devctl`.                  |
+| `nix fmt`         | `make fmt`   | Formats everything via treefmt (gofmt, nixfmt, dprint, actionlint). |
+| `nix run .#test`  | `make test`  | Unit tests only, outside the sandbox for a faster loop.             |
+| `nix run .#e2e`   | `make e2e`   | End-to-end tests. Needs network access.                             |
+| `nix run .#tidy`  | `make tidy`  | Syncs `go.sum` and `gomod2nix.toml` after a `go.mod` change.        |
+
+Flake outputs live in [`nix/`](./nix); `flake.nix` only declares inputs.
+The released version is read from `.versions/devctl`.

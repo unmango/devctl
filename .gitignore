@@ -1,9 +1,9 @@
-.make/
 bin/
-.envrc
+dist/
 *.test
 .DS_Store
 go.work*
 .direnv/
 result
 .claude/*
+.envrc
