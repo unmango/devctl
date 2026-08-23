@@ -83,8 +83,6 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
-github.com/google/go-github/v81 v81.0.0 h1:hTLugQRxSLD1Yei18fk4A5eYjOGLUBKAl/VCqOfFkZc=
-github.com/google/go-github/v81 v81.0.0/go.mod h1:upyjaybucIbBIuxgJS7YLOZGziyvvJ92WX6WEBNE3sM=
 github.com/google/go-github/v84 v84.0.0 h1:I/0Xn5IuChMe8TdmI2bbim5nyhaRFJ7DEdzmD2w+yVA=
 github.com/google/go-github/v84 v84.0.0/go.mod h1:WwYL1z1ajRdlaPszjVu/47x1L0PXukJBn73xsiYrRRQ=
 github.com/google/go-querystring v1.2.0 h1:yhqkPbu2/OH+V9BfpCVPZkNmUXhb2gBxJArfhIxNtP0=
@@ -128,12 +126,8 @@ github.com/nix-community/go-nix v0.0.0-20220612195009-5f5614f7ca47 h1:K270nNzKXB
 github.com/nix-community/go-nix v0.0.0-20220612195009-5f5614f7ca47/go.mod h1:eE1NFc/GHPnxAhTTuxIfB6JSvRQdMVQCMQqRrGRWWfQ=
 github.com/nix-community/gomod2nix v1.7.0 h1:sP4LQn8aIx4WKDksoN7A2iC/rg9C7Sb5I8OgzwFzeCA=
 github.com/nix-community/gomod2nix v1.7.0/go.mod h1:VU9pfOK8sVzev+y8i3XmeA35WfZXaBSWVzRYYkEbquE=
-github.com/onsi/ginkgo/v2 v2.27.5 h1:ZeVgZMx2PDMdJm/+w5fE/OyG6ILo1Y3e+QX4zSR0zTE=
-github.com/onsi/ginkgo/v2 v2.27.5/go.mod h1:ArE1D/XhNXBXCBkKOLkbsb2c81dQHCRcF5zwn/ykDRo=
 github.com/onsi/ginkgo/v2 v2.28.1 h1:S4hj+HbZp40fNKuLUQOYLDgZLwNUVn19N3Atb98NCyI=
 github.com/onsi/ginkgo/v2 v2.28.1/go.mod h1:CLtbVInNckU3/+gC8LzkGUb9oF+e8W8TdUsxPwvdOgE=
-github.com/onsi/gomega v1.39.0 h1:y2ROC3hKFmQZJNFeGAMeHZKkjBL65mIZcvrLQBF9k6Q=
-github.com/onsi/gomega v1.39.0/go.mod h1:ZCU1pkQcXDO5Sl9/VVEGlDyp+zm0m1cmeG5TOzLgdh4=
 github.com/onsi/gomega v1.39.1 h1:1IJLAad4zjPn2PsnhH70V4DKRFlrCzGBNrNaru+Vf28=
 github.com/onsi/gomega v1.39.1/go.mod h1:hL6yVALoTOxeWudERyfppUcZXjMwIMLnuSfruD2lcfg=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
@@ -189,12 +183,8 @@ github.com/tidwall/pretty v1.2.1/go.mod h1:ITEVvHYasfjBbM0u2Pg8T2nJnzm8xPwvNhhso
 github.com/tidwall/sjson v1.2.5 h1:kLy8mja+1c9jlljvWTlSazM7cKDRfJuR/bOJhcY5NcY=
 github.com/tidwall/sjson v1.2.5/go.mod h1:Fvgq9kS/6ociJEDnK0Fk1cpYF4FIW6ZF7LAe+6jwd28=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
-github.com/unmango/aferox v0.3.3 h1:gKCJ2XybO+3ffmizYOi2hSKnDVdAIdW+AuGs8mBTChg=
-github.com/unmango/aferox v0.3.3/go.mod h1:Td9BGmIdfyN8+sOiK3+aR2bGufOlyG5MNG6rAJwssHM=
 github.com/unmango/aferox v0.5.0 h1:VvlPQXypFIINMyR/RG1R8AwQU6D5q6p8RclHfgnTgRA=
 github.com/unmango/aferox v0.5.0/go.mod h1:/3W/F56XXNqSUd+AuUTAOCjl/bhrcSpb1jDynZCdC7A=
-github.com/unmango/aferox/github v0.0.4 h1:GIGa07cEgizVL+lLikwrjp23N3M1ysZkuWHYQW9TWek=
-github.com/unmango/aferox/github v0.0.4/go.mod h1:Pm6syvix97VE7OAmRgqIQqMhs96fSnpjIVK9AyB9c4Q=
 github.com/unmango/aferox/github v0.0.6 h1:3asOLM+3thSBUaH+YMzLSVcAgC+9eKyx30gjZR92DJc=
 github.com/unmango/aferox/github v0.0.6/go.mod h1:36Qt4PpCWbFh/Yvf8BtBc22SmRASwOfEdJBe5MTscNg=
 github.com/unmango/go v0.15.1 h1:JvZg+4baEAKypm68LhZisu0KeZeXmZ9yewfjV19JQuA=

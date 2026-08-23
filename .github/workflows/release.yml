@@ -7,7 +7,7 @@ on:
       - .github/workflows/release.yml
       - .goreleaser.yaml
   push:
-    tags: ['v*.*.*']
+    tags: ["v*.*.*"]
 
 jobs:
   goreleaser:
@@ -19,26 +19,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-go@v6
+      - uses: ./.github/actions/nix
         with:
-          go-version-file: go.mod
-          cache-dependency-path: go.sum
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cachix-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - uses: goreleaser/goreleaser-action@v7
-        if: github.event_name == 'pull_request'
-        with:
-          version: '~> v2'
-          args: release --snapshot
+      - if: github.event_name == 'pull_request'
+        run: nix develop -c goreleaser release --snapshot --clean
         env:
           GITHUB_TOKEN: ${{ github.token }}
           # Disable the monorepo feature
           GORELEASER_CURRENT_TAG: v0.0.1
           GORELEASER_PREVIOUS_TAG: v0.0.1-alpha
 
-      - uses: goreleaser/goreleaser-action@v7
-        if: github.event_name != 'pull_request'
-        with:
-          version: '~> v2'
-          args: release --clean
+      - if: github.event_name != 'pull_request'
+        run: nix develop -c goreleaser release --clean
         env:
           GITHUB_TOKEN: ${{ github.token }}

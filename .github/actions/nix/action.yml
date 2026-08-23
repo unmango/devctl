@@ -1,0 +1,25 @@
+name: Nix
+description: Install Nix and configure the shared Cachix binary cache
+
+inputs:
+  github-token:
+    description: Token used to authenticate Nix's GitHub fetches
+    required: false
+    default: ""
+  cachix-token:
+    description: Cachix auth token; omit to use the cache read-only
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - uses: cachix/install-nix-action@v31
+      with:
+        github_access_token: ${{ inputs.github-token }}
+
+    - uses: cachix/cachix-action@v17
+      with:
+        name: unstoppablemango
+        authToken: ${{ inputs.cachix-token }}
+        skipPush: ${{ inputs.cachix-token == '' }}

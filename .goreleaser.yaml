@@ -4,7 +4,8 @@ version: 2
 
 before:
   hooks:
-    - make tidy
+    # gomod2nix.toml drift is verified separately by the CI `gomod2nix` job.
+    - go mod tidy
 
 builds:
   - id: devctl
