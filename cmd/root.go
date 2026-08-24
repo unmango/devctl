@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/unmango/devctl/cmd/config"
 	"github.com/unmango/devctl/cmd/initialize"
+	"github.com/unmango/devctl/cmd/stack"
 )
 
 var root = &cobra.Command{
@@ -19,6 +20,7 @@ func init() {
 		InstallCmd,
 		ListCmd,
 		LocalBinCmd,
+		stack.Cmd,
 		VersionCmd,
 	)
 }
