@@ -50,8 +50,8 @@ var _ = Describe("migrate", func() {
 			Expect(read(agents.AgentsFile)).To(Equal(
 				"# AGENTS.md\n\nRun `make build`. Update AGENTS.md when it changes.\n",
 			))
-			Expect(read(agents.ClaudeFile)).To(Equal("# CLAUDE.md\n\n@AGENTS.md\n"))
-			Expect(read(agents.CopilotFile)).To(ContainSubstring("../AGENTS.md"))
+			Expect(read(agents.ClaudeFile)).To(Equal("@AGENTS.md\n"))
+			Expect(read(agents.CopilotFile)).To(Equal("@../AGENTS.md\n"))
 		})
 
 		It("should report the lines it left alone", func() {
