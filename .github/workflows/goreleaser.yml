@@ -1,10 +1,14 @@
 name: Release
 
+# Tags are pushed by release-please with RELEASE_PLEASE_TOKEN, so they trigger
+# this workflow. goreleaser's default release mode is keep-existing, so archives
+# are uploaded to the release release-please already created without replacing
+# its notes.
 on:
   pull_request:
     branches: [main]
     paths:
-      - .github/workflows/release.yml
+      - .github/workflows/goreleaser.yml
       - .goreleaser.yaml
   push:
     tags: ["v*.*.*"]

@@ -5,6 +5,7 @@
     "github>UnstoppableMango/renovate-config"
   ],
   "automerge": true,
+  "semanticCommits": "enabled",
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true

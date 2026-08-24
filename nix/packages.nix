@@ -11,7 +11,9 @@
 
       devctl = buildGoApplication {
         pname = "devctl";
-        version = lib.fileContents ../.versions/devctl;
+        # release-please owns this file; it is the single source of truth for
+        # the released version.
+        version = (lib.importJSON ../.release-please-manifest.json).".";
         src = ../.;
         modules = ../gomod2nix.toml;
 
