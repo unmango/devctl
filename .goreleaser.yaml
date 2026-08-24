@@ -34,12 +34,9 @@ archives:
       - goos: windows
         formats: [zip]
 
+# release-please generates CHANGELOG.md and the release notes.
 changelog:
-  sort: asc
-  filters:
-    exclude:
-      - "^docs:"
-      - "^test:"
+  disable: true
 
 release:
   draft: false

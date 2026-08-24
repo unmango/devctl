@@ -124,4 +124,14 @@ This repo is driven by Nix.
 | `nix run .#tidy`  | `make tidy`  | Syncs `go.sum` and `gomod2nix.toml` after a `go.mod` change.        |
 
 Flake outputs live in [`nix/`](./nix); `flake.nix` only declares inputs.
-The released version is read from `.versions/devctl`.
+
+### Releasing
+
+Releases are cut by [release-please](https://github.com/googleapis/release-please) from [Conventional Commits](https://www.conventionalcommits.org).
+PRs are squash-merged, so the **PR title** is the commit subject release-please reads; a CI check rejects titles that aren't conventional.
+
+`feat:` bumps the minor version, `fix:` the patch; anything else lands in the changelog without forcing a release.
+release-please keeps an open release PR with the pending `CHANGELOG.md` and version bump.
+Merging it tags `vX.Y.Z`, publishes the GitHub Release, and triggers goreleaser to attach the binaries.
+
+The released version is read from `.release-please-manifest.json`; nothing needs to be bumped by hand.

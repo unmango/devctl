@@ -7,13 +7,56 @@ on:
       - .github/workflows/release.yml
       - .goreleaser.yaml
   push:
-    tags: ["v*.*.*"]
+    branches: [main]
 
 jobs:
-  goreleaser:
+  release-please:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  goreleaser:
+    needs: release-please
+    # Gated on the release-please job rather than a `push: tags` trigger, so
+    # cutting a release is one traceable workflow run.
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+          fetch-depth: 0
+
+      - uses: ./.github/actions/nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cachix-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      # goreleaser's default release mode is keep-existing, so archives are
+      # uploaded to the release release-please already created without
+      # replacing its notes.
+      - run: nix develop -c goreleaser release --clean
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  snapshot:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
@@ -24,15 +67,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cachix-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - if: github.event_name == 'pull_request'
-        run: nix develop -c goreleaser release --snapshot --clean
+      - run: nix develop -c goreleaser release --snapshot --clean
         env:
           GITHUB_TOKEN: ${{ github.token }}
           # Disable the monorepo feature
           GORELEASER_CURRENT_TAG: v0.0.1
           GORELEASER_PREVIOUS_TAG: v0.0.1-alpha
-
-      - if: github.event_name != 'pull_request'
-        run: nix develop -c goreleaser release --clean
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
