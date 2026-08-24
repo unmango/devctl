@@ -55,7 +55,7 @@ Run ` + "`make build`" + `. Update AGENTS.md when the commands change.
 			_, err := agents.Migrate(fs, agents.Options{})
 
 			Expect(err).NotTo(HaveOccurred())
-			Expect(read(agents.ClaudeFile)).To(Equal("# CLAUDE.md\n\n@AGENTS.md\n"))
+			Expect(read(agents.ClaudeFile)).To(Equal("@AGENTS.md\n"))
 		})
 
 		It("should point the copilot instructions at AGENTS.md", func() {
@@ -63,7 +63,7 @@ Run ` + "`make build`" + `. Update AGENTS.md when the commands change.
 
 			Expect(err).NotTo(HaveOccurred())
 			Expect(read(agents.CopilotFile)).To(Equal(
-				"# Copilot instructions\n\nSee [AGENTS.md](../AGENTS.md).\n",
+				"@../AGENTS.md\n",
 			))
 		})
 
