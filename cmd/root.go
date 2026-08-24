@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/unmango/devctl/cmd/config"
 	"github.com/unmango/devctl/cmd/initialize"
+	"github.com/unmango/devctl/cmd/migrate"
 	"github.com/unmango/devctl/cmd/stack"
 )
 
@@ -20,6 +21,7 @@ func init() {
 		InstallCmd,
 		ListCmd,
 		LocalBinCmd,
+		migrate.Cmd,
 		stack.Cmd,
 		VersionCmd,
 	)

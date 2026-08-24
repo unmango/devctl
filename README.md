@@ -87,6 +87,28 @@ Two things worth knowing:
 - Pass `--remote` when the repo has more than one remote and `remote.pushDefault` isn't configured.
 - `gh stack sync` succeeds while printing `Sync aborted` when the local and remote stacks have diverged, so `ship` cannot detect that case and will go on to submit.
 
+### Agent instructions
+
+`claude /init` writes a `CLAUDE.md`, but the build commands and conventions in it are useful to every coding agent.
+`devctl migrate agents` promotes that file to the portable [`AGENTS.md`](https://agents.md) convention and leaves pointers behind for the tools looking for their own filename.
+
+```shell
+$ devctl migrate agents
+# AGENTS.md                        the instructions, boilerplate rewritten
+# CLAUDE.md                        imports AGENTS.md
+# .github/copilot-instructions.md  points at AGENTS.md
+```
+
+Only the fixed boilerplate is rewritten: the title, the `Claude Code (claude.ai/code)` guidance sentence, and `CLAUDE.md` self references.
+Everything else is left alone, and any line still mentioning Claude is reported so it can be edited by hand.
+
+```shell
+$ devctl migrate agents
+# AGENTS.md:9 still mentions Claude: Ask Claude to run the tests.
+```
+
+Existing files are never clobbered without `--force`, and a `CLAUDE.md` already importing `AGENTS.md` is refused outright so a second run cannot promote the pointer over the instructions it points at.
+
 ## Development
 
 This repo is driven by Nix.
