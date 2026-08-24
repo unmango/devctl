@@ -1,0 +1,42 @@
+name: Release
+
+# Tags are pushed by release-please with RELEASE_PLEASE_TOKEN, so they trigger
+# this workflow. goreleaser's default release mode is keep-existing, so archives
+# are uploaded to the release release-please already created without replacing
+# its notes.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/goreleaser.yml
+      - .goreleaser.yaml
+  push:
+    tags: ["v*.*.*"]
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cachix-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - if: github.event_name == 'pull_request'
+        run: nix develop -c goreleaser release --snapshot --clean
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          # Disable the monorepo feature
+          GORELEASER_CURRENT_TAG: v0.0.1
+          GORELEASER_PREVIOUS_TAG: v0.0.1-alpha
+
+      - if: github.event_name != 'pull_request'
+        run: nix develop -c goreleaser release --clean
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
