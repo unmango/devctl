@@ -23,17 +23,10 @@ const (
 	CopilotFile = ".github/copilot-instructions.md"
 )
 
-// claudePointer imports AGENTS.md with Claude Code's `@` syntax so the content
-// is pulled in rather than merely linked
-const claudePointer = `# ` + ClaudeFile + `
-
-@` + AgentsFile + `
-`
-
-const copilotPointer = `# Copilot instructions
-
-See [` + AgentsFile + `](../` + AgentsFile + `).
-`
+const (
+	claudePointer  = `@` + AgentsFile
+	copilotPointer = `@../` + AgentsFile
+)
 
 type Options struct {
 	Force bool
@@ -77,14 +70,14 @@ func Migrate(fs afero.Fs, options Options) ([]Reference, error) {
 		return nil, err
 	}
 
-	if err = write(fs, ClaudeFile, claudePointer); err != nil {
+	if err = write(fs, ClaudeFile, fmt.Sprintln(claudePointer)); err != nil {
 		return nil, err
 	}
 
 	if err = fs.MkdirAll(filepath.Dir(CopilotFile), os.ModePerm); err != nil {
 		return nil, err
 	}
-	if err = write(fs, CopilotFile, copilotPointer); err != nil {
+	if err = write(fs, CopilotFile, fmt.Sprintln(copilotPointer)); err != nil {
 		return nil, err
 	}
 
