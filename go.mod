@@ -16,7 +16,7 @@ require (
 	github.com/spf13/viper v1.21.0
 	github.com/unmango/aferox v0.5.0
 	github.com/unmango/aferox/github v0.0.6
-	github.com/unmango/go v0.15.1
+	github.com/unmango/go v0.16.6
 )
 
 require (
