@@ -9,7 +9,7 @@ tool (
 
 require (
 	github.com/charmbracelet/log v0.4.2
-	github.com/onsi/ginkgo/v2 v2.32.1
+	github.com/onsi/ginkgo/v2 v2.33.0
 	github.com/onsi/gomega v1.43.0
 	github.com/spf13/afero v1.15.0
 	github.com/spf13/cobra v1.10.2
