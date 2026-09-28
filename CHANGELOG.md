@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.1](https://github.com/unmango/devctl/compare/v0.4.0...v0.4.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/onsi/ginkgo/v2 to v2.33.0 ([#104](https://github.com/unmango/devctl/issues/104)) ([eea8e81](https://github.com/unmango/devctl/commit/eea8e81ad6309f2c487bfd7c5f7423aacf53001d))
+* **deps:** update module github.com/onsi/gomega to v1.43.1 ([#103](https://github.com/unmango/devctl/issues/103)) ([45ef6bf](https://github.com/unmango/devctl/commit/45ef6bf02cf8e8ccd259fa753880509096221c43))
+* **deps:** update module github.com/onsi/gomega to v1.44.0 ([#112](https://github.com/unmango/devctl/issues/112)) ([dd0ffe8](https://github.com/unmango/devctl/commit/dd0ffe85ff6d5851a66107e03718599f6d3bdfec))
+
 ## [0.4.0](https://github.com/unmango/devctl/compare/v0.3.1...v0.4.0) (2026-08-24)
 
 
