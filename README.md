@@ -1,5 +1,7 @@
 # devctl
 
+[![Hercules CI](https://hercules-ci.com/api/v1/site/github/account/unmango/project/devctl/badge)](https://hercules-ci.com/github/unmango/devctl)
+
 A CLI tool for development productivity.
 
 ## Installation
