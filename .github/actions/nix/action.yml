@@ -14,12 +14,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: cachix/install-nix-action@v31
+    - uses: unmango/actions/setup-nix@3ec4ed5a6af9c00f6a39e079df488573c77ebda6 # v1.0.1
       with:
         github_access_token: ${{ inputs.github-token }}
-
-    - uses: cachix/cachix-action@v17
-      with:
-        name: unstoppablemango
-        authToken: ${{ inputs.cachix-token }}
-        skipPush: ${{ inputs.cachix-token == '' }}
+        cachix_auth_token: ${{ inputs.cachix-token }}
