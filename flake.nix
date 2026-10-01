@@ -25,8 +25,8 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.systems.flakeModule
+      imports = with inputs; [
+        systems.flakeModule or { }
         ./nix
       ];
     };
