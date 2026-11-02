@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/unmango/aferox/github"
-	"github.com/unmango/go/lazy"
+	"github.com/unmango/go/fp/lazy"
 )
 
 type Source interface {
